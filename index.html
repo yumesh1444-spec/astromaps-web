@@ -41,30 +41,35 @@
             margin-bottom: 0.5rem;
             font-weight: 800;
         }
-        .tagline { color: #94a3b8; font-size: 1.1rem; margin-bottom: 2rem; }
-        .links { display: flex; flex-direction: column; gap: 15px; }
+        .tagline { color: #94a3b8; font-size: 1.1rem; margin-bottom: 2.5rem; }
+        .links { display: flex; flex-direction: column; gap: 18px; }
         .link-btn {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
-            padding: 16px;
+            padding: 18px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
+            border-radius: 14px;
             color: white;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .link-btn:hover {
             background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-            border-color: #4cc9f0;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -5px rgba(67, 97, 238, 0.3);
         }
-        .youtube:hover { color: #ff0000; }
-        .telegram:hover { color: #0088cc; }
-        .whatsapp:hover { color: #25d366; }
+        /* Button Colors */
+        .youtube:hover { border-color: #ff0000; color: #ff0000; }
+        .linkedin:hover { border-color: #0077b5; color: #0077b5; }
+        .telegram:hover { border-color: #0088cc; color: #0088cc; }
+        .whatsapp:hover { border-color: #25d366; color: #25d366; }
+        
+        i { font-size: 1.3rem; }
+        .footer-text { margin-top: 2.5rem; font-size: 0.85rem; color: #64748b; letter-spacing: 0.5px; }
     </style>
 </head>
 <body>
@@ -76,15 +81,21 @@
             <a href="https://www.youtube.com/@AstroMAPSAI" class="link-btn youtube" target="_blank">
                 <i class="fab fa-youtube"></i> YouTube Channel
             </a>
+            
+            <a href="https://www.linkedin.com/in/YOUR-PROFILE" class="link-btn linkedin" target="_blank">
+                <i class="fab fa-linkedin"></i> LinkedIn Professional
+            </a>
+            
             <a href="https://t.me/astromapsai" class="link-btn telegram" target="_blank">
                 <i class="fab fa-telegram"></i> Telegram Community
             </a>
+            
             <a href="https://wa.me/917727054744" class="link-btn whatsapp" target="_blank">
                 <i class="fab fa-whatsapp"></i> Contact on WhatsApp
             </a>
         </div>
         
-        <p style="margin-top: 2rem; font-size: 0.8rem; color: #64748b;">
+        <p class="footer-text">
             Built with 35+ Years of Research Experience
         </p>
     </div>

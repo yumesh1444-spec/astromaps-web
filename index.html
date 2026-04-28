@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AstroMAPS AI | Market Mood</title>
+    <title>AstroMAPS AI | Market Insights</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -19,54 +19,58 @@
             min-height: 100vh;
             padding: 20px;
         }
-        .container {
-            max-width: 600px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+        .container { max-width: 600px; width: 100%; display: flex; flex-direction: column; gap: 20px; }
         .card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 24px;
+            padding: 2.5rem;
+            border-radius: 28px;
             text-align: center;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
-        h1 { font-size: 2.5rem; background: linear-gradient(to right, #4cc9f0, #4361ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; margin-bottom: 10px; }
-        .maps-box { background: rgba(67, 97, 238, 0.1); border: 1px dashed rgba(76, 201, 240, 0.3); border-radius: 15px; padding: 1rem; margin: 15px 0; text-align: center; font-weight: 600; color: #e2e8f0; }
+        h1 { font-size: 2.6rem; background: linear-gradient(to right, #4cc9f0, #4361ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; margin-bottom: 5px; }
+        .maps-tag { color: #4cc9f0; font-weight: 600; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 20px; text-transform: uppercase; }
         
-        /* Prediction Boxes */
-        .mood-container { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
         .mood-box {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 16px;
-            padding: 1.5rem;
+            padding: 1.2rem;
             text-align: left;
-            border-left: 5px solid #4361ee;
+            border-left: 4px solid #4361ee;
+            margin-bottom: 15px;
         }
-        .mood-box h3 { color: #4cc9f0; font-size: 1.1rem; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-        .mood-text { color: #cbd5e1; font-size: 0.95rem; line-height: 1.5; }
+        .mood-box h3 { color: #4cc9f0; font-size: 1rem; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
+        .mood-text { color: #cbd5e1; font-size: 0.9rem; line-height: 1.4; }
+
+        /* WhatsApp Connect Section */
+        .connect-section {
+            background: rgba(37, 211, 102, 0.1);
+            border: 1px solid rgba(37, 211, 102, 0.2);
+            padding: 1.5rem;
+            border-radius: 20px;
+            margin-top: 20px;
+        }
+        .connect-title { color: #25d366; font-weight: 700; margin-bottom: 10px; display: block; }
         
-        .youtube-btn {
+        .whatsapp-btn {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            padding: 14px;
-            background: #ff0000;
-            border-radius: 12px;
-            color: white;
+            padding: 15px;
+            background: #25d366;
+            border-radius: 14px;
+            color: #000;
             text-decoration: none;
-            font-weight: 700;
-            margin-top: 20px;
+            font-weight: 800;
             transition: 0.3s;
         }
-        .youtube-btn:hover { transform: scale(1.02); background: #cc0000; }
+        .whatsapp-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); }
 
-        .footer { margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; }
+        .youtube-link { color: #ff0000; text-decoration: none; font-weight: 600; display: block; margin-top: 15px; font-size: 0.9rem; }
+
+        .footer { margin-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; }
         .footer strong { color: #f8fafc; font-size: 1.3rem; display: block; margin-top: 5px; }
     </style>
 </head>
@@ -74,27 +78,28 @@
     <div class="container">
         <div class="card">
             <h1>AstroMAPS AI</h1>
-            <p style="color: #94a3b8;">Mechanical Astrological Predictive System</p>
+            <div class="maps-tag">Mechanical Astrological Predictive System</div>
             
-            <div class="maps-box">
-                M.A.P.S Framework Analysis
-            </div>
-
             <div class="mood-container">
                 <div class="mood-box" style="border-left-color: #4ade80;">
                     <h3><i class="fas fa-sun"></i> Today's Market Mood</h3>
-                    <p class="mood-text">Yahan aaj ka mood likhein. Jaise: Nifty setup is Bullish as per Key Moon Chain. Momentum expected in first half.</p>
+                    <p class="mood-text">Market sentiment as per MAPS framework. Watch support and resistance levels.</p>
                 </div>
-
                 <div class="mood-box" style="border-left-color: #f87171;">
                     <h3><i class="fas fa-moon"></i> Tomorrow's Market Mood</h3>
-                    <p class="mood-text">Yahan kal ka prediction likhein. Jaise: Volatility expected due to planetary transit. Watch support levels.</p>
+                    <p class="mood-text">Planetary transits indicate upcoming trends. Stay updated with Key Moon Chain.</p>
                 </div>
             </div>
 
-            <a href="https://www.youtube.com/@AstroMAPSAI" class="youtube-btn" target="_blank">
-                <i class="fab fa-youtube"></i> Watch Video Analysis
-            </a>
+            <div class="connect-section">
+                <span class="connect-title">Connect for Premium AstroMAPS Reports</span>
+                <a href="https://wa.me/917727054744?text=I%20want%20to%20connect%20with%20AstroMAPS%20AI" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> Drop Your Number on WhatsApp
+                </a>
+                <a href="https://www.youtube.com/@AstroMAPSAI" class="youtube-link" target="_blank">
+                    <i class="fab fa-youtube"></i> Subscribe on YouTube
+                </a>
+            </div>
 
             <div class="footer">
                 <p style="color: #94a3b8; font-size: 0.85rem;">Research by</p>

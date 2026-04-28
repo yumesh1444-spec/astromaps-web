@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AstroMAPS AI | Strategic Market Insights</title>
+    <title>AstroMAPS AI | Market Mood</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -20,11 +20,11 @@
             padding: 20px;
         }
         .container {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr; /* Side-by-side layout for Desktop */
-            gap: 20px;
-            max-width: 1000px;
+            max-width: 600px;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
         .card {
             background: rgba(255, 255, 255, 0.03);
@@ -35,56 +35,71 @@
             text-align: center;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
-        .prediction-card {
-            text-align: left;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1.5rem;
-            border-radius: 20px;
-            border: 1px solid rgba(76, 201, 240, 0.2);
-        }
-        h1 { font-size: 2.2rem; background: linear-gradient(to right, #4cc9f0, #4361ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
-        .section-title { color: #4cc9f0; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-        .pred-text { color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; }
-        .tag { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
-        .tag-bullish { background: rgba(34, 197, 94, 0.2); color: #4ade80; }
-        .tag-bearish { background: rgba(239, 68, 68, 0.2); color: #f87171; }
-        .links { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
-        .link-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; color: white; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
-        .link-btn:hover { background: rgba(255, 255, 255, 0.1); transform: translateX(5px); }
-        .footer { margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; }
+        h1 { font-size: 2.5rem; background: linear-gradient(to right, #4cc9f0, #4361ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; margin-bottom: 10px; }
+        .maps-box { background: rgba(67, 97, 238, 0.1); border: 1px dashed rgba(76, 201, 240, 0.3); border-radius: 15px; padding: 1rem; margin: 15px 0; text-align: center; font-weight: 600; color: #e2e8f0; }
         
-        /* Mobile layout fixes */
-        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } }
+        /* Prediction Boxes */
+        .mood-container { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+        .mood-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: left;
+            border-left: 5px solid #4361ee;
+        }
+        .mood-box h3 { color: #4cc9f0; font-size: 1.1rem; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .mood-text { color: #cbd5e1; font-size: 0.95rem; line-height: 1.5; }
+        
+        .youtube-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px;
+            background: #ff0000;
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .youtube-btn:hover { transform: scale(1.02); background: #cc0000; }
+
+        .footer { margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; }
+        .footer strong { color: #f8fafc; font-size: 1.3rem; display: block; margin-top: 5px; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="card">
             <h1>AstroMAPS AI</h1>
-            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 20px;">Planetary Logic & Market Trends</p>
+            <p style="color: #94a3b8;">Mechanical Astrological Predictive System</p>
             
-            <div class="links">
-                <a href="https://www.youtube.com/@AstroMAPSAI" class="link-btn" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-                <a href="https://t.me/astromapsai" class="link-btn" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
-                <a href="https://wa.me/917727054744" class="link-btn" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <div class="maps-box">
+                M.A.P.S Framework Analysis
             </div>
+
+            <div class="mood-container">
+                <div class="mood-box" style="border-left-color: #4ade80;">
+                    <h3><i class="fas fa-sun"></i> Today's Market Mood</h3>
+                    <p class="mood-text">Yahan aaj ka mood likhein. Jaise: Nifty setup is Bullish as per Key Moon Chain. Momentum expected in first half.</p>
+                </div>
+
+                <div class="mood-box" style="border-left-color: #f87171;">
+                    <h3><i class="fas fa-moon"></i> Tomorrow's Market Mood</h3>
+                    <p class="mood-text">Yahan kal ka prediction likhein. Jaise: Volatility expected due to planetary transit. Watch support levels.</p>
+                </div>
+            </div>
+
+            <a href="https://www.youtube.com/@AstroMAPSAI" class="youtube-btn" target="_blank">
+                <i class="fab fa-youtube"></i> Watch Video Analysis
+            </a>
 
             <div class="footer">
-                <p style="color: #94a3b8; font-size: 0.75rem;">Research by</p>
-                <p style="font-weight: 700; font-size: 1rem;">UMESH KUMAR YADAV</p>
-            </div>
-        </div>
-
-        <div class="card" style="text-align: left;">
-            <div class="prediction-card" style="margin-bottom: 20px;">
-                <span class="section-title"><i class="fas fa-calendar-week"></i> Weekly Outlook</span>
-                <div class="tag tag-bullish">Bullish Sentiment</div>
-                <p class="pred-text">Sun-Moon alignment indicates positive momentum in Nifty50 for the first half. Key support levels at 22,xxx based on Key Moon Chain analysis.</p>
-            </div>
-
-            <div class="prediction-card">
-                <span class="section-title"><i class="fas fa-bolt"></i> Daily Market Pulse</span>
-                <p class="pred-text"><strong>Date: April 28, 2026</strong><br>Mercury transit suggests volatility. Expect gap-up opening followed by profit booking in the mid-session. Follow MAPS framework for exits.</p>
+                <p style="color: #94a3b8; font-size: 0.85rem;">Research by</p>
+                <strong>UMESH KUMAR YADAV</strong>
+                <p style="color: #4cc9f0; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; margin-top: 5px;">Astrologer Researcher</p>
             </div>
         </div>
     </div>

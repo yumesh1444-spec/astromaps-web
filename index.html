@@ -26,50 +26,69 @@
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 3rem 2rem;
+            padding: 2.5rem 2rem;
             border-radius: 24px;
             text-align: center;
-            max-width: 600px;
+            max-width: 550px;
             width: 100%;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
         h1 {
-            font-size: clamp(2rem, 8vw, 3.2rem);
+            font-size: clamp(1.8rem, 7vw, 2.8rem);
             background: linear-gradient(to right, #4cc9f0, #4361ee);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 0.5rem;
             font-weight: 800;
         }
-        .tagline { color: #94a3b8; font-size: 1.1rem; margin-bottom: 2.5rem; }
-        .links { display: flex; flex-direction: column; gap: 18px; }
+        .tagline { color: #94a3b8; font-size: 1rem; margin-bottom: 1.5rem; }
+        
+        /* MAPS Definition Styling */
+        .maps-box {
+            background: rgba(67, 97, 238, 0.1);
+            border: 1px dashed rgba(76, 201, 240, 0.3);
+            border-radius: 16px;
+            padding: 1.2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        .maps-title { 
+            color: #4cc9f0; 
+            font-weight: 700; 
+            font-size: 0.9rem; 
+            margin-bottom: 8px; 
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .maps-grid { font-size: 1.1rem; font-weight: 600; color: #e2e8f0; }
+        .maps-letter { color: #4cc9f0; font-weight: 800; margin-right: 5px; }
+
+        .links { display: flex; flex-direction: column; gap: 12px; }
         .link-btn {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
-            padding: 18px;
+            padding: 14px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 14px;
+            border-radius: 12px;
             color: white;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
         }
         .link-btn:hover {
             background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px -5px rgba(67, 97, 238, 0.3);
+            transform: translateY(-2px);
         }
-        /* Button Colors */
         .youtube:hover { border-color: #ff0000; color: #ff0000; }
         .linkedin:hover { border-color: #0077b5; color: #0077b5; }
         .telegram:hover { border-color: #0088cc; color: #0088cc; }
         .whatsapp:hover { border-color: #25d366; color: #25d366; }
         
-        i { font-size: 1.3rem; }
-        .footer-text { margin-top: 2.5rem; font-size: 0.85rem; color: #64748b; letter-spacing: 0.5px; }
+        .footer-text { margin-top: 2rem; font-size: 0.8rem; color: #64748b; }
     </style>
 </head>
 <body>
@@ -77,27 +96,32 @@
         <h1>AstroMAPS AI</h1>
         <p class="tagline">Where Planetary Logic Meets Market Trends</p>
         
+        <div class="maps-box">
+            <span class="maps-title">Mechanical Analysis Framework:</span>
+            <div class="maps-grid">
+                <div><span class="maps-letter">M</span>echanical</div>
+                <div><span class="maps-letter">A</span>strological</div>
+                <div><span class="maps-letter">P</span>redictive</div>
+                <div><span class="maps-letter">S</span>ystem</div>
+            </div>
+        </div>
+
         <div class="links">
             <a href="https://www.youtube.com/@AstroMAPSAI" class="link-btn youtube" target="_blank">
                 <i class="fab fa-youtube"></i> YouTube Channel
             </a>
-            
             <a href="https://www.linkedin.com/in/YOUR-PROFILE" class="link-btn linkedin" target="_blank">
-                <i class="fab fa-linkedin"></i> LinkedIn Professional
+                <i class="fab fa-linkedin"></i> LinkedIn Profile
             </a>
-            
             <a href="https://t.me/astromapsai" class="link-btn telegram" target="_blank">
                 <i class="fab fa-telegram"></i> Telegram Community
             </a>
-            
             <a href="https://wa.me/917727054744" class="link-btn whatsapp" target="_blank">
-                <i class="fab fa-whatsapp"></i> Contact on WhatsApp
+                <i class="fab fa-whatsapp"></i> WhatsApp Support
             </a>
         </div>
         
-        <p class="footer-text">
-            Built with 35+ Years of Research Experience
-        </p>
+        <p class="footer-text">Built with 35+ Years of Professional Research</p>
     </div>
 </body>
 </html>

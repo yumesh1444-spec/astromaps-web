@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AstroMAPS AI | Strategic Market Insights</title>
@@ -42,6 +42,51 @@
             font-weight: 800;
         }
         .tagline { color: #94a3b8; font-size: 1.1rem; margin-bottom: 2rem; }
-        .info {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 1.5rem;
+        .links { display: flex; flex-direction: column; gap: 15px; }
+        .link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .link-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            border-color: #4cc9f0;
+        }
+        .youtube:hover { color: #ff0000; }
+        .telegram:hover { color: #0088cc; }
+        .whatsapp:hover { color: #25d366; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>AstroMAPS AI</h1>
+        <p class="tagline">Where Planetary Logic Meets Market Trends</p>
+        
+        <div class="links">
+            <a href="https://www.youtube.com/@AstroMAPSAI" class="link-btn youtube" target="_blank">
+                <i class="fab fa-youtube"></i> YouTube Channel
+            </a>
+            <a href="https://t.me/astromapsai" class="link-btn telegram" target="_blank">
+                <i class="fab fa-telegram"></i> Telegram Community
+            </a>
+            <a href="https://wa.me/91XXXXXXXXXX" class="link-btn whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i> Contact on WhatsApp
+            </a>
+        </div>
+        
+        <p style="margin-top: 2rem; font-size: 0.8rem; color: #64748b;">
+            Built with 35+ Years of Research Experience
+        </p>
+    </div>
+</body>
+</html>

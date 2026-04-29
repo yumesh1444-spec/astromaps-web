@@ -4,22 +4,20 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AstroMAPS AI | Market Insights</title>
+    <title>AstroMAPS AI | Our Story & Insights</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
             background: #0f172a;
-            background-image: radial-gradient(at 0% 0%, rgba(76, 201, 240, 0.15) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(247, 37, 133, 0.1) 0, transparent 50%);
+            background-image: radial-gradient(at 0% 0%, rgba(76, 201, 240, 0.1) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(247, 37, 133, 0.1) 0, transparent 50%);
             color: #f8fafc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
+            line-height: 1.6;
         }
-        .container { max-width: 600px; width: 100%; display: flex; flex-direction: column; gap: 20px; }
+        .main-wrapper { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        
+        /* Top Card Styling */
         .card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(15px);
@@ -27,85 +25,76 @@
             padding: 2.5rem;
             border-radius: 28px;
             text-align: center;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
         }
-        h1 { font-size: 2.6rem; background: linear-gradient(to right, #4cc9f0, #4361ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; margin-bottom: 5px; }
-        .maps-tag { color: #4cc9f0; font-weight: 600; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 20px; text-transform: uppercase; }
+        h1 { font-size: 2.5rem; background: linear-gradient(to right, #4cc9f0, #4361ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
         
-        .mood-box {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 1.2rem;
-            text-align: left;
-            border-left: 4px solid #4361ee;
-            margin-bottom: 15px;
-        }
-        .mood-box h3 { color: #4cc9f0; font-size: 1rem; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
-        .mood-text { color: #cbd5e1; font-size: 0.9rem; line-height: 1.4; }
-
-        /* WhatsApp Connect Section */
-        .connect-section {
-            background: rgba(37, 211, 102, 0.1);
-            border: 1px solid rgba(37, 211, 102, 0.2);
-            padding: 1.5rem;
-            border-radius: 20px;
-            margin-top: 20px;
-        }
-        .connect-title { color: #25d366; font-weight: 700; margin-bottom: 10px; display: block; }
+        /* Prediction/Mood Boxes */
+        .mood-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0; }
+        .mood-box { background: rgba(255, 255, 255, 0.05); padding: 1rem; border-radius: 15px; text-align: left; border-top: 3px solid #4361ee; }
         
-        .whatsapp-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 15px;
-            background: #25d366;
-            border-radius: 14px;
-            color: #000;
-            text-decoration: none;
-            font-weight: 800;
-            transition: 0.3s;
+        /* NEW STORY SECTION */
+        .story-section {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 28px;
+            padding: 3rem 2rem;
+            margin-top: 40px;
         }
-        .whatsapp-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); }
+        .story-title { color: #4cc9f0; font-size: 1.8rem; font-weight: 700; margin-bottom: 20px; text-align: center; }
+        .story-content { display: grid; grid-template-columns: 1fr; gap: 30px; text-align: left; }
+        .story-item h4 { color: #4361ee; margin-bottom: 10px; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+        .story-item p { color: #cbd5e1; font-size: 1rem; margin-bottom: 15px; }
 
-        .youtube-link { color: #ff0000; text-decoration: none; font-weight: 600; display: block; margin-top: 15px; font-size: 0.9rem; }
+        .btn-connect { display: block; background: #25d366; color: #000; padding: 15px; border-radius: 12px; text-decoration: none; font-weight: 800; margin-top: 20px; }
 
-        .footer { margin-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; }
-        .footer strong { color: #f8fafc; font-size: 1.3rem; display: block; margin-top: 5px; }
+        @media (max-width: 600px) { .mood-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="main-wrapper">
         <div class="card">
             <h1>AstroMAPS AI</h1>
-            <div class="maps-tag">Mechanical Astrological Predictive System</div>
+            <p style="color: #4cc9f0; font-weight: 600; letter-spacing: 1px;">MECHANICAL ASTROLOGICAL PREDICTIVE SYSTEM</p>
             
-            <div class="mood-container">
-                <div class="mood-box" style="border-left-color: #4ade80;">
-                    <h3><i class="fas fa-sun"></i> Today's Market Mood</h3>
-                    <p class="mood-text">Market sentiment as per MAPS framework. Watch support and resistance levels.</p>
+            <div class="mood-grid">
+                <div class="mood-box">
+                    <h3 style="font-size: 0.9rem; color: #4ade80;">TODAY'S MOOD</h3>
+                    <p style="font-size: 0.85rem; color: #cbd5e1;">Nifty Trend is Positive.</p>
                 </div>
-                <div class="mood-box" style="border-left-color: #f87171;">
-                    <h3><i class="fas fa-moon"></i> Tomorrow's Market Mood</h3>
-                    <p class="mood-text">Planetary transits indicate upcoming trends Date 28 April 2026 Moon at Virgo move with positive planets; Big strength day end expected</p>
+                <div class="mood-box">
+                    <h3 style="font-size: 0.9rem; color: #f87171;">TOMORROW'S MOOD</h3>
+                    <p style="font-size: 0.85rem; color: #cbd5e1;">Expect Volatility.</p>
                 </div>
             </div>
 
-            <div class="connect-section">
-                <span class="connect-title">Connect for Premium AstroMAPS Reports</span>
-                <a href="https://wa.me/917727054744?text=I%20want%20to%20connect%20with%20AstroMAPS%20AI" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Drop Your Number on WhatsApp
-                </a>
-                <a href="https://www.youtube.com/@AstroMAPSAI" class="youtube-link" target="_blank">
-                    <i class="fab fa-youtube"></i> Subscribe on YouTube
-                </a>
-            </div>
+            <a href="https://wa.me/91XXXXXXXXXX" class="btn-connect"><i class="fab fa-whatsapp"></i> Get Premium AstroMAPS Reports</a>
+        </div>
 
-            <div class="footer">
-                <p style="color: #94a3b8; font-size: 0.85rem;">Research by</p>
-                <strong>UMESH KUMAR YADAV</strong>
-                <p style="color: #4cc9f0; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; margin-top: 5px;">Astrologer Researcher</p>
+        <div class="story-section">
+            <h2 class="story-title">Our Legacy & Methodology</h2>
+            <div class="story-content">
+                <div class="story-item">
+                    <h4><i class="fas fa-history"></i> Hamari Kahani (The History)</h4>
+                    <p>AstroMAPS AI koi raato-raat bani website nahi hai. Ye parinaam hai 35+ saal ki gehri research ka. Umesh Kumar Yadav ji ne apne career ke dashako market ke data aur planets ki chaal ko match karne mein bitaye hain taaki ek aisa system ban sake jo fail na ho.</p>
+                </div>
+
+                <div class="story-item">
+                    <h4><i class="fas fa-microscope"></i> Planet Reading ka Logic</h4>
+                    <p>Log puchte hain, planets se market ka kya lena dena? Asal mein, Sun aur Moon ki gravity aur unka magnetic field human psychology aur emotions ko control karta hai. Kyunki market "Fear and Greed" (dar aur lalach) se chalta hai, planets ki position se hum pehle hi jaan lete hain ki mass psychology kidhar mude-gi.</p>
+                </div>
+
+                <div class="story-item">
+                    <h4><i class="fas fa-bullseye"></i> Hum Kya Kar Rahe Hain?</h4>
+                    <p>Hamara maksad share market trading ko "Juua" (Gambling) se hata kar ek "Science" banana hai. AstroMAPS AI ke zariye hum traders ko wo mechanical tools dete hain jo unhe sahi waqt par entry aur exit karne mein madad karte hain, bina kisi emotional galti ke.</p>
+                </div>
             </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+            <p style="color: #94a3b8;">Research by</p>
+            <h3 style="font-size: 1.5rem; color: #f8fafc;">UMESH KUMAR YADAV</h3>
+            <p style="color: #4cc9f0; font-weight: 600;">ASTROLOGER RESEARCHER</p>
         </div>
     </div>
 </body>

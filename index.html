@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AstroMAPS AI | 35+ Years Research</title>
+    <title>Astro MAPs AI | Market Dynamics</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -12,24 +12,29 @@
         .container { max-width: 1000px; margin: 0 auto; }
         
         .card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 2.5rem; border-radius: 28px; margin-bottom: 25px; text-align: center; }
-        h1 { font-size: 3rem; background: linear-gradient(to right, #4cc9f0, #4361ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
+        h1 { font-size: 3.2rem; background: linear-gradient(to right, #4cc9f0, #4361ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; letter-spacing: -1px; }
         
-        .video-title { color: #4cc9f0; font-size: 1.4rem; font-weight: 700; margin: 30px 0 15px; text-align: left; border-left: 4px solid #4cc9f0; padding-left: 10px; }
+        /* New Stylish Video Heading */
+        .video-title-container { border-left: 5px solid #4361ee; padding-left: 15px; margin: 40px 0 20px; }
+        .video-main-title { color: #4cc9f0; font-size: 1.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        .video-sub-title { color: #94a3b8; font-size: 0.9rem; display: block; font-weight: 500; }
+
         .video-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 30px; }
-        .small-video { border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #000; }
+        .small-video { border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #000; transition: 0.3s; }
+        .small-video:hover { border-color: #4cc9f0; transform: translateY(-5px); }
         .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-        .story-section { background: rgba(255, 255, 255, 0.02); border-radius: 24px; padding: 2rem; margin-top: 20px; border: 1px solid rgba(255,255,255,0.05); }
-        .story-item h4 { color: #4cc9f0; margin-bottom: 8px; font-size: 1.2rem; }
-        .story-item p { color: #cbd5e1; font-size: 1rem; margin-bottom: 20px; }
+        .story-section { background: rgba(255, 255, 255, 0.02); border-radius: 24px; padding: 2.5rem; margin-top: 20px; border: 1px solid rgba(255,255,255,0.05); }
+        .story-item h4 { color: #4cc9f0; margin-bottom: 10px; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
+        .story-item p { color: #cbd5e1; font-size: 1rem; margin-bottom: 20px; text-align: justify; }
 
-        .whatsapp-btn { display: block; background: #25d366; color: #000; text-align: center; padding: 18px; border-radius: 15px; text-decoration: none; font-weight: 800; margin: 25px 0; font-size: 1.1rem; }
+        .whatsapp-btn { display: block; background: #25d366; color: #000; text-align: center; padding: 18px; border-radius: 15px; text-decoration: none; font-weight: 800; margin: 25px 0; font-size: 1.1rem; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2); }
 
         .footer { text-align: center; padding: 3rem 0; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; }
-        .footer h2 { font-size: 2rem; color: #f8fafc; }
-        .footer-maps { color: #4cc9f0; font-weight: 700; letter-spacing: 1px; font-size: 1rem; margin-top: 5px; }
-        .exp-badge { display: inline-block; background: rgba(67, 97, 238, 0.2); color: #4cc9f0; padding: 6px 20px; border-radius: 50px; font-weight: 700; font-size: 1rem; border: 1px solid rgba(76, 201, 240, 0.3); margin-top: 10px; }
+        .footer h2 { font-size: 2.2rem; color: #f8fafc; margin-bottom: 5px; }
+        .footer-maps { color: #4cc9f0; font-weight: 700; letter-spacing: 1px; font-size: 1rem; margin-top: 5px; text-transform: uppercase; }
+        .exp-badge { display: inline-block; background: linear-gradient(45deg, #4361ee, #4cc9f0); color: #fff; padding: 8px 25px; border-radius: 50px; font-weight: 800; font-size: 1rem; margin-top: 15px; box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3); }
 
         @media (max-width: 900px) { .video-grid { grid-template-columns: 1fr 1fr; } }
         @media (max-width: 500px) { .video-grid { grid-template-columns: 1fr; } }
@@ -38,31 +43,35 @@
 <body>
     <div class="container">
         <div class="card">
-            <h1>AstroMAPS AI</h1>
-            <p style="color: #94a3b8; font-weight: 600;">Mechanical Astrological Predictive System</p>
-            <a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Drop Your Number for Premium Reports</a>
+            <h1>Astro MAPs AI</h1>
+            <p style="color: #94a3b8; font-weight: 600; letter-spacing: 1px;">MECHANICAL ASTROLOGICAL PREDICTIVE SYSTEM</p>
+            <a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Get Premium Astro MAPs Insights</a>
         </div>
 
-        <h2 class="video-title">Research Logic Videos</h2>
+        <div class="video-title-container">
+            <span class="video-main-title">The Engine's Logic</span>
+            <span class="video-sub-title">Primary Inputs & Mechanical Patterns of Market Movement</span>
+        </div>
+
         <div class="video-grid">
             <div class="small-video"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/pybLt67o27w"></iframe></div></div>
-            <div class="small-video"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/WWFETAOsxRA"></iframe></div></div>
+            <div class="small-video"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/VIDEO_ID_2"></iframe></div></div>
             <div class="small-video"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/VIDEO_ID_3"></iframe></div></div>
             <div class="small-video"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/VIDEO_ID_4"></iframe></div></div>
         </div>
 
         <div class="story-section">
             <div class="story-item">
-                <h4>1974 - 2026 Research Journey</h4>
-                <p>AstroMAPS AI kisi book ko follow nahi karta. Ye 35 saal ki kathin mehnat aur 1974 se lekar 2026 tak ke asli market data analysis par adharit ek naya mechanical framework hai.</p>
-                <p>Moving away from traditional astrology, we connect planets directly with index board movements through raw research data.</p>
+                <h4><i class="fas fa-microchip"></i> Decoding 1974 - 2026</h4>
+                <p>Astro MAPs AI is not a traditional astrological tool. It is a Mechanical System forged through 35 years of intensive research. By decoding market data from 1974 to 2026, we have identified how planetary transits create specific mechanical inputs that dictate index movements.</p>
+                <p>Ye system kisi kitab par adharit nahi hai. Ye 50 saal ke historical data aur planets ki "Mechanical Connectivity" ka parinaam hai, jo share market ki mass psychology ko pehle hi map kar leta hai.</p>
             </div>
         </div>
 
         <div class="footer">
-            <p style="color: #94a3b8; font-size: 0.9rem;">Expert Researcher</p>
+            <p style="color: #94a3b8; font-size: 0.95rem;">Principal Researcher & Founder</p>
             <h2>UMESH KUMAR YADAV</h2>
-            <div class="footer-maps">M.A.P.S (Mechanical Astrological Predictive System)</div>
+            <div class="footer-maps">M.A.P.s (Mechanical Astrological Predictive System)</div>
             <div class="exp-badge">EXPERIENCE: 35+ YEARS</div>
         </div>
     </div>

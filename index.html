@@ -14,7 +14,6 @@
         .card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 2.5rem; border-radius: 28px; margin-bottom: 25px; text-align: center; }
         h1 { font-size: 3rem; background: linear-gradient(to right, #4cc9f0, #4361ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; letter-spacing: -1px; }
 
-        /* 3 FACTORS SOCIAL BAR */
         .social-factors { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 25px 0; }
         .social-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 18px; border-radius: 15px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: 0.3s; color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         .btn-whatsapp { background: #25d366; }
@@ -22,34 +21,32 @@
         .btn-youtube { background: #ff0000; }
         .social-btn:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.4); }
 
-        /* MAIN PREDICTION VIDEO WINDOW */
-        .prediction-window { background: rgba(255, 255, 255, 0.04); border-radius: 24px; padding: 1.5rem; margin-bottom: 35px; border: 1px solid rgba(76, 201, 240, 0.3); }
-        .window-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
-        .video-main-frame { width: 100%; border-radius: 18px; overflow: hidden; background: #000; border: 2px solid #1e293b; }
-        .video-wrapper-large { position: relative; padding-bottom: 56.25%; height: 0; }
-        .video-wrapper-large iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        /* PREDICTION WINDOW - WHITE SPACE REMOVAL */
+        .prediction-window { background: #fff; border-radius: 24px; margin: 40px auto; max-width: 580px; border: 2px solid rgba(76, 201, 240, 0.3); overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .window-header { background: #0f172a; padding: 15px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: left; }
+        
+        /* Height 460px Friday ke niche ka white area cut kar degi */
+        .linkedin-frame { width: 100%; height: 460px; overflow: hidden; position: relative; background: #fff; }
+        .linkedin-frame iframe { position: absolute; top: -15px; left: 0; width: 100%; height: 800px; border: none; }
 
-        /* SMALL VIDEO GRID */
-        .video-title { border-left: 5px solid #4361ee; padding-left: 15px; margin: 40px 0 20px; color: #4cc9f0; font-size: 1.5rem; font-weight: 800; }
+        .video-title { border-left: 5px solid #4361ee; padding-left: 15px; margin: 45px 0 20px; color: #4cc9f0; font-size: 1.5rem; font-weight: 800; }
         .video-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 30px; }
         .small-video { border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #000; }
-        .video-wrapper-small { position: relative; padding-bottom: 56.25%; height: 0; }
-        .video-wrapper-small iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
         .story-section { background: rgba(255, 255, 255, 0.02); border-radius: 24px; padding: 2.5rem; border: 1px solid rgba(255,255,255,0.05); }
         .footer { text-align: center; padding: 3rem 0; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; }
         .exp-badge { display: inline-block; background: linear-gradient(45deg, #4361ee, #4cc9f0); color: #fff; padding: 8px 25px; border-radius: 50px; font-weight: 800; margin-top: 15px; }
 
-        @media (max-width: 900px) { .social-factors, .video-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 900px) { .social-factors, .video-grid { grid-template-columns: 1fr; } .prediction-window { max-width: 100%; } }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Brand Card -->
         <div class="card">
             <h1>Astro MAPs AI</h1>
             <p style="color: #94a3b8; font-weight: 600; letter-spacing: 1px;">MECHANICAL ASTROLOGICAL PREDICTIVE SYSTEM</p>
-            
             <div class="social-factors">
                 <a href="https://wa.me/917727054744" class="social-btn btn-whatsapp"><i class="fab fa-whatsapp fa-lg"></i> WhatsApp</a>
                 <a href="https://www.linkedin.com/in/umesh-y-710274a2" class="social-btn btn-linkedin"><i class="fab fa-linkedin fa-lg"></i> LinkedIn</a>
@@ -57,31 +54,32 @@
             </div>
         </div>
 
-        <!-- Weekly Prediction YouTube Window -->
         <div class="prediction-window">
             <div class="window-header">
-                <span style="color: #4cc9f0; font-weight: 800; font-size: 1.1rem;"><i class="fab fa-youtube"></i> WEEKLY PREDICTION CHART</span>
-                <span style="color: #94a3b8; font-size: 0.8rem;">Live Analysis</span>
+                <span style="color: #4cc9f0; font-weight: 800; font-size: 1.1rem;"><i class="fab fa-linkedin"></i> WEEKLY PREDICTION CHART</span>
             </div>
-            <div class="video-main-frame">
-                <div class="video-wrapper-large">
-                    <!-- Is ID ko har hafte badal sakte hain -->
-                    <iframe src="https://www.youtube.com/embed/pybLt67o27w"></iframe>
-                </div>
+            <div class="linkedin-frame">
+                <!-- Friday visible, White space cut -->
+                <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7455848787979333632" title="Weekly Prediction"></iframe>
+            </div>
+            <div style="background: #0f172a; text-align: center; padding: 12px;">
+                <a href="https://www.linkedin.com/in/umesh-y-710274a2" target="_blank" style="color: #4cc9f0; text-decoration: none; font-size: 0.9rem; font-weight: 700;">
+                    Click for High Quality View <i class="fas fa-external-link-alt"></i>
+                </a>
             </div>
         </div>
 
         <h2 class="video-title">THE ENGINE'S LOGIC</h2>
         <div class="video-grid">
-            <div class="small-video"><div class="video-wrapper-small"><iframe src="https://www.youtube.com/embed/WWFETAOsxRA"></iframe></div></div>
-            <div class="small-video"><div class="video-wrapper-small"><iframe src="https://www.youtube.com/embed/p4Q4PaM2g0U"></iframe></div></div>
-            <div class="small-video"><div class="video-wrapper-small"><iframe src="https://www.youtube.com/embed/eTusRrSEuxY"></iframe></div></div>
-            <div class="small-video"><div class="video-wrapper-small"><iframe src="https://www.youtube.com/embed/pybLt67o27w"></iframe></div></div>
+            <div class="small-video"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/pybLt67o27w"></iframe></div></div>
+            <div class="small-video"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/WWFETAOsxRA"></iframe></div></div>
+            <div class="small-video"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/p4Q4PaM2g0U"></iframe></div></div>
+            <div class="small-video"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/eTusRrSEuxY"></iframe></div></div>
         </div>
 
         <div class="story-section">
             <h3 style="color: #4cc9f0; margin-bottom: 12px;"><i class="fas fa-history"></i> The 1974 - 2026 Legacy</h3>
-            <p style="color: #cbd5e1; font-size: 1.05rem;">Astro MAPs AI is built on the foundation of 35+ years of raw research. Pure mechanical connectivity between planets and market index boards.</p>
+            <p style="color: #cbd5e1; font-size: 1.05rem;">Astro MAPs AI is built on 35+ years of raw research. No books followed. Pure mechanical connectivity between planets and market index boards.</p>
         </div>
 
         <div class="footer">

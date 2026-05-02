@@ -21,12 +21,18 @@
         .btn-youtube { background: #ff0000; }
         .social-btn:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.4); }
 
-        /* MAGIC DATES WINDOW - Optimized for 9+ dates */
+        /* MAGIC DATES */
         .magic-window { background: linear-gradient(135deg, rgba(76, 201, 240, 0.05), rgba(67, 97, 238, 0.05)); border: 2px solid #4cc9f0; padding: 2.5rem; border-radius: 28px; margin-bottom: 35px; text-align: center; }
         .date-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 20px; }
         .date-item { background: rgba(15, 23, 42, 0.6); padding: 15px; border-radius: 18px; border: 1px solid rgba(76, 201, 240, 0.2); font-size: 1.1rem; font-weight: 800; color: #4cc9f0; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
 
-        /* LINKEDIN POSTER WINDOW - Fixed Friday Visibility */
+        /* STORY SECTION */
+        .story-card { background: rgba(255, 255, 255, 0.02); border-radius: 28px; padding: 2.5rem; margin-bottom: 35px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: left; }
+        .story-card h2 { color: #4cc9f0; margin-bottom: 20px; font-size: 1.8rem; border-bottom: 2px solid rgba(76, 201, 240, 0.2); padding-bottom: 10px; }
+        .story-content p { margin-bottom: 15px; color: #cbd5e1; font-size: 1.05rem; }
+        .highlight { color: #4cc9f0; font-weight: 700; }
+
+        /* LINKEDIN PREDICTION */
         .prediction-window { background: #fff; border-radius: 24px; padding: 10px; margin-bottom: 35px; border: 2px solid rgba(76, 201, 240, 0.3); overflow: hidden; }
         .linkedin-container { width: 100%; height: 500px; overflow: hidden; position: relative; border-radius: 18px; }
         .linkedin-container iframe { position: absolute; top: -15px; left: 0; width: 100%; height: 800px; border: none; }
@@ -57,7 +63,6 @@
         <!-- MAGIC DATES SECTION -->
         <div class="magic-window">
             <h2 style="color: #4cc9f0; font-size: 2rem; margin-bottom: 10px;"><i class="fas fa-bolt"></i> MAGIC DATES OF 2026</h2>
-            <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 25px;">Strategic connectivity points identified by 35+ years of mechanical research.</p>
             <div class="date-grid">
                 <div class="date-item">May 15, 2026</div>
                 <div class="date-item">June 18, 2026</div>
@@ -69,7 +74,16 @@
                 <div class="date-item">Dec 15, 2026</div>
                 <div class="date-item">Dec 31, 2026</div>
             </div>
-            <p style="margin-top: 25px; color: #4cc9f0; font-size: 0.8rem; letter-spacing: 1px;">POWERED BY Astro MAPs MECHANICAL LOGIC</p>
+        </div>
+
+        <!-- THE RESEARCHER'S STORY SECTION -->
+        <div class="story-card">
+            <h2><i class="fas fa-microscope"></i> Beyond Traditional Logic</h2>
+            <div class="story-content">
+                <p>Jyotish (Astrology) ki kitabon mein jo likha hai, aksar real market dynamics usse bilkul alag hote hain. Maine apni <span class="highlight">35+ saal ki research</span> mein kitabi baaton se hatkar <span class="highlight">Pure Raw Data</span> par kaam kiya hai.</p>
+                <p>Yeh safar ek din ya ek mahine ka nahi hai. Maine Sun aur Moon ki saalon-saal ki readings ko monitor kiya hai, unke har move aur impact ko audit kiya hai. Ek sateek <span class="highlight">Mechanical connectivity</span> dhoondhne ke liye maine har kitabi logic ko apply kiya, par jab result nahi mile, tab <span class="highlight">Beyond Logic</span> jaakar connectivity points ko crack kiya.</p>
+                <p>Is system ko banane se pehle maine <span class="highlight">5 saal tak lagaataar audit</span> kiya hai taaki public ke saamne ek vishwasniya framework pesh kar sakoon. Astro MAPs Date nikalna meri research ka core strength hai, jo planetary movements aur market index boards ke beech ke hidden mechanical link ko ujagar karta hai.</p>
+            </div>
         </div>
 
         <!-- Weekly Prediction LinkedIn Chart -->

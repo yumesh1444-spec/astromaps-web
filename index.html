@@ -1,86 +1,120 @@
-<!-- SYSTEM STYLES (KEEP OR MERGE WITH YOUR EXISTNG STYLE TAG) -->
+<!-- SYSTEM STYLES (MERGED & ENHANCED) -->
 <style>
-    .social-factors { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 25px 0; }         
-    .social-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 18px; border-radius: 15px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: 0.3s; color: #fff; }         
-    .btn-whatsapp { background: #25d366; }         
-    .btn-linkedin { background: #0077b5; }         
-    .btn-youtube { background: #ff0000; }         
-    .social-btn:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.4); }
-    
-    /* MAGIC DATES & OFFICIAL LIFETIME ACCURACY */         
-    .magic-window { background: linear-gradient(135deg, rgba(76, 201, 240, 0.05), rgba(67, 97, 238, 0.05)); border: 2px solid #4cc9f0; padding: 2.5rem; border-radius: 28px; margin-bottom: 35px; text-align: center; position: relative; }         
-    .official-lifetime-banner { background: linear-gradient(45deg, #ff0055, #4361ee); color: #fff; padding: 20px; border-radius: 20px; font-size: 1.4rem; font-weight: 900; letter-spacing: 1px; margin-bottom: 25px; border: 2px solid #fff; box-shadow: 0 0 20px rgba(76, 201, 240, 0.4); text-transform: uppercase; }
-    .accuracy-badge-100 { display: inline-block; background: #fff; color: #ff0055; padding: 4px 12px; border-radius: 8px; font-size: 0.95rem; font-weight: 900; margin-left: 10px; vertical-align: middle; }
-    .date-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 20px; }         
-    .date-item { background: rgba(15, 23, 42, 0.6); padding: 15px; border-radius: 18px; border: 1px solid rgba(76, 201, 240, 0.2); font-size: 1.1rem; font-weight: 800; color: #4cc9f0; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-    
-    /* STORY SECTION - ENGLISH VERSION */         
-    .story-card { background: rgba(255, 255, 255, 0.02); border-radius: 28px; padding: 2.5rem; margin-bottom: 35px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: left; }         
-    .story-card h2 { color: #4cc9f0; margin-bottom: 20px; font-size: 1.8rem; border-bottom: 2px solid rgba(76, 201, 240, 0.2); padding-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }         
-    .story-content p { margin-bottom: 15px; color: #cbd5e1; font-size: 1.05rem; }         
-    .highlight { color: #4cc9f0; font-weight: 700; }
-    
-    /* PREDICTION WINDOW */         
-    .prediction-window { background: #fff; border-radius: 24px; padding: 10px; margin-bottom: 35px; border: 2px solid rgba(76, 201, 240, 0.3); overflow: hidden; }         
-    .linkedin-container { width: 100%; height: 500px; overflow: hidden; position: relative; border-radius: 18px; }         
-    .linkedin-container iframe { position: absolute; top: -15px; left: 0; width: 100%; height: 800px; border: none; }
-    
-    /* YOUTUBE GRID */         
-    .video-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 20px; }         
-    .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid rgba(255,255,255,0.1); }         
-    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-    
-    .footer { text-align: center; padding: 3rem 0; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; }         
-    .exp-badge { display: inline-block; background: linear-gradient(45deg, #4361ee, #4cc9f0); color: #fff; padding: 8px 25px; border-radius: 50px; font-weight: 800; margin-top: 15px; }
-    @media (max-width: 900px) { .social-factors, .video-grid { grid-template-columns: 1fr; } .official-lifetime-banner { font-size: 1.1rem; } }      
+.social-factors { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 25px 0; }          
+.social-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 18px; border-radius: 15px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: 0.3s; color: #fff; }          
+.btn-whatsapp { background: #25d366; }          
+.btn-linkedin { background: #0077b5; }          
+.btn-youtube { background: #ff0000; }          
+.social-btn:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.4); }
+
+/* HARMONIC INFLECTION WINDOW & LIFETIME BENCHMARK */          
+.magic-window { background: linear-gradient(135deg, rgba(76, 201, 240, 0.05), rgba(67, 97, 238, 0.05)); border: 2px solid #4cc9f0; padding: 2.5rem; border-radius: 28px; margin-bottom: 35px; text-align: center; position: relative; }          
+.official-lifetime-banner { background: linear-gradient(45deg, #ff0055, #4361ee); color: #fff; padding: 20px; border-radius: 20px; font-size: 1.3rem; font-weight: 900; letter-spacing: 1px; margin-bottom: 25px; border: 2px solid #fff; box-shadow: 0 0 20px rgba(76, 201, 240, 0.4); text-transform: uppercase; }
+.accuracy-badge-100 { display: inline-block; background: #fff; color: #ff0055; padding: 4px 12px; border-radius: 8px; font-size: 0.95rem; font-weight: 900; margin-left: 10px; vertical-align: middle; }
+.date-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }          
+.date-item { background: rgba(15, 23, 42, 0.6); padding: 16px 12px; border-radius: 18px; border: 1px solid rgba(76, 201, 240, 0.2); font-size: 1rem; font-weight: 800; color: #4cc9f0; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: flex; flex-direction: column; gap: 4px; }
+.date-item span { font-size: 0.78rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* QUANT LOGIC ARCHITECTURE CARDS */          
+.story-card { background: rgba(255, 255, 255, 0.02); border-radius: 28px; padding: 2.5rem; margin-bottom: 35px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: left; }          
+.story-card h2 { color: #4cc9f0; margin-bottom: 20px; font-size: 1.8rem; border-bottom: 2px solid rgba(76, 201, 240, 0.2); padding-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }          
+.story-content p { margin-bottom: 15px; color: #cbd5e1; font-size: 1.05rem; line-height: 1.7; }          
+.highlight { color: #4cc9f0; font-weight: 700; }
+.logic-pillar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-top: 25px; }
+.pillar-card { background: rgba(15, 23, 42, 0.5); padding: 20px; border-radius: 18px; border: 1px solid rgba(255, 255, 255, 0.08); }
+.pillar-card h4 { color: #38bdf8; margin-bottom: 8px; font-size: 1.1rem; font-weight: 800; }
+.pillar-card p { font-size: 0.92rem; color: #94a3b8; line-height: 1.5; margin: 0; }
+
+/* PREDICTION WINDOW */          
+.prediction-window { background: #fff; border-radius: 24px; padding: 10px; margin-bottom: 35px; border: 2px solid rgba(76, 201, 240, 0.3); overflow: hidden; }          
+.linkedin-container { width: 100%; height: 500px; overflow: hidden; position: relative; border-radius: 18px; }          
+.linkedin-container iframe { position: absolute; top: -15px; left: 0; width: 100%; height: 800px; border: none; }
+
+/* YOUTUBE GRID */          
+.video-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 20px; }          
+.video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid rgba(255,255,255,0.1); }          
+.video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+.footer { text-align: center; padding: 3rem 0; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; }          
+.exp-badge { display: inline-block; background: linear-gradient(45deg, #4361ee, #4cc9f0); color: #fff; padding: 8px 25px; border-radius: 50px; font-weight: 800; margin-top: 15px; }
+@media (max-width: 900px) { .social-factors, .video-grid { grid-template-columns: 1fr; } .official-lifetime-banner { font-size: 1.05rem; } }      
 </style>
 
-<!-- MAGIC DATES SECTION -->         
+<!-- MECHANICAL HARMONIC INFLECTION WINDOW -->          
 <div class="magic-window"> 
-    <!-- LIFETIME ANCHOR DATE ACCURACY INSIGHT -->
-    <div class="official-lifetime-banner">
-        <i class="fas fa-crown"></i> Astro MAPs Official Date: Lifetime 02 June 2026
-        <span class="accuracy-badge-100">100% ACCURACY</span>
+  <!-- LIFETIME ANCHOR DATE ACCURACY INSIGHT -->
+  <div class="official-lifetime-banner">
+    <i class="fas fa-crown"></i> Astro MAPs Official Lifetime Anchor: 02 June 2026
+    <span class="accuracy-badge-100">100% MECHANICAL ACCURACY</span>
+  </div>
+
+  <h2 style="color: #4cc9f0; font-size: 1.9rem; margin-bottom: 6px; letter-spacing: 0.5px;">
+    <i class="fas fa-atom"></i> MECHANICAL HARMONIC INFLECTION DATES (2026)
+  </h2>
+  <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 20px;">
+    Audited Orbital Clocks | Zero Speculative Narrative | Exact Coordinate Synchronizations
+  </p>
+
+  <div class="date-grid">                  
+    <div class="date-item">June 18, 2026 <span>Kinetic Inflection</span></div>                  
+    <div class="date-item">July 01, 2026 <span>Harmonic Expansion</span></div>                  
+    <div class="date-item">July 09, 2026 <span>Volatility Breakout</span></div>                  
+    <div class="date-item">July 14, 2026 <span>Liquidity Sweep Cut</span></div>                  
+    <div class="date-item">July 23, 2026 <span>Collateral Realignment</span></div>              
+    <div class="date-item">August 12, 2026 <span>Macro Climax Peak (24,473)</span></div>                  
+    <div class="date-item">September 26, 2026 <span>Structural Exhaustion</span></div>                  
+    <div class="date-item">October 10, 2026 <span>Macro Floor (22,296)</span></div>                  
+    <div class="date-item">October 26, 2026 <span>Absorption Recovery</span></div>                  
+    <div class="date-item">November 09, 2026 <span>0°27' Degree Lock Trigger</span></div>              
+  </div>          
+</div>
+
+<!-- PREDICTION AUDIT WINDOW -->          
+<div class="prediction-window">              
+  <h3 style="color: #0f172a; margin: 10px 0 15px 15px; font-weight: 800;">
+    <i class="fab fa-linkedin"></i> AUDITED FORENSIC PREDICTION CHART
+  </h3>              
+  <div class="linkedin-container">                  
+    <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7468607364024201216?collapsed=1" height="635" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>              
+  </div>          
+</div>
+
+<!-- THE ENGINE LOGIC ARCHITECTURE -->
+<h2 style="border-left: 5px solid #4361ee; padding-left: 15px; margin: 40px 0 20px; color: #4cc9f0; text-transform: uppercase; font-size: 1.8rem; letter-spacing: 1px;">
+  The Master PCB Engine Architecture
+</h2>
+
+<div class="story-card">
+  <h2>Orbital Mechanics Over Financial Narrative</h2>
+  <div class="story-content">
+    <p>
+      Financial markets do not move on retrospective earnings or political headlines. Large institutional portfolios rotate capital strictly along <span class="highlight">Orbital Harmonics, Time-Frequency Clocks, and Collateral Liquidation Grids</span>.
+    </p>
+    <p>
+      Traditional astrology books fail across global financial desks because qualitative theory cannot price derivatives. <span class="highlight">AstroMAPs AI</span> discards astrological dogmas, replacing them with a cold, reproducible mathematical engine built upon <span class="highlight">56 years of forensic Sensex and index data audits (1970–2026)</span>.
+    </p>
+
+    <!-- 4-Pillar Quantitative Structure -->
+    <div class="logic-pillar-grid">
+      <div class="pillar-card">
+        <h4>1. Dual-Anchor Degree Lock</h4>
+        <p>Trades trigger strictly when primary celestial bodies synchronize within an exact <strong>±0°30' orb</strong>. Eliminates guesswork; capitalizes on mechanical kinetic release.</p>
+      </div>
+
+      <div class="pillar-card">
+        <h4>2. Houses 11 & 12 Liquidation Law</h4>
+        <p>Congestion within the 11th domain traps speculative retail euphoria; progressive transition into the 12th domain (Vyaya) enforces automated institutional de-leveraging.</p>
+      </div>
+
+      <div class="pillar-card">
+        <h4>3. Cross-Collateral Verification</h4>
+        <p>Index breakouts (Nifty 50 / Bank Nifty) are cross-audited against sovereign precious metals (MCX Gold/Silver) to isolate unbacked distribution traps.</p>
+      </div>
+
+      <div class="pillar-card">
+        <h4>4. 14.7-Day Synodic Clock</h4>
+        <p>Systematic mapping of Full Moon (Purnima floor absorption) and New Moon (Amwasiya macro climax reversals) to prevent option-decay compression.</p>
+      </div>
     </div>
-
-    <h2 style="color: #4cc9f0; font-size: 2rem; margin-bottom: 10px;"><i class="fas fa-bolt"></i> MAGIC DATES OF 2026</h2>             
-    <div class="date-grid">                 
-        <div class="date-item"></div>                 
-        <div class="date-item"></div>                 
-        <div class="date-item"></div>                 
-        <div class="date-item"></div>                 
-        <div class="date-item"></div>             
-    </div>         
-</div>
-
-<!-- THE RESEARCHER'S STORY - BEYOND TRADITION -->         
-<div class="story-card">             
-    <h2><i class="fas fa-history"></i> 56 Years of Verified Data</h2>             
-    <div class="story-content">                 
-        <p><span class="highlight">Not a day, not a month, not a year...</span> This system is the result of over <span class="highlight">35 years</span> of relentless research and observation. Before bringing Astro MAPs AI to the public, every mechanical rule was rigorously verified against historical data spanning from <span class="highlight">1970 to 2026</span>.</p>                 
-        <p>I have personally audited <span class="highlight">56 years of Sensex movements</span>, monitoring the minute-to-minute impact of planetary connections. While traditional astrology books offer a foundation, real-market dynamics often exist <span class="highlight">Beyond Logic</span>. My work involved years of monitoring Sun and Moon cycles, auditing every impact, and cross-referencing planet connections until the "Magic Dates" clicked with <span class="highlight">100% mechanical accuracy</span>.</p>                 
-        <p>Astro MAPs AI does not follow the crowd. It is a <span class="highlight">Mechanical Engine</span> built on raw data audit and a deep, hidden connectivity that remains the core strength of my legacy. This is not just prediction; it is verified mechanical history.</p>             
-    </div>         
-</div>
-
-<!-- Weekly Prediction LinkedIn Chart -->         
-<div class="prediction-window">             
-    <h3 style="color: #0f172a; margin: 10px 0 15px 15px; font-weight: 800;"><i class="fab fa-linkedin"></i> WEEKLY PREDICTION CHART</h3>             
-    <div class="linkedin-container">                 
-             
-</div>
-
-<h2 style="border-left: 5px solid #4361ee; padding-left: 15px; margin: 40px 0 20px; color: #4cc9f0; text-transform: uppercase;">The Engine's Logic</h2>         
-<div class="video-grid">             
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ypLXMhCPwE0"></iframe></div>             
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/p4Q4PaM2g0U"></iframe></div>             
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/eTusRrSEuxY"></iframe></div>             
-    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/1vyPw7c61sI"></iframe></div>                    
-</div>         
-
-<div class="footer">             
-    <p style="color: #94a3b8; font-size: 0.9rem;">Principal Researcher & Founder</p>             
-    <h2>UMESH KUMAR YADAV</h2>             
-    <div style="color: #4cc9f0; font-weight: 700; margin-top: 5px; letter-spacing: 1px;">MAPs (Mechanical Astrological Predictive System)</div>             
-    <div class="exp-badge">EXPERIENCE: 35+ YEARS</div>         
+  </div>
 </div>

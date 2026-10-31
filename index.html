@@ -40,3 +40,246 @@ body {
 .institutional-badge-strip {
   display: inline-flex;
   align-items: center;
+  gap: 12px;
+  background: rgba(29, 78, 216, 0.3);
+  border: 1px solid var(--cyan-glow);
+  padding: 8px 24px;
+  border-radius: 50px;
+  margin-bottom: 25px;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+}
+
+.badge-tag {
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.accuracy-chip {
+  background: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 6px;
+  box-shadow: 0 0 15px rgba(255, 8, 68, 0.6);
+}
+
+.hero-title {
+  font-size: 2.9rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin: 0 0 15px 0;
+  background: linear-gradient(180deg, #ffffff 40%, #93c5fd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  color: var(--cyan-glow);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+
+.hero-quote {
+  max-width: 780px;
+  margin: 0 auto;
+  font-size: 1.15rem;
+  color: #e2e8f0;
+  line-height: 1.7;
+  border-left: 3px solid var(--cyan-glow);
+  padding-left: 20px;
+  text-align: left;
+  font-style: italic;
+}
+
+/* 4-PILLAR QUANT INFRASTRUCTURE */
+.architecture-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.section-tagline {
+  color: var(--cyan-glow);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.section-head {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 8px 0 35px 0;
+}
+
+.pillar-matrix {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.matrix-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(0, 242, 254, 0.15);
+  border-radius: 20px;
+  padding: 2.2rem;
+  position: relative;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(12px);
+}
+
+.matrix-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--cyan-glow);
+  box-shadow: 0 15px 35px rgba(29, 78, 216, 0.35);
+}
+
+.card-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--cyan-glow);
+  opacity: 0.6;
+  margin-bottom: 12px;
+}
+
+.card-title {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.card-desc {
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* MACRO METRICS BAR */
+.metrics-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.metric-cell {
+  background: rgba(13, 37, 69, 0.6);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  border-radius: 18px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(2, 12, 27, 0.5);
+}
+
+.metric-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 2.3rem;
+  font-weight: 900;
+  color: var(--cyan-glow);
+  margin-bottom: 5px;
+}
+
+.metric-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #94a3b8;
+  font-weight: 700;
+}
+
+@media (max-width: 850px) {
+  .pillar-matrix, .metrics-strip { grid-template-columns: 1fr; }
+  .hero-title { font-size: 2.1rem; }
+  .hero-glass-box { padding: 2rem 1.2rem; }
+}
+</style>
+
+<!-- INSTITUTIONAL HERO SECTION -->
+<div class="hero-glass-box">
+  <div class="institutional-badge-strip">
+    <span class="badge-tag">Sovereign Time-Harmonics</span>
+    <span style="color: rgba(255,255,255,0.4);">|</span>
+    <span class="badge-tag">Anchor Date: 17 June 2026</span>
+    <span class="accuracy-chip">100% AUDITED ACCURACY</span>
+  </div>
+
+  <h1 class="hero-title">ASTROMAPS AI</h1>
+  <div class="hero-subtitle">Mechanical Orbital Liquidity Engine</div>
+
+  <div class="hero-quote">
+    "Financial markets do not move on speculative news. Large-scale capital rotates on mathematical time-harmonics, celestial mass coordinates, and institutional liquidation cycles."
+  </div>
+</div>
+
+<!-- AUDITED PERFORMANCE METRICS -->
+<div class="metrics-strip">
+  <div class="metric-cell">
+    <div class="metric-val">56 YRS</div>
+    <div class="metric-label">Historical Market Data Audit (1970–2026)</div>
+  </div>
+  <div class="metric-cell">
+    <div class="metric-val">0° Orb</div>
+    <div class="metric-label">Dual-Anchor Kinetic Degree Precision</div>
+  </div>
+  <div class="metric-cell">
+    <div class="metric-val">100%</div>
+    <div class="metric-label">Mechanical Architecture Calibration</div>
+  </div>
+</div>
+
+<!-- ARCHITECTURE SECTION -->
+<div class="architecture-container">
+  <div class="section-tagline">Institutional Framework</div>
+  <div class="section-head">The Master Quantitative Pillars</div>
+
+  <div class="pillar-matrix">
+    <div class="matrix-card">
+      <div class="card-num">01</div>
+      <div class="card-title">Dual-Anchor Degree Lock Law</div>
+      <div class="card-desc">
+        Capital trends encounter structural exhaustion at exact mathematical coordinate matches ($0^\circ00'$ to $\pm0^\circ30'$ orb). Speculative noise is filtered out until primary orbital masses lock into kinetic trigger angles.
+      </div>
+    </div>
+
+    <div class="matrix-card">
+      <div class="card-num">02</div>
+      <div class="card-title">Congestion & Liquidation Mechanics</div>
+      <div class="card-desc">
+        Multi-mass congestion within the 11th domain traps speculative retail euphoria. Systematic migration into the 12th domain (Vyaya) enforces automated balance-sheet squaring and multi-hundred-point waterfall drains.
+      </div>
+    </div>
+
+    <div class="matrix-card">
+      <div class="card-num">03</div>
+      <div class="card-title">Cross-Asset Collateral Verification</div>
+      <div class="card-desc">
+        Nifty 50 and Bank Nifty expansions are strictly cross-audited against physical sovereign collateral (MCX Gold & Silver). Unbacked index breakouts are isolated and flagged for institutional fade entries.
+      </div>
+    </div>
+
+    <div class="matrix-card">
+      <div class="card-num">04</div>
+      <div class="card-title">14.7-Day Synodic Cycle Model</div>
+      <div class="card-desc">
+        Rigorous tracking of Full Moon (Purnima) structural absorption regimes and New Moon (Amwasiya) macro apex inflections, preventing option decay traps and mapping genuine institutional order flow.
+      </div>
+    </div>
+  </div>
+</div>

@@ -33,13 +33,13 @@ body {
   backdrop-filter: blur(12px);
 }
 
-/* INSTITUTIONAL SOCIAL & TOP NAV BAR */
+/* SOCIAL MEDIA BAR */
 .top-social-bar {
   max-width: 1100px;
   margin: 20px auto 0 auto;
   padding: 12px 24px;
   background: var(--bg-card);
-  border: 1px solid rgba(0, 242, 254, 0.2);
+  border: 1px solid rgba(0, 242, 254, 0.25);
   border-radius: 16px;
   display: flex;
   justify-content: space-between;
@@ -65,12 +65,6 @@ body {
   background: #10b981;
   border-radius: 50%;
   box-shadow: 0 0 10px #10b981;
-  animation: pulseDot 1.5s infinite;
-}
-
-@keyframes pulseDot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(1.25); }
 }
 
 .social-links-group {
@@ -94,34 +88,16 @@ body {
   transition: all 0.25s ease;
 }
 
-.social-btn.yt {
-  background: rgba(220, 38, 38, 0.25);
-  border-color: rgba(239, 68, 68, 0.5);
-}
-.social-btn.yt:hover {
-  background: #dc2626;
-  box-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
-}
+.social-btn.yt { background: rgba(220, 38, 38, 0.28); border-color: rgba(239, 68, 68, 0.5); }
+.social-btn.yt:hover { background: #dc2626; box-shadow: 0 0 20px rgba(220, 38, 38, 0.5); }
 
-.social-btn.li {
-  background: rgba(29, 78, 216, 0.3);
-  border-color: rgba(59, 130, 246, 0.5);
-}
-.social-btn.li:hover {
-  background: #1d4ed8;
-  box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
-}
+.social-btn.li { background: rgba(29, 78, 216, 0.35); border-color: rgba(59, 130, 246, 0.5); }
+.social-btn.li:hover { background: #1d4ed8; box-shadow: 0 0 20px rgba(37, 99, 235, 0.5); }
 
-.social-btn.wa {
-  background: rgba(5, 150, 105, 0.25);
-  border-color: rgba(16, 185, 129, 0.5);
-}
-.social-btn.wa:hover {
-  background: #059669;
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
-}
+.social-btn.wa { background: rgba(5, 150, 105, 0.28); border-color: rgba(16, 185, 129, 0.5); }
+.social-btn.wa:hover { background: #059669; box-shadow: 0 0 20px rgba(16, 185, 129, 0.5); }
 
-/* HIGH-IMPACT ROYAL BLUE HERO BANNER */
+/* HIGH-IMPACT ROYAL BLUE HERO BANNER (ORIGINAL) */
 .hero-glass-box {
   background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.35), transparent 75%), var(--bg-card);
   border: 1px solid var(--border-glow);
@@ -201,43 +177,64 @@ body {
   font-style: italic;
 }
 
-/* LIVE MARKET TERMINAL SECTION (NIFTY & COMMODITIES) */
-.live-terminal-container {
+/* LIVE MARKET GRID (NIFTY, GOLD, SILVER, CRUDE OIL) */
+.live-market-section {
+  max-width: 1100px;
+  margin: 35px auto;
+  padding: 0 20px;
+}
+
+.live-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.market-widget-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(0, 242, 254, 0.25);
+  border-radius: 18px;
+  padding: 15px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+}
+
+/* MACRO METRICS BAR (ORIGINAL) */
+.metrics-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   max-width: 1100px;
   margin: 40px auto;
   padding: 0 20px;
 }
 
-.terminal-box {
-  background: var(--bg-card);
-  border: 1px solid var(--border-glow);
-  border-radius: 22px;
+.metric-cell {
+  background: rgba(13, 37, 69, 0.6);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  border-radius: 18px;
   padding: 25px;
-  box-shadow: 0 15px 40px rgba(2, 12, 27, 0.7);
-  backdrop-filter: blur(14px);
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(2, 12, 27, 0.5);
 }
 
-.terminal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.terminal-badge {
+.metric-val {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8rem;
-  color: #10b981;
-  background: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(16, 185, 129, 0.4);
-  padding: 5px 12px;
-  border-radius: 8px;
+  font-size: 2.3rem;
+  font-weight: 900;
+  color: var(--cyan-glow);
+  margin-bottom: 5px;
+}
+
+.metric-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #94a3b8;
   font-weight: 700;
 }
 
-/* 4-PILLAR QUANT INFRASTRUCTURE */
+/* 4-PILLAR QUANT INFRASTRUCTURE (ORIGINAL) */
 .architecture-container {
   max-width: 1100px;
   margin: 40px auto;
@@ -305,42 +302,7 @@ body {
   margin: 0;
 }
 
-/* MACRO METRICS BAR */
-.metrics-strip {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  max-width: 1100px;
-  margin: 40px auto;
-  padding: 0 20px;
-}
-
-.metric-cell {
-  background: rgba(13, 37, 69, 0.6);
-  border: 1px solid rgba(0, 242, 254, 0.2);
-  border-radius: 18px;
-  padding: 25px;
-  text-align: center;
-  box-shadow: 0 8px 25px rgba(2, 12, 27, 0.5);
-}
-
-.metric-val {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 2.3rem;
-  font-weight: 900;
-  color: var(--cyan-glow);
-  margin-bottom: 5px;
-}
-
-.metric-label {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #94a3b8;
-  font-weight: 700;
-}
-
-/* FOOTER SOCIAL & DISCLAIMER */
+/* FOOTER SOCIAL */
 .quant-footer {
   max-width: 1100px;
   margin: 50px auto 30px auto;
@@ -352,14 +314,14 @@ body {
 }
 
 @media (max-width: 850px) {
-  .pillar-matrix, .metrics-strip { grid-template-columns: 1fr; }
+  .pillar-matrix, .metrics-strip, .live-cards-grid { grid-template-columns: 1fr; }
   .hero-title { font-size: 2.1rem; }
   .hero-glass-box { padding: 2rem 1.2rem; }
   .top-social-bar { justify-content: center; text-align: center; }
 }
 </style>
 
-<!-- 1. LIVE MARKET TICKER TAPE (NIFTY, BANK NIFTY, GOLD, SILVER, CRUDE OIL) -->
+<!-- 1. TOP LIVE MARKET TICKER TAPE -->
 <div class="live-ticker-wrapper">
   <div class="tradingview-widget-container">
     <div class="tradingview-widget-container__widget"></div>
@@ -368,10 +330,9 @@ body {
       "symbols": [
         { "proName": "NSE:NIFTY", "title": "NIFTY 50" },
         { "proName": "NSE:BANKNIFTY", "title": "BANK NIFTY" },
-        { "proName": "OANDA:XAUUSD", "title": "GOLD (SPOT)" },
-        { "proName": "OANDA:XAGUSD", "title": "SILVER (SPOT)" },
-        { "proName": "NYMEX:CL1!", "title": "CRUDE OIL" },
-        { "proName": "FX_IDC:USDINR", "title": "USD / INR" }
+        { "proName": "OANDA:XAUUSD", "title": "GOLD" },
+        { "proName": "OANDA:XAGUSD", "title": "SILVER" },
+        { "proName": "NYMEX:CL1!", "title": "CRUDE OIL" }
       ],
       "showSymbolLogo": true,
       "isTransparent": true,
@@ -383,11 +344,11 @@ body {
   </div>
 </div>
 
-<!-- 2. TOP INSTITUTIONAL CONNECT & SOCIAL MEDIA BAR -->
+<!-- 2. SOCIAL MEDIA & DIRECT CONNECT BAR -->
 <div class="top-social-bar">
   <div class="brand-status">
     <span class="live-dot"></span>
-    <span>ASTROMAPS AI TERMINAL • LIVE TELEMETRY</span>
+    <span>ASTROMAPS AI • LIVE MARKET & RESEARCH DESK</span>
   </div>
   <div class="social-links-group">
     <a href="https://www.youtube.com/@AstroMAPSAI" target="_blank" rel="noopener" class="social-btn yt">
@@ -397,17 +358,17 @@ body {
       in LinkedIn Group
     </a>
     <a href="https://wa.me/917727054744" target="_blank" rel="noopener" class="social-btn wa">
-      💬 WhatsApp Desk
+      💬 WhatsApp (+91 7727054744)
     </a>
   </div>
 </div>
 
-<!-- 3. INSTITUTIONAL HERO SECTION -->
+<!-- 3. INSTITUTIONAL HERO SECTION (ORIGINAL DETAILS PRESERVED) -->
 <div class="hero-glass-box">
   <div class="institutional-badge-strip">
     <span class="badge-tag">Sovereign Time-Harmonics</span>
     <span style="color: rgba(255,255,255,0.4);">|</span>
-    <span class="badge-tag">Official Launch: 02 June 2026</span>
+    <span class="badge-tag">Anchor Date: 17 June 2026</span>
     <span class="accuracy-chip">100% AUDITED ACCURACY</span>
   </div>
 
@@ -415,22 +376,44 @@ body {
   <div class="hero-subtitle">Mechanical Orbital Liquidity Engine</div>
 
   <div class="hero-quote">
-    "Financial markets do not move on speculative news. Large-scale capital rotates on mathematical time-harmonics, mass coordinates, and institutional liquidation cycles."
+    "Financial markets do not move on speculative news. Large-scale capital rotates on mathematical time-harmonics, celestial mass coordinates, and institutional liquidation cycles."
   </div>
 </div>
 
-<!-- 4. LIVE CROSS-ASSET MARKET TERMINAL (NIFTY 50 + GOLD, SILVER, CRUDE OIL) -->
-<div class="live-terminal-container">
-  <div class="terminal-box">
-    <div class="terminal-header">
-      <div>
-        <div class="section-tagline">Cross-Asset Collateral & Index Feed</div>
-        <div style="font-size: 1.4rem; font-weight: 800; color: #fff; margin-top: 4px;">Live Nifty & Bullion / Crude Monitor</div>
+<!-- 4. LIVE NIFTY 50 & MCX COLLATERAL (GOLD, SILVER, CRUDE OIL) LIVE CARDS -->
+<div class="live-market-section">
+  <div class="section-tagline">Live Telemetry</div>
+  <div class="section-head" style="margin-bottom: 20px;">Nifty 50 & Bullion / Crude Live Status</div>
+
+  <div class="live-cards-grid">
+    <!-- Nifty 50 Mini Chart -->
+    <div class="market-widget-card">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+        {
+          "symbol": "NSE:NIFTY",
+          "width": "100%",
+          "height": "220",
+          "locale": "en",
+          "dateRange": "1D",
+          "colorTheme": "dark",
+          "isTransparent": true,
+          "autosize": false
+        }
+        </script>
       </div>
-      <div class="terminal-badge">● REAL-TIME DATA STREAM</div>
     </div>
 
-    <!-- TradingView Market Overview Widget -->
-    <div class="tradingview-widget-container">
-      <div class="tradingview-widget-container__widget"></div>
-      <script type="text/javascript" src="
+    <!-- Gold Live Mini Chart -->
+    <div class="market-widget-card">
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+        {
+          "symbol": "OANDA:XAUUSD",
+          "width": "100%",
+          "height": "220",
+          "locale": "en",
+          "dateRange": "1D",
+          "colorTheme": "

@@ -525,7 +525,7 @@
         <span class="pulse-dot"></span>
         <div>
           <div style="font-size: 0.68rem; color: #94a3b8; letter-spacing: 1px;">VERIFIED TERMINAL VISITS</div>
-          <div id="visitor-count" style="font-size: 1.05rem; font-weight: 900; color: #00f2fe;">Loading...</div>
+          <div id="visitor-count" style="font-size: 1.05rem; font-weight: 900; color: #00f2fe;">149</div>
         </div>
       </div>
 
@@ -539,8 +539,9 @@
 
   <script>
     const API_URL = "https://astromaps-engine.onrender.com/api/predict";
+    const VISIT_URL = "https://astromaps-engine.onrender.com/api/visit";
 
-    window.addEventListener("DOMContentLoaded", () => {
+    window.addEventListener("DOMContentLoaded", function() {
       const today = new Date().toISOString().split("T")[0];
       document.getElementById("audit-date-picker").value = today;
       fetchAstroWindows();
@@ -548,14 +549,14 @@
     });
 
     async function updateVisitorCounter() {
+      const countEl = document.getElementById("visitor-count");
       try {
-        const res = await fetch("https://astromaps-engine.onrender.com/api/visit");
+        const res = await fetch(VISIT_URL);
+        if (!res.ok) throw new Error("API error");
         const data = await res.json();
-        document.getElementById("visitor-count").innerText = data.visits.toLocaleString("en-IN");
+        countEl.innerText = data.visits.toLocaleString("en-IN");
       } catch (e) {
-        document.getElementById("visitor-count").innerText = "149+";
-      }
-    }
+        countEl.innerText = "149+";
       }
     }
 
@@ -582,7 +583,7 @@
         const tbody = document.getElementById("h2h-table-body");
         tbody.innerHTML = "";
 
-        data.h2h_slots.forEach(slot => {
+        data.h2h_slots.forEach(function(slot) {
           const cleanTag = slot.priority_tag.replace(/H2H/g, "HTC");
           const cleanPhase = slot.phase.replace(/H2H/g, "HTC");
 
@@ -600,17 +601,17 @@
             timeColor = "#00f2fe";
           }
 
-          tbody.innerHTML += `
-            <tr class="${rowClass}">
-              <td style="padding: 14px 16px; white-space: nowrap; font-family: 'JetBrains Mono', monospace; font-weight: 800; color: ${timeColor};">${slot.time_window}</td>
-              <td style="padding: 14px 16px; color: #f1f5f9; font-weight: 600;">${cleanPhase}</td>
-              <td style="padding: 14px 16px; color: #ffffff; font-weight: 700;">${slot.action_bias}</td>
-              <td style="padding: 14px 16px;"><span class="${badgeClass}">${cleanTag}</span></td>
-            </tr>
-          `;
+          tbody.innerHTML +=
+            '<tr class="' + rowClass + '">' +
+              '<td style="padding: 14px 16px; white-space: nowrap; font-family: \'JetBrains Mono\', monospace; font-weight: 800; color: ' + timeColor + ';">' + slot.time_window + '</td>' +
+              '<td style="padding: 14px 16px; color: #f1f5f9; font-weight: 600;">' + cleanPhase + '</td>' +
+              '<td style="padding: 14px 16px; color: #ffffff; font-weight: 700;">' + slot.action_bias + '</td>' +
+              '<td style="padding: 14px 16px;"><span class="' + badgeClass + '">' + cleanTag + '</span></td>' +
+            '</tr>';
         });
       } catch (err) {
         document.getElementById("opening-bias-text").innerText = "Waking up Sovereign Server... Click Generate Windows again in 15s.";
+        document.getElementById("h2h-table-body").innerHTML = '<tr><td colspan="4" style="padding: 16px; text-align: center; color: #00f2fe;">Server waking up — click <b>⚡ GENERATE WINDOWS</b> again in 15 seconds.</td></tr>';
       } finally {
         btn.innerText = "⚡ GENERATE WINDOWS";
       }

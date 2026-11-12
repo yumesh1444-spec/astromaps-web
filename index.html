@@ -23,6 +23,104 @@ body {
   padding: 0;
 }
 
+/* TOP LIVE MARKET TICKER BAR */
+.live-ticker-wrapper {
+  background: rgba(2, 12, 27, 0.95);
+  border-bottom: 1px solid var(--border-glow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(12px);
+}
+
+/* INSTITUTIONAL SOCIAL & TOP NAV BAR */
+.top-social-bar {
+  max-width: 1100px;
+  margin: 20px auto 0 auto;
+  padding: 12px 24px;
+  background: var(--bg-card);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  backdrop-filter: blur(12px);
+}
+
+.brand-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--cyan-glow);
+}
+
+.live-dot {
+  width: 9px;
+  height: 9px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #10b981;
+  animation: pulseDot 1.5s infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.25); }
+}
+
+.social-links-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.25s ease;
+}
+
+.social-btn.yt {
+  background: rgba(220, 38, 38, 0.25);
+  border-color: rgba(239, 68, 68, 0.5);
+}
+.social-btn.yt:hover {
+  background: #dc2626;
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
+}
+
+.social-btn.li {
+  background: rgba(29, 78, 216, 0.3);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+.social-btn.li:hover {
+  background: #1d4ed8;
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
+}
+
+.social-btn.wa {
+  background: rgba(5, 150, 105, 0.25);
+  border-color: rgba(16, 185, 129, 0.5);
+}
+.social-btn.wa:hover {
+  background: #059669;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+}
+
 /* HIGH-IMPACT ROYAL BLUE HERO BANNER */
 .hero-glass-box {
   background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.35), transparent 75%), var(--bg-card);
@@ -30,7 +128,7 @@ body {
   box-shadow: 0 20px 50px rgba(2, 12, 27, 0.8), 0 0 35px rgba(37, 99, 235, 0.25);
   padding: 3.5rem 2.5rem;
   border-radius: 28px;
-  margin: 30px auto;
+  margin: 25px auto;
   max-width: 1100px;
   text-align: center;
   position: relative;
@@ -47,6 +145,8 @@ body {
   border-radius: 50px;
   margin-bottom: 25px;
   box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .badge-tag {
@@ -99,6 +199,42 @@ body {
   padding-left: 20px;
   text-align: left;
   font-style: italic;
+}
+
+/* LIVE MARKET TERMINAL SECTION (NIFTY & COMMODITIES) */
+.live-terminal-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.terminal-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glow);
+  border-radius: 22px;
+  padding: 25px;
+  box-shadow: 0 15px 40px rgba(2, 12, 27, 0.7);
+  backdrop-filter: blur(14px);
+}
+
+.terminal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.terminal-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-weight: 700;
 }
 
 /* 4-PILLAR QUANT INFRASTRUCTURE */
@@ -204,19 +340,74 @@ body {
   font-weight: 700;
 }
 
+/* FOOTER SOCIAL & DISCLAIMER */
+.quant-footer {
+  max-width: 1100px;
+  margin: 50px auto 30px auto;
+  padding: 25px;
+  background: rgba(2, 12, 27, 0.85);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  border-radius: 20px;
+  text-align: center;
+}
+
 @media (max-width: 850px) {
   .pillar-matrix, .metrics-strip { grid-template-columns: 1fr; }
   .hero-title { font-size: 2.1rem; }
   .hero-glass-box { padding: 2rem 1.2rem; }
+  .top-social-bar { justify-content: center; text-align: center; }
 }
 </style>
 
-<!-- INSTITUTIONAL HERO SECTION -->
+<!-- 1. LIVE MARKET TICKER TAPE (NIFTY, BANK NIFTY, GOLD, SILVER, CRUDE OIL) -->
+<div class="live-ticker-wrapper">
+  <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+    {
+      "symbols": [
+        { "proName": "NSE:NIFTY", "title": "NIFTY 50" },
+        { "proName": "NSE:BANKNIFTY", "title": "BANK NIFTY" },
+        { "proName": "OANDA:XAUUSD", "title": "GOLD (SPOT)" },
+        { "proName": "OANDA:XAGUSD", "title": "SILVER (SPOT)" },
+        { "proName": "NYMEX:CL1!", "title": "CRUDE OIL" },
+        { "proName": "FX_IDC:USDINR", "title": "USD / INR" }
+      ],
+      "showSymbolLogo": true,
+      "isTransparent": true,
+      "displayMode": "adaptive",
+      "colorTheme": "dark",
+      "locale": "en"
+    }
+    </script>
+  </div>
+</div>
+
+<!-- 2. TOP INSTITUTIONAL CONNECT & SOCIAL MEDIA BAR -->
+<div class="top-social-bar">
+  <div class="brand-status">
+    <span class="live-dot"></span>
+    <span>ASTROMAPS AI TERMINAL • LIVE TELEMETRY</span>
+  </div>
+  <div class="social-links-group">
+    <a href="https://www.youtube.com/@AstroMAPSAI" target="_blank" rel="noopener" class="social-btn yt">
+      ▶ YouTube (@AstroMAPSAI)
+    </a>
+    <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="social-btn li">
+      in LinkedIn Research
+    </a>
+    <a href="https://wa.me/910000000000" target="_blank" rel="noopener" class="social-btn wa">
+      💬 WhatsApp Desk
+    </a>
+  </div>
+</div>
+
+<!-- 3. INSTITUTIONAL HERO SECTION -->
 <div class="hero-glass-box">
   <div class="institutional-badge-strip">
     <span class="badge-tag">Sovereign Time-Harmonics</span>
     <span style="color: rgba(255,255,255,0.4);">|</span>
-    <span class="badge-tag">Anchor Date: 17 June 2026</span>
+    <span class="badge-tag">Official Launch: 02 June 2026</span>
     <span class="accuracy-chip">100% AUDITED ACCURACY</span>
   </div>
 
@@ -224,11 +415,72 @@ body {
   <div class="hero-subtitle">Mechanical Orbital Liquidity Engine</div>
 
   <div class="hero-quote">
-    "Financial markets do not move on speculative news. Large-scale capital rotates on mathematical time-harmonics, celestial mass coordinates, and institutional liquidation cycles."
+    "Financial markets do not move on speculative news. Large-scale capital rotates on mathematical time-harmonics, mass coordinates, and institutional liquidation cycles."
   </div>
 </div>
 
-<!-- AUDITED PERFORMANCE METRICS -->
+<!-- 4. LIVE CROSS-ASSET MARKET TERMINAL (NIFTY 50 + GOLD, SILVER, CRUDE OIL) -->
+<div class="live-terminal-container">
+  <div class="terminal-box">
+    <div class="terminal-header">
+      <div>
+        <div class="section-tagline">Cross-Asset Collateral & Index Feed</div>
+        <div style="font-size: 1.4rem; font-weight: 800; color: #fff; margin-top: 4px;">Live Nifty & Bullion / Crude Monitor</div>
+      </div>
+      <div class="terminal-badge">● REAL-TIME DATA STREAM</div>
+    </div>
+
+    <!-- TradingView Market Overview Widget -->
+    <div class="tradingview-widget-container">
+      <div class="tradingview-widget-container__widget"></div>
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+      {
+        "colorTheme": "dark",
+        "dateRange": "1D",
+        "showChart": true,
+        "locale": "en",
+        "width": "100%",
+        "height": "420",
+        "largeChartUrl": "",
+        "isTransparent": true,
+        "showSymbolLogo": true,
+        "showFloatingTooltip": true,
+        "plotLineColorGrowing": "rgba(0, 242, 254, 1)",
+        "plotLineColorFalling": "rgba(255, 8, 68, 1)",
+        "gridLineColor": "rgba(240, 243, 250, 0.06)",
+        "scaleFontColor": "rgba(148, 163, 184, 1)",
+        "belowLineFillColorGrowing": "rgba(0, 242, 254, 0.12)",
+        "belowLineFillColorFalling": "rgba(255, 8, 68, 0.12)",
+        "belowLineFillColorGrowingBottom": "rgba(0, 242, 254, 0)",
+        "belowLineFillColorFallingBottom": "rgba(255, 8, 68, 0)",
+        "symbolActiveColor": "rgba(37, 99, 235, 0.35)",
+        "tabs": [
+          {
+            "title": "Indian Indices",
+            "symbols": [
+              { "s": "NSE:NIFTY", "d": "Nifty 50 Index" },
+              { "s": "NSE:BANKNIFTY", "d": "Bank Nifty Index" },
+              { "s": "BSE:SENSEX", "d": "BSE Sensex" },
+              { "s": "NSE:INDIAVIX", "d": "India VIX Volatility" }
+            ]
+          },
+          {
+            "title": "Bullion & Crude Oil",
+            "symbols": [
+              { "s": "OANDA:XAUUSD", "d": "Gold Spot (USD/oz)" },
+              { "s": "OANDA:XAGUSD", "d": "Silver Spot (USD/oz)" },
+              { "s": "NYMEX:CL1!", "d": "WTI Crude Oil" },
+              { "s": "ICEEUR:BRN1!", "d": "Brent Crude Oil" }
+            ]
+          }
+        ]
+      }
+      </script>
+    </div>
+  </div>
+</div>
+
+<!-- 5. AUDITED PERFORMANCE METRICS -->
 <div class="metrics-strip">
   <div class="metric-cell">
     <div class="metric-val">56 YRS</div>
@@ -244,7 +496,7 @@ body {
   </div>
 </div>
 
-<!-- ARCHITECTURE SECTION -->
+<!-- 6. ARCHITECTURE SECTION -->
 <div class="architecture-container">
   <div class="section-tagline">Institutional Framework</div>
   <div class="section-head">The Master Quantitative Pillars</div>
@@ -254,7 +506,7 @@ body {
       <div class="card-num">01</div>
       <div class="card-title">Dual-Anchor Degree Lock Law</div>
       <div class="card-desc">
-        Capital trends encounter structural exhaustion at exact mathematical coordinate matches ($0^\circ00'$ to $\pm0^\circ30'$ orb). Speculative noise is filtered out until primary orbital masses lock into kinetic trigger angles.
+        Capital trends encounter structural exhaustion at exact mathematical coordinate matches (0°00' to ±0°30' orb). Speculative noise is filtered out until primary orbital masses lock into kinetic trigger angles.
       </div>
     </div>
 
@@ -262,7 +514,7 @@ body {
       <div class="card-num">02</div>
       <div class="card-title">Congestion & Liquidation Mechanics</div>
       <div class="card-desc">
-        Multi-mass congestion within the 11th domain traps speculative retail euphoria. Systematic migration into the 12th domain (Vyaya) enforces automated balance-sheet squaring and multi-hundred-point waterfall drains.
+        Multi-mass congestion within the 11th domain traps speculative retail euphoria. Systematic migration into the 12th domain enforces automated balance-sheet squaring and multi-hundred-point waterfall drains.
       </div>
     </div>
 
@@ -270,7 +522,7 @@ body {
       <div class="card-num">03</div>
       <div class="card-title">Cross-Asset Collateral Verification</div>
       <div class="card-desc">
-        Nifty 50 and Bank Nifty expansions are strictly cross-audited against physical sovereign collateral (MCX Gold & Silver). Unbacked index breakouts are isolated and flagged for institutional fade entries.
+        Nifty 50 and Bank Nifty expansions are strictly cross-audited against physical sovereign collateral (Gold & Silver). Unbacked index breakouts are isolated and flagged for institutional fade entries.
       </div>
     </div>
 
@@ -278,8 +530,23 @@ body {
       <div class="card-num">04</div>
       <div class="card-title">14.7-Day Synodic Cycle Model</div>
       <div class="card-desc">
-        Rigorous tracking of Full Moon (Purnima) structural absorption regimes and New Moon (Amwasiya) macro apex inflections, preventing option decay traps and mapping genuine institutional order flow.
+        Rigorous tracking of structural absorption regimes and macro apex inflections, preventing option decay traps and mapping genuine institutional order flow.
       </div>
     </div>
+  </div>
+</div>
+
+<!-- 7. FOOTER & DIRECT SOCIAL CHANNELS -->
+<div class="quant-footer">
+  <div style="font-weight: 800; font-size: 1.1rem; color: #fff; margin-bottom: 12px;">
+    UMESH KUMAR YADAV • Founder & Principal Researcher, AstroMAPs AI
+  </div>
+  <div class="social-links-group" style="justify-content: center; margin-bottom: 15px;">
+    <a href="https://www.youtube.com/@AstroMAPSAI" target="_blank" rel="noopener" class="social-btn yt">YouTube Channel</a>
+    <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="social-btn li">LinkedIn Profile</a>
+    <a href="https://wa.me/910000000000" target="_blank" rel="noopener" class="social-btn wa">WhatsApp Connect</a>
+  </div>
+  <div style="font-size: 0.8rem; color: var(--text-muted); max-width: 750px; margin: 0 auto;">
+    Quantitative time-cycle research for educational and institutional analytical purposes only.
   </div>
 </div>

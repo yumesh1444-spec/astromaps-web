@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Astro MAPs AI — Mechanical Orbital Liquidity Engine</title>
+  <meta name="description" content="Astro MAPs AI by Founder & Principal Researcher Umesh Yadav — Institutional-grade Mechanical Orbital Liquidity Engine & Nifty 50 Intraday Harmonic Time-Window Generator." />
+  <meta name="keywords" content="Astro MAPs AI, Umesh Yadav, Nifty Intraday Time Windows, Quantitative Market Timing, Mechanical Orbital Liquidity Engine, Nifty 50 Prediction" />
+  <meta name="author" content="Umesh Yadav" />
+  <meta name="robots" content="index, follow" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; }
@@ -175,17 +179,30 @@
       align-items: center;
       gap: 16px;
       border-bottom: 1px solid rgba(0, 242, 254, 0.22);
-      padding-bottom: 20px;
+      padding-bottom: 18px;
     }
     .terminal-title {
       margin: 5px 0 0 0;
-      font-size: 1.32rem;
+      font-size: 1.28rem;
       font-weight: 900;
       color: #ffffff;
       letter-spacing: 0.3px;
     }
 
-    /* DISTINCT COMMAND CONSOLE DOCK FOR DATE & GENERATE BUTTON */
+    /* SLEEK SINGLE-ROW COMMAND CONSOLE DOCK */
+    .command-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+    .dock-hint {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: #fde047;
+      letter-spacing: 0.5px;
+    }
     .command-dock {
       display: inline-flex;
       align-items: center;
@@ -201,13 +218,14 @@
       background: rgba(13, 37, 69, 0.65);
       color: #ffffff;
       border: 1px solid rgba(0, 242, 254, 0.35);
-      padding: 9px 12px;
+      padding: 8px 10px;
       border-radius: 8px;
       font-family: 'JetBrains Mono', monospace;
       font-weight: 800;
       font-size: 0.88rem;
       outline: none;
       color-scheme: dark;
+      cursor: pointer;
     }
     .date-input:focus {
       border-color: #00f2fe;
@@ -217,11 +235,11 @@
       background: linear-gradient(135deg, #00f2fe 0%, #10b981 100%);
       color: #020c1b;
       border: none;
-      padding: 10px 18px;
+      padding: 10px 16px;
       border-radius: 8px;
       font-weight: 900;
-      font-size: 0.82rem;
-      letter-spacing: 0.6px;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
       cursor: pointer;
       white-space: nowrap;
       font-family: 'JetBrains Mono', monospace;
@@ -235,6 +253,43 @@
       transform: translateY(-1px);
       box-shadow: 0 0 24px rgba(0, 242, 254, 0.75);
       filter: brightness(1.06);
+    }
+
+    /* ONE-CLICK HISTORICAL BACKTEST BAR */
+    .quick-dates-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      padding: 10px 14px;
+      background: rgba(2, 12, 27, 0.6);
+      border: 1px dashed rgba(0, 242, 254, 0.3);
+      border-radius: 12px;
+    }
+    .quick-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #94a3b8;
+      margin-right: 4px;
+    }
+    .quick-pill {
+      background: rgba(13, 37, 69, 0.85);
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      color: #e2e8f0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 5px 11px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .quick-pill:hover {
+      background: rgba(0, 242, 254, 0.18);
+      border-color: #00f2fe;
+      color: #ffffff;
     }
 
     /* ROW HIGHLIGHTING STYLES */
@@ -374,13 +429,15 @@
       background: #10b981;
       box-shadow: 0 0 8px #10b981;
     }
-    @media (max-width: 900px) {
+    @media (max-width: 980px) {
       .terminal-header { flex-direction: column; align-items: flex-start; }
+      .command-wrapper { align-items: flex-start; width: 100%; }
     }
     @media (max-width: 640px) {
       .brand-title { font-size: 2.1rem; }
       .features-grid { grid-template-columns: 1fr; }
       .command-dock { width: 100%; justify-content: space-between; }
+      .date-input { flex: 1; }
     }
   </style>
 </head>
@@ -406,7 +463,7 @@
         <span class="app-badge">● LIVE QUANTITATIVE TERMINAL</span>
         <div>
           <div style="font-weight: 800; font-size: 0.98rem;">Astro MAPs AI Quantitative Terminal</div>
-          <div style="font-size: 0.8rem; color: #94a3b8;">Real-Time Peak Windows &amp; Live Alerts • Join Official Channels:</div>
+          <div style="font-size: 0.8rem; color: #94a3b8;">Audit Live &amp; Historical Nifty Windows (1970–2030) • Join Official Channels:</div>
         </div>
       </div>
       <div class="social-links">
@@ -436,20 +493,32 @@
     <section id="astromaps-terminal" class="terminal-box">
       <div class="terminal-header">
         <div>
-          <div style="font-family: 'JetBrains Mono', monospace; color: #00f2fe; font-size: 0.78rem; font-weight: 800; letter-spacing: 2px;">LIVE &amp; HISTORICAL AUDIT TERMINAL</div>
-          <h2 class="terminal-title">NIFTY INTRADAY HARMONIC TIME-WINDOW GENERATOR</h2>
+          <div style="font-family: 'JetBrains Mono', monospace; color: #00f2fe; font-size: 0.78rem; font-weight: 800; letter-spacing: 2px;">LIVE &amp; HISTORICAL BACKTEST TERMINAL (1970–2030)</div>
+          <h2 class="terminal-title">NIFTY 50 HARMONIC TIME-WINDOW GENERATOR</h2>
         </div>
 
-        <!-- SAME-LINE COMMAND CONSOLE DOCK -->
-        <div class="command-dock">
-          <input type="date" id="audit-date-picker" min="1970-01-01" max="2030-12-31" class="date-input" />
-          <button id="gen-btn" onclick="fetchAstroWindows()" class="gen-btn">⚡ GENERATE WINDOWS</button>
+        <!-- SLEEK COMMAND CONSOLE DOCK WITH CLEAR HINT -->
+        <div class="command-wrapper">
+          <div class="dock-hint">📅 PICK ANY PAST OR FUTURE DATE BELOW TO BACKTEST:</div>
+          <div class="command-dock">
+            <input type="date" id="audit-date-picker" min="1970-01-01" max="2030-12-31" class="date-input" title="Select any historical or future date between 1970 and 2030" />
+            <button id="gen-btn" onclick="fetchAstroWindows()" class="gen-btn">⚡ GENERATE WINDOWS</button>
+          </div>
         </div>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 22px;">
+      <!-- ONE-CLICK HISTORICAL BACKTEST PILLS -->
+      <div class="quick-dates-bar">
+        <span class="quick-label">⚡ ONE-CLICK HISTORICAL AUDIT:</span>
+        <button class="quick-pill" onclick="runQuickDate('TODAY')">Today (Live)</button>
+        <button class="quick-pill" onclick="runQuickDate('2024-06-04')">04 Jun 2024 (Election Crash)</button>
+        <button class="quick-pill" onclick="runQuickDate('2020-03-23')">23 Mar 2020 (Covid Bottom)</button>
+        <button class="quick-pill" onclick="runQuickDate('2008-10-24')">24 Oct 2008 (Global Crisis)</button>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 18px;">
         <div style="background: rgba(2, 12, 27, 0.8); border: 1px solid rgba(0, 242, 254, 0.28); border-radius: 14px; padding: 16px;">
-          <div style="font-size: 0.75rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">OPENING VECTOR (09:15 AM)</div>
+          <div style="font-size: 0.75rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">OPENING VECTOR (09:15 AM IST)</div>
           <div id="opening-bias-text" style="margin-top: 6px; font-size: 1.02rem; font-weight: 800; color: #00f2fe;">Initializing Engine...</div>
         </div>
         <div style="background: rgba(2, 12, 27, 0.8); border: 1px solid rgba(0, 242, 254, 0.28); border-radius: 14px; padding: 16px;">
@@ -525,7 +594,7 @@
         <span class="pulse-dot"></span>
         <div>
           <div style="font-size: 0.68rem; color: #94a3b8; letter-spacing: 1px;">VERIFIED TERMINAL VISITS</div>
-          <div id="visitor-count" style="font-size: 1.05rem; font-weight: 900; color: #00f2fe;">149</div>
+          <div id="visitor-count" style="font-size: 1.05rem; font-weight: 900; color: #00f2fe;">165</div>
         </div>
       </div>
 
@@ -548,6 +617,16 @@
       updateVisitorCounter();
     });
 
+    function runQuickDate(target) {
+      const picker = document.getElementById("audit-date-picker");
+      if (target === "TODAY") {
+        picker.value = new Date().toISOString().split("T")[0];
+      } else {
+        picker.value = target;
+      }
+      fetchAstroWindows();
+    }
+
     async function updateVisitorCounter() {
       const countEl = document.getElementById("visitor-count");
       try {
@@ -556,7 +635,7 @@
         const data = await res.json();
         countEl.innerText = data.visits.toLocaleString("en-IN");
       } catch (e) {
-        countEl.innerText = "149+";
+        countEl.innerText = "165+";
       }
     }
 
@@ -610,7 +689,7 @@
             '</tr>';
         });
       } catch (err) {
-        document.getElementById("opening-bias-text").innerText = "Waking up Sovereign Server... Click Generate Windows again in 15s.";
+        document.getElementById("opening-bias-text").innerText = "Waking up Sovereign Server... Click Generate again in 15s.";
         document.getElementById("h2h-table-body").innerHTML = '<tr><td colspan="4" style="padding: 16px; text-align: center; color: #00f2fe;">Server waking up — click <b>⚡ GENERATE WINDOWS</b> again in 15 seconds.</td></tr>';
       } finally {
         btn.innerText = "⚡ GENERATE WINDOWS";

@@ -255,43 +255,6 @@
       filter: brightness(1.06);
     }
 
-    /* ONE-CLICK HISTORICAL BACKTEST BAR */
-    .quick-dates-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 8px;
-      margin-top: 14px;
-      padding: 10px 14px;
-      background: rgba(2, 12, 27, 0.6);
-      border: 1px dashed rgba(0, 242, 254, 0.3);
-      border-radius: 12px;
-    }
-    .quick-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      font-weight: 800;
-      color: #94a3b8;
-      margin-right: 4px;
-    }
-    .quick-pill {
-      background: rgba(13, 37, 69, 0.85);
-      border: 1px solid rgba(0, 242, 254, 0.35);
-      color: #e2e8f0;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 5px 11px;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .quick-pill:hover {
-      background: rgba(0, 242, 254, 0.18);
-      border-color: #00f2fe;
-      color: #ffffff;
-    }
-
     /* ROW HIGHLIGHTING STYLES */
     .row-master {
       background: linear-gradient(90deg, rgba(251, 191, 36, 0.16) 0%, rgba(251, 191, 36, 0.04) 100%);
@@ -507,16 +470,7 @@
         </div>
       </div>
 
-      <!-- ONE-CLICK HISTORICAL BACKTEST PILLS -->
-      <div class="quick-dates-bar">
-        <span class="quick-label">⚡ ONE-CLICK HISTORICAL AUDIT:</span>
-        <button class="quick-pill" onclick="runQuickDate('TODAY')">Today (Live)</button>
-        <button class="quick-pill" onclick="runQuickDate('2024-06-04')">04 Jun 2024 (Election Crash)</button>
-        <button class="quick-pill" onclick="runQuickDate('2020-03-23')">23 Mar 2020 (Covid Bottom)</button>
-        <button class="quick-pill" onclick="runQuickDate('2008-10-24')">24 Oct 2008 (Global Crisis)</button>
-      </div>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 18px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 20px;">
         <div style="background: rgba(2, 12, 27, 0.8); border: 1px solid rgba(0, 242, 254, 0.28); border-radius: 14px; padding: 16px;">
           <div style="font-size: 0.75rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">OPENING VECTOR (09:15 AM IST)</div>
           <div id="opening-bias-text" style="margin-top: 6px; font-size: 1.02rem; font-weight: 800; color: #00f2fe;">Initializing Engine...</div>
@@ -623,16 +577,6 @@
       fetchAstroWindows();
       updateVisitorCounter();
     });
-
-    function runQuickDate(target) {
-      const picker = document.getElementById("audit-date-picker");
-      if (target === "TODAY") {
-        picker.value = new Date().toISOString().split("T")[0];
-      } else {
-        picker.value = target;
-      }
-      fetchAstroWindows();
-    }
 
     async function updateVisitorCounter() {
       const countEl = document.getElementById("visitor-count");

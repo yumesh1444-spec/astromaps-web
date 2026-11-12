@@ -240,7 +240,7 @@
       margin: 0;
     }
 
-    /* FOOTER / RESEARCHER BADGE */
+    /* FOOTER / RESEARCHER BADGE + VISITOR COUNTER */
     .researcher-footer {
       margin-top: 38px;
       padding: 22px 26px;
@@ -251,7 +251,7 @@
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
     }
     .researcher-badge {
       display: flex;
@@ -270,6 +270,23 @@
       font-weight: 900;
       color: #020c1b;
       font-size: 1.05rem;
+    }
+    .visitor-box {
+      background: rgba(2, 12, 27, 0.75);
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      border-radius: 12px;
+      padding: 10px 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .pulse-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
     }
     @media (max-width: 640px) {
       .brand-title { font-size: 2.1rem; }
@@ -394,7 +411,7 @@
       </div>
     </div>
 
-    <!-- 6. SMART RESEARCHER SIGNATURE FOOTER -->
+    <!-- 6. SMART RESEARCHER SIGNATURE + VISITOR COUNTER FOOTER -->
     <footer class="researcher-footer">
       <div class="researcher-badge">
         <div class="avatar-ring">UY</div>
@@ -403,6 +420,16 @@
           <div style="font-size: 1.15rem; font-weight: 900; color: #ffffff; margin-top: 2px;">Umesh Yadav <span style="font-size: 0.82rem; font-weight: 600; color: #94a3b8;">• Astro MAPs AI</span></div>
         </div>
       </div>
+
+      <!-- LIVE VISITOR COUNTER -->
+      <div class="visitor-box">
+        <span class="pulse-dot"></span>
+        <div>
+          <div style="font-size: 0.68rem; color: #94a3b8; letter-spacing: 1px;">VERIFIED TERMINAL VISITS</div>
+          <div id="visitor-count" style="font-size: 1.05rem; font-weight: 900; color: #00f2fe;">Loading...</div>
+        </div>
+      </div>
+
       <div style="text-align: right; font-size: 0.8rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">
         <div>35+ YEARS QUANTITATIVE MARKET RESEARCH</div>
         <div style="color: #64748b; font-size: 0.74rem; margin-top: 3px;">© 2026 Astro MAPs AI • Proprietary Mechanical Architecture</div>
@@ -418,7 +445,18 @@
       const today = new Date().toISOString().split("T")[0];
       document.getElementById("audit-date-picker").value = today;
       fetchAstroWindows();
+      updateVisitorCounter();
     });
+
+    async function updateVisitorCounter() {
+      try {
+        const res = await fetch("https://api.counterapi.dev/v1/astromaps-ai-terminal/visits/up");
+        const data = await res.json();
+        document.getElementById("visitor-count").innerText = data.count.toLocaleString("en-IN");
+      } catch (e) {
+        document.getElementById("visitor-count").innerText = "ACTIVE";
+      }
+    }
 
     async function fetchAstroWindows() {
       const selectedDate = document.getElementById("audit-date-picker").value;

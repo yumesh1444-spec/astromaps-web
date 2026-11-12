@@ -330,7 +330,7 @@
       <div class="terminal-header">
         <div>
           <div style="font-family: 'JetBrains Mono', monospace; color: #00f2fe; font-size: 0.8rem; font-weight: 800; letter-spacing: 2px;">LIVE &amp; HISTORICAL AUDIT TERMINAL</div>
-          <h2 style="margin: 6px 0 0 0; font-size: 1.55rem; font-weight: 900; color: #ffffff;">NIFTY INTRADAY H2H TIME-WINDOW GENERATOR</h2>
+          <h2 style="margin: 6px 0 0 0; font-size: 1.55rem; font-weight: 900; color: #ffffff;">NIFTY INTRADAY HARMONIC TIME-WINDOW GENERATOR</h2>
         </div>
         <div class="date-controls">
           <input type="date" id="audit-date-picker" min="1970-01-01" max="2030-12-31" class="date-input" />
@@ -360,7 +360,7 @@
             </tr>
           </thead>
           <tbody id="h2h-table-body" style="font-size: 0.9rem;">
-            <tr><td colspan="4" style="padding: 16px; text-align: center; color: #94a3b8;">Loading H2H Time Windows...</td></tr>
+            <tr><td colspan="4" style="padding: 16px; text-align: center; color: #94a3b8;">Loading Harmonic Time Windows...</td></tr>
           </tbody>
         </table>
       </div>
@@ -374,13 +374,13 @@
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-num">01</div>
-        <div class="feature-title">Hora-to-Hora (H2H) Liquidity Mapping</div>
-        <p class="feature-desc">Indian market sessions (09:15 AM – 03:30 PM IST) are segmented into exact planetary Hora windows to isolate institutional order blocks, opening traps, and peak momentum slots.</p>
+        <div class="feature-title">Harmonic Time-Cycle (HTC) Liquidity Mapping</div>
+        <p class="feature-desc">Indian market sessions (09:15 AM – 03:30 PM IST) are segmented into calibrated 60-minute harmonic time blocks to isolate institutional order flow, opening traps, and peak momentum slots.</p>
       </div>
       <div class="feature-card">
         <div class="feature-num">02</div>
         <div class="feature-title">5-Key Quantitative Matrix</div>
-        <p class="feature-desc">Integrates exact Sidereal Moon Chain degrees, Star Lord (MSL) ingress, macro structural aspects, and nodal orb compression (0°00' to ±1°30') for deterministic timing.</p>
+        <p class="feature-desc">Integrates precision orbital-degree vectors, harmonic cycle ingress, macro structural alignments, and nodal orb compression (0°00' to ±1°30') for deterministic market timing.</p>
       </div>
       <div class="feature-card">
         <div class="feature-num">03</div>
@@ -444,12 +444,13 @@
         data.h2h_slots.forEach(slot => {
           const highlight = slot.is_peak ? "background: rgba(0, 242, 254, 0.08);" : "";
           const badgeColor = slot.is_peak ? "#00f2fe" : "#94a3b8";
+          const cleanTag = slot.priority_tag.replace("H2H", "HTC");
           tbody.innerHTML += `
             <tr style="border-bottom: 1px solid rgba(255,255,255,0.08); ${highlight}">
               <td style="padding: 13px 16px; font-family: 'JetBrains Mono', monospace; font-weight: 800; color: #00f2fe;">${slot.time_window}</td>
-              <td style="padding: 13px 16px; color: #e2e8f0;">${slot.phase}</td>
+              <td style="padding: 13px 16px; color: #e2e8f0;">${slot.phase.replace("H2H", "HTC")}</td>
               <td style="padding: 13px 16px; color: #ffffff; font-weight: 600;">${slot.action_bias}</td>
-              <td style="padding: 13px 16px; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 800; color: ${badgeColor};">${slot.priority_tag}</td>
+              <td style="padding: 13px 16px; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 800; color: ${badgeColor};">${cleanTag}</td>
             </tr>
           `;
         });

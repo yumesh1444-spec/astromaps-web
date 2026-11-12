@@ -610,6 +610,13 @@
     const API_URL = "https://astromaps-engine.onrender.com/api/predict";
     const VISIT_URL = "https://astromaps-engine.onrender.com/api/visit";
 
+    // Check if Founder/Admin mode is activated
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("admin") === "umesh") {
+      localStorage.setItem("astromaps_founder_mode", "true");
+    }
+    const IS_FOUNDER = localStorage.getItem("astromaps_founder_mode") === "true";
+
     window.addEventListener("DOMContentLoaded", function() {
       const today = new Date().toISOString().split("T")[0];
       document.getElementById("audit-date-picker").value = today;
@@ -629,11 +636,16 @@
 
     async function updateVisitorCounter() {
       const countEl = document.getElementById("visitor-count");
+      // Prevent counting refresh or founder visits
+      const alreadyCountedThisSession = sessionStorage.getItem("astromaps_session_counted") === "true";
+      const shouldIgnore = IS_FOUNDER || alreadyCountedThisSession;
+
       try {
-        const res = await fetch(VISIT_URL);
+        const res = await fetch(VISIT_URL + "?ignore=" + shouldIgnore);
         if (!res.ok) throw new Error("API error");
         const data = await res.json();
         countEl.innerText = data.visits.toLocaleString("en-IN");
+        sessionStorage.setItem("astromaps_session_counted", "true");
       } catch (e) {
         countEl.innerText = "165+";
       }
@@ -651,7 +663,7 @@
         const res = await fetch(API_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ date: selectedDate })
+          body: JSON.stringify({ date: selectedDate, is_admin: IS_FOUNDER })
         });
         if (!res.ok) throw new Error("Server busy");
         const data = await res.json();

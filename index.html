@@ -1,493 +1,462 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
-<style>
-* {
-  box-sizing: border-box;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astro MAPs AI — Mechanical Orbital Liquidity Engine</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 28px 16px 60px 16px;
+      background: radial-gradient(circle at 50% 0%, #0f294a 0%, #061326 60%, #020813 100%);
+      background-color: #061326;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #f8fafc;
+    }
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    /* HERO SECTION */
+    .hero-box {
+      background: linear-gradient(180deg, rgba(16, 44, 82, 0.75) 0%, rgba(10, 28, 54, 0.85) 100%);
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      border-radius: 22px;
+      padding: 42px 28px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    }
+    .top-pill {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: rgba(2, 12, 27, 0.65);
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      padding: 7px 16px;
+      border-radius: 999px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    .pill-red {
+      background: linear-gradient(90deg, #ff4b4b, #ff7b54);
+      color: #ffffff;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+    }
+    .brand-title {
+      font-size: 3.1rem;
+      font-weight: 900;
+      margin: 22px 0 8px 0;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+    }
+    .brand-title span {
+      color: #00f2fe;
+    }
+    .brand-sub {
+      font-family: 'JetBrains Mono', monospace;
+      color: #00f2fe;
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .quote-box {
+      max-width: 780px;
+      margin: 0 auto;
+      text-align: left;
+      border-left: 3px solid #00f2fe;
+      padding-left: 18px;
+      color: #cbd5e1;
+      font-style: italic;
+      font-size: 1.02rem;
+      line-height: 1.65;
+    }
 
-body {
-  background: linear-gradient(135deg, #020c1b 0%, #0a192f 50%, #172a45 100%);
-  background-color: #0a192f;
-  min-height: 100vh;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  color: #f8fafc;
-  margin: 0;
-  padding: 0 0 40px 0;
-}
+    /* SOCIAL / APP STRIP */
+    .channel-bar {
+      margin-top: 20px;
+      background: rgba(13, 37, 69, 0.8);
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      border-radius: 16px;
+      padding: 16px 22px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .channel-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .app-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #00f2fe;
+      border: 1px solid rgba(0, 242, 254, 0.45);
+      background: rgba(0, 242, 254, 0.08);
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+    .social-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .social-btn {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .yt { background: #dc2626; }
+    .li { background: #1d4ed8; }
+    .wa { background: #16a34a; }
 
-/* TOP LIVE MARKET TICKER BAR */
-.live-ticker-wrapper {
-  background: #020c1b;
-  border-bottom: 1px solid rgba(0, 242, 254, 0.35);
-  width: 100%;
-  min-height: 46px;
-}
+    /* METRICS 3 CARDS */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+    .metric-card {
+      background: rgba(13, 37, 69, 0.78);
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      border-radius: 16px;
+      padding: 24px 18px;
+      text-align: center;
+    }
+    .metric-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: #00f2fe;
+      margin-bottom: 8px;
+    }
+    .metric-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: #94a3b8;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      line-height: 1.45;
+    }
 
-/* HIGH-IMPACT ROYAL BLUE HERO BANNER */
-.hero-glass-box {
-  background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.35), transparent 75%), rgba(13, 37, 69, 0.85);
-  border: 1px solid rgba(0, 242, 254, 0.35);
-  box-shadow: 0 20px 50px rgba(2, 12, 27, 0.8), 0 0 35px rgba(37, 99, 235, 0.25);
-  padding: 3.2rem 2rem;
-  border-radius: 28px;
-  margin: 25px auto;
-  max-width: 1100px;
-  width: 92%;
-  text-align: center;
-}
+    /* LIVE TERMINAL (CENTERPIECE) */
+    .terminal-box {
+      margin: 26px 0;
+      padding: 28px;
+      background: linear-gradient(145deg, rgba(13, 37, 69, 0.92), rgba(6, 20, 40, 0.95));
+      border: 1.5px solid rgba(0, 242, 254, 0.48);
+      border-radius: 22px;
+      box-shadow: 0 0 35px rgba(0, 242, 254, 0.12);
+    }
+    .terminal-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      border-bottom: 1px solid rgba(0, 242, 254, 0.22);
+      padding-bottom: 20px;
+    }
+    .date-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .date-input {
+      background: #020c1b;
+      color: #00f2fe;
+      border: 1px solid #00f2fe;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .gen-btn {
+      background: linear-gradient(90deg, #00f2fe, #2563eb);
+      color: #020c1b;
+      border: none;
+      padding: 11px 20px;
+      border-radius: 10px;
+      font-weight: 900;
+      cursor: pointer;
+      font-family: 'JetBrains Mono', monospace;
+      transition: transform 0.15s ease;
+    }
+    .gen-btn:hover { transform: translateY(-1px); }
 
-.institutional-badge-strip {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  background: rgba(29, 78, 216, 0.35);
-  border: 1px solid #00f2fe;
-  padding: 8px 22px;
-  border-radius: 50px;
-  margin-bottom: 22px;
-}
+    /* 4 FEATURE CARDS */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+    .feature-card {
+      background: rgba(13, 37, 69, 0.72);
+      border: 1px solid rgba(0, 242, 254, 0.2);
+      border-radius: 18px;
+      padding: 24px;
+    }
+    .feature-num {
+      font-family: 'JetBrains Mono', monospace;
+      color: #00f2fe;
+      font-weight: 900;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+    .feature-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+    .feature-desc {
+      font-size: 0.92rem;
+      color: #cbd5e1;
+      line-height: 1.6;
+      margin: 0;
+    }
 
-.badge-tag {
-  color: #ffffff;
-  font-size: 0.85rem;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
-
-.accuracy-chip {
-  background: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
-  color: #ffffff;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8rem;
-  font-weight: 800;
-  padding: 4px 12px;
-  border-radius: 6px;
-}
-
-.hero-title {
-  font-size: 2.8rem;
-  font-weight: 900;
-  letter-spacing: -0.5px;
-  line-height: 1.2;
-  margin: 0 0 12px 0;
-  color: #ffffff;
-}
-
-.hero-subtitle {
-  color: #00f2fe;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin-bottom: 22px;
-}
-
-.hero-quote {
-  max-width: 780px;
-  margin: 0 auto;
-  font-size: 1.1rem;
-  color: #e2e8f0;
-  line-height: 1.7;
-  border-left: 3px solid #00f2fe;
-  padding-left: 18px;
-  text-align: left;
-  font-style: italic;
-}
-
-/* SMALL COMING SOON APP & SOCIAL CONNECT WINDOW */
-.app-coming-window {
-  max-width: 1100px;
-  width: 92%;
-  margin: 22px auto;
-  padding: 18px 24px;
-  background: linear-gradient(90deg, rgba(13, 37, 69, 0.92) 0%, rgba(29, 78, 216, 0.3) 100%);
-  border: 1px solid rgba(0, 242, 254, 0.35);
-  border-radius: 18px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.app-window-left {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-
-.coming-pill {
-  background: rgba(0, 242, 254, 0.15);
-  border: 1px solid #00f2fe;
-  color: #00f2fe;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  font-weight: 800;
-  padding: 5px 12px;
-  border-radius: 50px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.app-window-text h4 {
-  margin: 0 0 3px 0;
-  font-size: 1.02rem;
-  font-weight: 800;
-  color: #ffffff;
-}
-
-.app-window-text p {
-  margin: 0;
-  font-size: 0.84rem;
-  color: #94a3b8;
-}
-
-.social-links-group {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.social-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  border-radius: 10px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  text-decoration: none;
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.social-btn.yt { background: #b91c1c; }
-.social-btn.li { background: #1d4ed8; }
-.social-btn.wa { background: #047857; }
-
-/* MACRO METRICS BAR */
-.metrics-strip {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  max-width: 1100px;
-  width: 92%;
-  margin: 30px auto;
-}
-
-.metric-cell {
-  background: rgba(13, 37, 69, 0.75);
-  border: 1px solid rgba(0, 242, 254, 0.25);
-  border-radius: 18px;
-  padding: 22px;
-  text-align: center;
-}
-
-.metric-val {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 2.2rem;
-  font-weight: 900;
-  color: #00f2fe;
-  margin-bottom: 5px;
-}
-
-.metric-label {
-  font-size: 0.82rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #94a3b8;
-  font-weight: 700;
-}
-
-/* 4-PILLAR QUANT INFRASTRUCTURE */
-.architecture-container {
-  max-width: 1100px;
-  width: 92%;
-  margin: 35px auto;
-}
-
-.section-tagline {
-  color: #00f2fe;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem;
-  letter-spacing: 2px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.section-head {
-  font-size: 2rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin: 8px 0 28px 0;
-}
-
-.pillar-matrix {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 22px;
-}
-
-.matrix-card {
-  background: rgba(13, 37, 69, 0.8);
-  border: 1px solid rgba(0, 242, 254, 0.2);
-  border-radius: 20px;
-  padding: 2rem;
-}
-
-.card-num {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1.7rem;
-  font-weight: 900;
-  color: #00f2fe;
-  opacity: 0.7;
-  margin-bottom: 10px;
-}
-
-.card-title {
-  color: #ffffff;
-  font-size: 1.2rem;
-  font-weight: 800;
-  margin-bottom: 10px;
-}
-
-.card-desc {
-  color: #cbd5e1;
-  font-size: 0.95rem;
-  line-height: 1.65;
-  margin: 0;
-}
-
-@media (max-width: 850px) {
-  .pillar-matrix, .metrics-strip { grid-template-columns: 1fr; }
-  .hero-title { font-size: 2rem; }
-  .hero-glass-box { padding: 2rem 1.2rem; }
-}
-</style>
+    /* FOOTER / RESEARCHER BADGE */
+    .researcher-footer {
+      margin-top: 38px;
+      padding: 22px 26px;
+      background: rgba(10, 28, 54, 0.85);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      border-radius: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+    }
+    .researcher-badge {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .avatar-ring {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00f2fe, #2563eb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 900;
+      color: #020c1b;
+      font-size: 1.05rem;
+    }
+    @media (max-width: 640px) {
+      .brand-title { font-size: 2.1rem; }
+      .features-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
 
-<!-- LIVE MARKET TICKER (GOLD, SILVER, CRUDE OIL, USD/INR) -->
-<div class="live-ticker-wrapper">
-  <div class="tradingview-widget-container">
-    <div class="tradingview-widget-container__widget"></div>
-    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-    {
-      "symbols": [
-        { "proName": "OANDA:XAUUSD", "title": "GOLD" },
-        { "proName": "OANDA:XAGUSD", "title": "SILVER" },
-        { "proName": "NYMEX:CL1!", "title": "WTI CRUDE OIL" },
-        { "proName": "ICEEUR:BRN1!", "title": "BRENT CRUDE" },
-        { "proName": "FX_IDC:USDINR", "title": "USD / INR" }
-      ],
-      "showSymbolLogo": true,
-      "isTransparent": true,
-      "displayMode": "adaptive",
-      "colorTheme": "dark",
-      "locale": "en"
+    <!-- 1. HERO HEADER -->
+    <div class="hero-box">
+      <div class="top-pill">
+        <span>SOVEREIGN TIME-HARMONICS &nbsp;|&nbsp; LAUNCH DATE: 02 JUNE 2026</span>
+        <span class="pill-red">100% MECHANICAL CALIBRATION</span>
+      </div>
+      <h1 class="brand-title">Astro <span>MAPs</span> AI</h1>
+      <div class="brand-sub">MECHANICAL ORBITAL LIQUIDITY ENGINE</div>
+      <div class="quote-box">
+        "Financial markets do not move on speculative news. Large-scale capital rotates on mathematical time-harmonics, celestial mass coordinates, and institutional liquidation cycles."
+      </div>
+    </div>
+
+    <!-- 2. OFFICIAL CHANNELS BAR -->
+    <div class="channel-bar">
+      <div class="channel-left">
+        <span class="app-badge">● LIVE QUANTITATIVE TERMINAL</span>
+        <div>
+          <div style="font-weight: 800; font-size: 0.98rem;">Astro MAPs AI Quantitative Terminal</div>
+          <div style="font-size: 0.8rem; color: #94a3b8;">Real-Time Peak Windows &amp; Live Alerts • Join Official Channels:</div>
+        </div>
+      </div>
+      <div class="social-links">
+        <a href="https://youtube.com/@AstroMAPSAI" target="_blank" class="social-btn yt">▶ YouTube</a>
+        <a href="https://www.linkedin.com" target="_blank" class="social-btn li">in LinkedIn</a>
+        <a href="https://whatsapp.com" target="_blank" class="social-btn wa">💬 WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- 3. METRICS CARDS -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-val">56 YRS</div>
+        <div class="metric-label">HISTORICAL MARKET DATA AUDIT (1970–2026)</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">0° Orb</div>
+        <div class="metric-label">DUAL-ANCHOR KINETIC DEGREE PRECISION</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">100%</div>
+        <div class="metric-label">MECHANICAL ARCHITECTURE CALIBRATION</div>
+      </div>
+    </div>
+
+    <!-- 4. CENTERPIECE: LIVE & HISTORICAL TIME-WINDOW GENERATOR -->
+    <section id="astromaps-terminal" class="terminal-box">
+      <div class="terminal-header">
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; color: #00f2fe; font-size: 0.8rem; font-weight: 800; letter-spacing: 2px;">LIVE &amp; HISTORICAL AUDIT TERMINAL</div>
+          <h2 style="margin: 6px 0 0 0; font-size: 1.55rem; font-weight: 900; color: #ffffff;">NIFTY INTRADAY H2H TIME-WINDOW GENERATOR</h2>
+        </div>
+        <div class="date-controls">
+          <input type="date" id="audit-date-picker" min="1970-01-01" max="2030-12-31" class="date-input" />
+          <button onclick="fetchAstroWindows()" class="gen-btn">GENERATE WINDOWS</button>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 22px;">
+        <div style="background: rgba(2, 12, 27, 0.75); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: 14px; padding: 16px;">
+          <div style="font-size: 0.75rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">OPENING VECTOR (09:15 AM)</div>
+          <div id="opening-bias-text" style="margin-top: 6px; font-size: 1.02rem; font-weight: 800; color: #00f2fe;">Initializing Engine...</div>
+        </div>
+        <div style="background: rgba(2, 12, 27, 0.75); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: 14px; padding: 16px;">
+          <div style="font-size: 0.75rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">ORBITAL REGIME STATUS</div>
+          <div id="regime-alert-text" style="margin-top: 6px; font-size: 1.02rem; font-weight: 800; color: #f8fafc;">Calculating Harmonics...</div>
+        </div>
+      </div>
+
+      <div style="overflow-x: auto; margin-top: 22px; border-radius: 14px; border: 1px solid rgba(0, 242, 254, 0.22);">
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+          <thead>
+            <tr style="background: rgba(29, 78, 216, 0.45); color: #00f2fe; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;">
+              <th style="padding: 13px 16px;">TIME WINDOW (IST)</th>
+              <th style="padding: 13px 16px;">SESSION PHASE</th>
+              <th style="padding: 13px 16px;">LIQUIDITY SIGNATURE</th>
+              <th style="padding: 13px 16px;">MECHANICAL STATUS</th>
+            </tr>
+          </thead>
+          <tbody id="h2h-table-body" style="font-size: 0.9rem;">
+            <tr><td colspan="4" style="padding: 16px; text-align: center; color: #94a3b8;">Loading H2H Time Windows...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="margin: 14px 0 0 0; font-size: 0.78rem; color: #64748b; text-align: right;">
+        *Cross-verify intraday peak windows on your external charting platform (TradingView / NSE Historical Data).
+      </p>
+    </section>
+
+    <!-- 5. CORE ARCHITECTURE PILLARS (01 - 04) -->
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-num">01</div>
+        <div class="feature-title">Hora-to-Hora (H2H) Liquidity Mapping</div>
+        <p class="feature-desc">Indian market sessions (09:15 AM – 03:30 PM IST) are segmented into exact planetary Hora windows to isolate institutional order blocks, opening traps, and peak momentum slots.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">02</div>
+        <div class="feature-title">5-Key Quantitative Matrix</div>
+        <p class="feature-desc">Integrates exact Sidereal Moon Chain degrees, Star Lord (MSL) ingress, macro structural aspects, and nodal orb compression (0°00' to ±1°30') for deterministic timing.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">03</div>
+        <div class="feature-title">Cross-Asset Collateral Verification</div>
+        <p class="feature-desc">Nifty 50 and Bank Nifty expansions are strictly cross-audited against physical sovereign collateral (MCX Gold &amp; Silver). Unbacked index breakouts are isolated and flagged for institutional fade entries.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">04</div>
+        <div class="feature-title">14.7-Day Synodic Cycle Model</div>
+        <p class="feature-desc">Rigorous tracking of Full Moon (Purnima) structural absorption regimes and New Moon (Amwasiya) macro apex inflections, preventing option decay traps and mapping genuine institutional order flow.</p>
+      </div>
+    </div>
+
+    <!-- 6. SMART RESEARCHER SIGNATURE FOOTER -->
+    <footer class="researcher-footer">
+      <div class="researcher-badge">
+        <div class="avatar-ring">UY</div>
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: #00f2fe; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;">Founder &amp; Principal Researcher</div>
+          <div style="font-size: 1.15rem; font-weight: 900; color: #ffffff; margin-top: 2px;">Umesh Yadav <span style="font-size: 0.82rem; font-weight: 600; color: #94a3b8;">• Astro MAPs AI</span></div>
+        </div>
+      </div>
+      <div style="text-align: right; font-size: 0.8rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">
+        <div>35+ YEARS QUANTITATIVE MARKET RESEARCH</div>
+        <div style="color: #64748b; font-size: 0.74rem; margin-top: 3px;">© 2026 Astro MAPs AI • Proprietary Mechanical Architecture</div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    const API_URL = "https://astromaps-engine.onrender.com/api/predict";
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const today = new Date().toISOString().split("T")[0];
+      document.getElementById("audit-date-picker").value = today;
+      fetchAstroWindows();
+    });
+
+    async function fetchAstroWindows() {
+      const selectedDate = document.getElementById("audit-date-picker").value;
+      if (!selectedDate) return;
+
+      document.getElementById("opening-bias-text").innerText = "Running Sovereign Engine...";
+      
+      try {
+        const res = await fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ date: selectedDate })
+        });
+        if (!res.ok) throw new Error("Server busy");
+        const data = await res.json();
+
+        document.getElementById("opening-bias-text").innerText = data.opening_bias;
+        document.getElementById("regime-alert-text").innerText = data.regime_alert;
+
+        const tbody = document.getElementById("h2h-table-body");
+        tbody.innerHTML = "";
+
+        data.h2h_slots.forEach(slot => {
+          const highlight = slot.is_peak ? "background: rgba(0, 242, 254, 0.08);" : "";
+          const badgeColor = slot.is_peak ? "#00f2fe" : "#94a3b8";
+          tbody.innerHTML += `
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.08); ${highlight}">
+              <td style="padding: 13px 16px; font-family: 'JetBrains Mono', monospace; font-weight: 800; color: #00f2fe;">${slot.time_window}</td>
+              <td style="padding: 13px 16px; color: #e2e8f0;">${slot.phase}</td>
+              <td style="padding: 13px 16px; color: #ffffff; font-weight: 600;">${slot.action_bias}</td>
+              <td style="padding: 13px 16px; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 800; color: ${badgeColor};">${slot.priority_tag}</td>
+            </tr>
+          `;
+        });
+      } catch (err) {
+        document.getElementById("opening-bias-text").innerText = "Waking up Sovereign Server... Click Generate Windows again in 15s.";
+      }
     }
-    </script>
-  </div>
-</div>
-
-<!-- INSTITUTIONAL HERO SECTION -->
-<div class="hero-glass-box">
-  <div class="institutional-badge-strip">
-    <span class="badge-tag">Sovereign Time-Harmonics</span>
-    <span style="color: rgba(255,255,255,0.4);">|</span>
-    <span class="badge-tag">Anchor Date: 17 June 2026</span>
-    <span class="accuracy-chip">100% MECHANICAL CALIBRATION</span>
-  </div>
-
-  <h1 class="hero-title">ASTROMAPS AI</h1>
-  <div class="hero-subtitle">Mechanical Orbital Liquidity Engine</div>
-
-  <div class="hero-quote">
-    "Financial markets do not move on speculative news. Large-scale capital rotates on mathematical time-harmonics, celestial mass coordinates, and institutional liquidation cycles."
-  </div>
-</div>
-
-<!-- SMALL COMING SOON APP WINDOW & SOCIAL MEDIA CONNECT -->
-<div class="app-coming-window">
-  <div class="app-window-left">
-    <span class="coming-pill">● APP COMING SOON</span>
-    <div class="app-window-text">
-      <h4>AstroMAPs AI Quantitative Terminal App</h4>
-      <p>Real-Time Peak Windows &amp; Live Alerts • Join Official Channels:</p>
-    </div>
-  </div>
-  <div class="social-links-group">
-    <a href="https://www.youtube.com/@AstroMAPSAI" target="_blank" rel="noopener" class="social-btn yt">▶ YouTube</a>
-    <a href="https://www.linkedin.com/groups/40994056/" target="_blank" rel="noopener" class="social-btn li">in LinkedIn Group</a>
-    <a href="https://wa.me/917727054744" target="_blank" rel="noopener" class="social-btn wa">💬 WhatsApp</a>
-  </div>
-</div>
-
-<!-- AUDITED PERFORMANCE METRICS -->
-<div class="metrics-strip">
-  <div class="metric-cell">
-    <div class="metric-val">56 YRS</div>
-    <div class="metric-label">Historical Market Data Audit (1970–2026)</div>
-  </div>
-  <div class="metric-cell">
-    <div class="metric-val">0° Orb</div>
-    <div class="metric-label">Dual-Anchor Kinetic Degree Precision</div>
-  </div>
-  <div class="metric-cell">
-    <div class="metric-val">100%</div>
-    <div class="metric-label">Mechanical Architecture Calibration</div>
-  </div>
-</div>
-
-<!-- ARCHITECTURE SECTION -->
-<div class="architecture-container">
-  <div class="section-tagline">Institutional Framework</div>
-  <div class="section-head">The Master Quantitative Pillars</div>
-
-  <div class="pillar-matrix">
-    <div class="matrix-card">
-      <div class="card-num">01</div>
-      <div class="card-title">Dual-Anchor Degree Lock Law</div>
-      <div class="card-desc">
-        Capital trends encounter structural exhaustion at exact mathematical coordinate matches (0°00' to ±0°30' orb). Speculative noise is filtered out until primary orbital masses lock into kinetic trigger angles.
-      </div>
-    </div>
-
-    <div class="matrix-card">
-      <div class="card-num">02</div>
-      <div class="card-title">Congestion &amp; Liquidation Mechanics</div>
-      <div class="card-desc">
-        Multi-mass congestion within the 11th domain traps speculative retail euphoria. Systematic migration into the 12th domain (Vyaya) enforces automated balance-sheet squaring and multi-hundred-point waterfall drains.
-      </div>
-    </div>
-
-    <div class="matrix-card">
-      <div class="card-num">03</div>
-      <div class="card-title">Cross-Asset Collateral Verification</div>
-      <div class="card-desc">
-        Nifty 50 and Bank Nifty expansions are strictly cross-audited against physical sovereign collateral (MCX Gold &amp; Silver). Unbacked index breakouts are isolated and flagged for institutional fade entries.
-      </div>
-    </div>
-
-    <div class="matrix-card">
-      <div class="card-num">04</div>
-      <div class="card-title">14.7-Day Synodic Cycle Model</div>
-      <div class="card-desc">
-        Rigorous tracking of Full Moon (Purnima) structural absorption regimes and New Moon (Amwasiya) macro apex inflections, preventing option decay traps and mapping genuine institutional order flow.
-      </div>
-    </div>
-  </div>
-</div>
-<!-- ASTROMAPS AI LIVE & HISTORICAL TIME-WINDOW TERMINAL -->
-<section id="astromaps-terminal" style="max-width: 1120px; margin: 40px auto; padding: 28px; background: rgba(13, 37, 69, 0.85); border: 1px solid rgba(0, 242, 254, 0.35); border-radius: 20px; font-family: 'Plus Jakarta Sans', sans-serif; color: #f8fafc;">
-  
-  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; border-bottom: 1px solid rgba(0, 242, 254, 0.2); padding-bottom: 20px;">
-    <div>
-      <div style="font-family: 'JetBrains Mono', monospace; color: #00f2fe; font-size: 0.8rem; font-weight: 800; letter-spacing: 2px;">LIVE & HISTORICAL AUDIT TERMINAL</div>
-      <h2 style="margin: 6px 0 0 0; font-size: 1.6rem; font-weight: 900; color: #ffffff;">NIFTY INTRADAY H2H TIME-WINDOW GENERATOR</h2>
-    </div>
-    
-    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-      <input type="date" id="audit-date-picker" min="1970-01-01" max="2030-12-31"
-        style="background: #020c1b; color: #00f2fe; border: 1px solid #00f2fe; padding: 10px 14px; border-radius: 10px; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.95rem;" />
-      <button onclick="fetchAstroWindows()"
-        style="background: linear-gradient(90deg, #00f2fe, #2563eb); color: #020c1b; border: none; padding: 11px 20px; border-radius: 10px; font-weight: 900; cursor: pointer; font-family: 'JetBrains Mono', monospace;">
-        GENERATE WINDOWS
-      </button>
-    </div>
-  </div>
-
-  <!-- Summary Cards -->
-  <div id="terminal-summary" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 22px;">
-    <div style="background: rgba(2, 12, 27, 0.7); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: 14px; padding: 16px;">
-      <div style="font-size: 0.75rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">OPENING VECTOR (09:15 AM)</div>
-      <div id="opening-bias-text" style="margin-top: 6px; font-size: 1.05rem; font-weight: 800; color: #00f2fe;">Loading Mechanical Alignment...</div>
-    </div>
-    <div style="background: rgba(2, 12, 27, 0.7); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: 14px; padding: 16px;">
-      <div style="font-size: 0.75rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">ORBITAL REGIME STATUS</div>
-      <div id="regime-alert-text" style="margin-top: 6px; font-size: 1.05rem; font-weight: 800; color: #f8fafc;">Calculating...</div>
-    </div>
-  </div>
-
-  <!-- H2H Slots Table -->
-  <div style="overflow-x: auto; margin-top: 22px; border-radius: 14px; border: 1px solid rgba(0, 242, 254, 0.2);">
-    <table style="width: 100%; border-collapse: collapse; text-align: left;">
-      <thead>
-        <tr style="background: rgba(29, 78, 216, 0.4); color: #00f2fe; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;">
-          <th style="padding: 13px 16px;">TIME WINDOW (IST)</th>
-          <th style="padding: 13px 16px;">SESSION PHASE</th>
-          <th style="padding: 13px 16px;">LIQUIDITY SIGNATURE</th>
-          <th style="padding: 13px 16px;">MECHANICAL STATUS</th>
-        </tr>
-      </thead>
-      <tbody id="h2h-table-body" style="font-size: 0.9rem;">
-        <tr><td colspan="4" style="padding: 16px; text-align: center; color: #94a3b8;">Select a date and click Generate Windows</td></tr>
-      </tbody>
-    </table>
-  </div>
-  
-  <p style="margin: 14px 0 0 0; font-size: 0.78rem; color: #64748b; text-align: right;">
-    *Cross-verify intraday peak windows on your external charting platform (TradingView / NSE Historical Data).
-  </p>
-</section>
-
-<script>
-  const API_URL = "https://astromaps-engine.onrender.com/api/predict";
-
-  window.addEventListener("DOMContentLoaded", () => {
-    const today = new Date().toISOString().split("T")[0];
-    document.getElementById("audit-date-picker").value = today;
-    fetchAstroWindows();
-  });
-
-  async function fetchAstroWindows() {
-    const selectedDate = document.getElementById("audit-date-picker").value;
-    if (!selectedDate) return;
-
-    document.getElementById("opening-bias-text").innerText = "Running Sovereign Engine (Wait ~15s if waking up)...";
-    
-    try {
-      const res = await fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ date: selectedDate })
-      });
-      const data = await res.json();
-
-      document.getElementById("opening-bias-text").innerText = data.opening_bias;
-      document.getElementById("regime-alert-text").innerText = data.regime_alert;
-
-      const tbody = document.getElementById("h2h-table-body");
-      tbody.innerHTML = "";
-
-      data.h2h_slots.forEach(slot => {
-        const highlight = slot.is_peak ? "background: rgba(0, 242, 254, 0.08);" : "";
-        const badgeColor = slot.is_peak ? "#00f2fe" : "#94a3b8";
-        tbody.innerHTML += `
-          <tr style="border-bottom: 1px solid rgba(255,255,255,0.08); ${highlight}">
-            <td style="padding: 13px 16px; font-family: 'JetBrains Mono', monospace; font-weight: 800; color: #00f2fe;">${slot.time_window}</td>
-            <td style="padding: 13px 16px; color: #e2e8f0;">${slot.phase}</td>
-            <td style="padding: 13px 16px; color: #ffffff; font-weight: 600;">${slot.action_bias}</td>
-            <td style="padding: 13px 16px; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 800; color: ${badgeColor};">${slot.priority_tag}</td>
-          </tr>
-        `;
-      });
-    } catch (err) {
-      document.getElementById("opening-bias-text").innerText = "Waking up Sovereign Server... Please click Generate Windows again in 15 seconds.";
-    }
-  }
-</script>
+  </script>
 </body>
 </html>

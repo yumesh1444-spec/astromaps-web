@@ -549,11 +549,13 @@
 
     async function updateVisitorCounter() {
       try {
-        const res = await fetch("https://api.counterapi.dev/v1/astromaps-ai-terminal/visits/up");
+        const res = await fetch("https://astromaps-engine.onrender.com/api/visit");
         const data = await res.json();
-        document.getElementById("visitor-count").innerText = data.count.toLocaleString("en-IN");
+        document.getElementById("visitor-count").innerText = data.visits.toLocaleString("en-IN");
       } catch (e) {
-        document.getElementById("visitor-count").innerText = "ACTIVE";
+        document.getElementById("visitor-count").innerText = "149+";
+      }
+    }
       }
     }
 

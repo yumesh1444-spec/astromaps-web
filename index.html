@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Astro MAPs AI — Mechanical Orbital Liquidity Engine</title>
-  <meta name="description" content="Astro MAPs AI by Founder & Principal Researcher Umesh Yadav — Institutional-grade Mechanical Orbital Liquidity Engine & Nifty 50 Intraday Harmonic Time-Window Generator." />
-  <meta name="keywords" content="Astro MAPs AI, Umesh Yadav, Nifty Intraday Time Windows, Quantitative Market Timing, Mechanical Orbital Liquidity Engine, Nifty 50 Prediction" />
+  <meta name="description" content="Astro MAPs AI by Founder & Principal Researcher Umesh Yadav — Institutional-grade Mechanical Orbital Liquidity Engine for Nifty 50, Bank Nifty, MCX Gold, Silver & Crude Oil." />
+  <meta name="keywords" content="Astro MAPs AI, Umesh Yadav, Nifty Intraday Time Windows, Bank Nifty Timing, MCX Gold Silver Crude Timing, Quantitative Market Timing" />
   <meta name="author" content="Umesh Yadav" />
   <meta name="robots" content="index, follow" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
@@ -187,6 +187,38 @@
       font-weight: 900;
       color: #ffffff;
       letter-spacing: 0.3px;
+    }
+
+    /* MULTI-ASSET SWITCHER TABS */
+    .asset-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(0, 242, 254, 0.18);
+    }
+    .asset-tab {
+      background: rgba(2, 12, 27, 0.8);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      color: #94a3b8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 9px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .asset-tab:hover {
+      border-color: #00f2fe;
+      color: #ffffff;
+    }
+    .asset-tab.active {
+      background: linear-gradient(135deg, #0284c7, #00f2fe);
+      color: #020c1b;
+      border-color: #00f2fe;
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
     }
 
     /* SLEEK SINGLE-ROW COMMAND CONSOLE DOCK */
@@ -423,10 +455,10 @@
     <!-- 2. OFFICIAL CHANNELS BAR -->
     <div class="channel-bar">
       <div class="channel-left">
-        <span class="app-badge">● LIVE QUANTITATIVE TERMINAL</span>
+        <span class="app-badge">● LIVE MULTI-ASSET TERMINAL</span>
         <div>
           <div style="font-weight: 800; font-size: 0.98rem;">Astro MAPs AI Quantitative Terminal</div>
-          <div style="font-size: 0.8rem; color: #94a3b8;">Audit Live &amp; Historical Nifty Windows (1970–2030) • Join Official Channels:</div>
+          <div style="font-size: 0.8rem; color: #94a3b8;">Audit Live &amp; Historical Windows (NSE Indices + MCX Bullion &amp; Energy) • Official Channels:</div>
         </div>
       </div>
       <div class="social-links">
@@ -452,12 +484,12 @@
       </div>
     </div>
 
-    <!-- 4. CENTERPIECE: LIVE & HISTORICAL TIME-WINDOW GENERATOR -->
+    <!-- 4. CENTERPIECE: LIVE & HISTORICAL MULTI-ASSET TIME-WINDOW GENERATOR -->
     <section id="astromaps-terminal" class="terminal-box">
       <div class="terminal-header">
         <div>
           <div style="font-family: 'JetBrains Mono', monospace; color: #00f2fe; font-size: 0.78rem; font-weight: 800; letter-spacing: 2px;">LIVE &amp; HISTORICAL BACKTEST TERMINAL (1970–2030)</div>
-          <h2 class="terminal-title">NIFTY 50 HARMONIC TIME-WINDOW GENERATOR</h2>
+          <h2 id="terminal-main-title" class="terminal-title">NIFTY 50 (NSE) HARMONIC TIME-WINDOW GENERATOR</h2>
         </div>
 
         <!-- SLEEK COMMAND CONSOLE DOCK WITH CLEAR HINT -->
@@ -470,9 +502,18 @@
         </div>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 20px;">
+      <!-- MULTI-ASSET SWITCHER TABS -->
+      <div class="asset-tabs">
+        <button class="asset-tab active" onclick="switchAsset('NIFTY', this)">NIFTY 50 (NSE)</button>
+        <button class="asset-tab" onclick="switchAsset('BANKNIFTY', this)">BANK NIFTY (NSE)</button>
+        <button class="asset-tab" onclick="switchAsset('GOLD', this)">MCX GOLD</button>
+        <button class="asset-tab" onclick="switchAsset('SILVER', this)">MCX SILVER</button>
+        <button class="asset-tab" onclick="switchAsset('CRUDE', this)">CRUDE OIL (MCX)</button>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 18px;">
         <div style="background: rgba(2, 12, 27, 0.8); border: 1px solid rgba(0, 242, 254, 0.28); border-radius: 14px; padding: 16px;">
-          <div style="font-size: 0.75rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">OPENING VECTOR (09:15 AM IST)</div>
+          <div id="anchor-label" style="font-size: 0.75rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">OPENING VECTOR (09:15 AM IST) • NIFTY 50</div>
           <div id="opening-bias-text" style="margin-top: 6px; font-size: 1.02rem; font-weight: 800; color: #00f2fe;">Initializing Engine...</div>
         </div>
         <div style="background: rgba(2, 12, 27, 0.8); border: 1px solid rgba(0, 242, 254, 0.28); border-radius: 14px; padding: 16px;">
@@ -505,7 +546,7 @@
       </div>
 
       <p style="margin: 14px 0 0 0; font-size: 0.78rem; color: #64748b; text-align: right;">
-        *Cross-verify intraday peak windows on your external charting platform (TradingView / NSE Historical Data).
+        *Cross-verify intraday peak windows on your external charting platform (TradingView / NSE / MCX Historical Data).
       </p>
     </section>
 
@@ -514,7 +555,7 @@
       <div class="feature-card">
         <div class="feature-num">01</div>
         <div class="feature-title">Harmonic Time-Cycle (HTC) Liquidity Mapping</div>
-        <p class="feature-desc">Indian market sessions (09:15 AM – 03:30 PM IST) are segmented into calibrated 60-minute harmonic time blocks to isolate institutional order flow, opening traps, and peak momentum slots.</p>
+        <p class="feature-desc">Indian equity (09:15 AM – 03:30 PM IST) and MCX commodity sessions (09:00 AM – 11:30 PM IST) are segmented into calibrated harmonic time blocks to isolate institutional order flow and peak momentum slots.</p>
       </div>
       <div class="feature-card">
         <div class="feature-num">02</div>
@@ -564,6 +605,31 @@
     const API_URL = "https://astromaps-engine.onrender.com/api/predict";
     const VISIT_URL = "https://astromaps-engine.onrender.com/api/visit";
 
+    let CURRENT_ASSET = "NIFTY";
+
+    const ASSET_HEADERS = {
+      NIFTY: {
+        title: "NIFTY 50 (NSE) HARMONIC TIME-WINDOW GENERATOR",
+        anchor: "OPENING VECTOR (09:15 AM IST) • NIFTY 50"
+      },
+      BANKNIFTY: {
+        title: "BANK NIFTY (NSE) HARMONIC TIME-WINDOW GENERATOR",
+        anchor: "OPENING VECTOR (09:15 AM IST) • BANK NIFTY"
+      },
+      GOLD: {
+        title: "MCX GOLD HARMONIC TIME-WINDOW GENERATOR",
+        anchor: "MCX ANCHOR (09:00 AM / 06:30 PM IST) • MCX GOLD"
+      },
+      SILVER: {
+        title: "MCX SILVER HARMONIC TIME-WINDOW GENERATOR",
+        anchor: "MCX ANCHOR (09:00 AM / 06:30 PM IST) • MCX SILVER"
+      },
+      CRUDE: {
+        title: "CRUDE OIL (MCX) HARMONIC TIME-WINDOW GENERATOR",
+        anchor: "MCX ENERGY ANCHOR (06:30 PM IST) • CRUDE OIL"
+      }
+    };
+
     // Check if Founder/Admin mode is activated
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get("admin") === "umesh") {
@@ -578,9 +644,19 @@
       updateVisitorCounter();
     });
 
+    function switchAsset(assetKey, btnEl) {
+      CURRENT_ASSET = assetKey;
+      document.querySelectorAll(".asset-tab").forEach(function(b) {
+        b.classList.remove("active");
+      });
+      btnEl.classList.add("active");
+      document.getElementById("terminal-main-title").innerText = ASSET_HEADERS[assetKey].title;
+      document.getElementById("anchor-label").innerText = ASSET_HEADERS[assetKey].anchor;
+      fetchAstroWindows();
+    }
+
     async function updateVisitorCounter() {
       const countEl = document.getElementById("visitor-count");
-      // Prevent counting refresh or founder visits
       const alreadyCountedThisSession = sessionStorage.getItem("astromaps_session_counted") === "true";
       const shouldIgnore = IS_FOUNDER || alreadyCountedThisSession;
 
@@ -601,13 +677,17 @@
 
       const btn = document.getElementById("gen-btn");
       btn.innerText = "⏳ SCANNING...";
-      document.getElementById("opening-bias-text").innerText = "Running Sovereign Engine...";
+      document.getElementById("opening-bias-text").innerText = "Running Sovereign Engine (" + CURRENT_ASSET + ")...";
       
       try {
         const res = await fetch(API_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ date: selectedDate, is_admin: IS_FOUNDER })
+          body: JSON.stringify({
+            date: selectedDate,
+            asset: CURRENT_ASSET,
+            is_admin: IS_FOUNDER
+          })
         });
         if (!res.ok) throw new Error("Server busy");
         const data = await res.json();
@@ -646,11 +726,4 @@
         });
       } catch (err) {
         document.getElementById("opening-bias-text").innerText = "Waking up Sovereign Server... Click Generate again in 15s.";
-        document.getElementById("h2h-table-body").innerHTML = '<tr><td colspan="4" style="padding: 16px; text-align: center; color: #00f2fe;">Server waking up — click <b>⚡ GENERATE WINDOWS</b> again in 15 seconds.</td></tr>';
-      } finally {
-        btn.innerText = "⚡ GENERATE WINDOWS";
-      }
-    }
-  </script>
-</body>
-</html>
+        document.getElementById("h2h-table-body").innerHTML = '<tr><td colspan="4" style="padding: 16px; text-align: center; color: #00f2fe;">Server waking up — click <b>⚡ GENERATE WINDOWS</b> again in 15 seconds.

@@ -607,12 +607,12 @@
         </div>
       </div>
 
-      <!-- LIVE VISITOR COUNTER -->
+      <!-- PERMANENT CLOUD VISITOR COUNTER -->
       <div class="visitor-box">
         <span class="pulse-dot"></span>
         <div>
           <div style="font-size: 0.68rem; color: #94a3b8; letter-spacing: 1px;">VERIFIED TERMINAL VISITS</div>
-          <div id="visitor-count" style="font-size: 1.05rem; font-weight: 900; color: #00f2fe;">165</div>
+          <div id="visitor-count" style="font-size: 1.05rem; font-weight: 900; color: #00f2fe;">...</div>
         </div>
       </div>
 
@@ -626,7 +626,10 @@
 
   <script>
     const API_URL = "https://astromaps-engine.onrender.com/api/predict";
-    const VISIT_URL = "https://astromaps-engine.onrender.com/api/visit";
+    // Permanent Cloud Counter (Never resets when Render restarts)
+    const COUNTER_BASE = 165;
+    const COUNTER_GET_URL = "https://api.counterapi.dev/v1/astromapsai/visits";
+    const COUNTER_UP_URL = "https://api.counterapi.dev/v1/astromapsai/visits/up";
 
     let CURRENT_ASSET = "NIFTY";
 
@@ -681,15 +684,17 @@
       const countEl = document.getElementById("visitor-count");
       const alreadyCountedThisSession = sessionStorage.getItem("astromaps_session_counted") === "true";
       const shouldIgnore = IS_FOUNDER || alreadyCountedThisSession;
+      const endpoint = shouldIgnore ? COUNTER_GET_URL : COUNTER_UP_URL;
 
       try {
-        const res = await fetch(VISIT_URL + "?ignore=" + shouldIgnore);
-        if (!res.ok) throw new Error("API error");
+        const res = await fetch(endpoint);
+        if (!res.ok) throw new Error("Counter error");
         const data = await res.json();
-        countEl.innerText = data.visits.toLocaleString("en-IN");
+        const totalVisits = COUNTER_BASE + (data.count || 0);
+        countEl.innerText = totalVisits.toLocaleString("en-IN");
         sessionStorage.setItem("astromaps_session_counted", "true");
       } catch (e) {
-        countEl.innerText = "165+";
+        countEl.innerText = "166+";
       }
     }
 

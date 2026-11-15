@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Astro MAPs AI — Live Intraday &amp; Opening Market Timing Tool</title>
-  <meta name="description" content="Astro MAPs AI by Principal Architect Umesh Kumar Yadav — Live PCB Sovereign Engine for Nifty 50, Bank Nifty, MCX Silver & Crude Oil Opening & Intraday Time Windows." />
-  <meta name="keywords" content="Astro MAPs AI, Umesh Kumar Yadav, PCB Sovereign Engine, Nifty Intraday Timing Tool, Bank Nifty Opening Prediction, MCX Silver Crude Timing" />
+  <title>Astro MAPs AI — Live Market Opening &amp; Intraday Timing Tool</title>
+  <meta name="description" content="Astro MAPs AI by Principal Architect Umesh Kumar Yadav — A quantitative market timing tool for Nifty 50, Bank Nifty, MCX Silver & Crude Oil." />
+  <meta name="keywords" content="Astro MAPs AI, Umesh Kumar Yadav, Nifty Opening Prediction Tool, Bank Nifty Intraday Timing, MCX Silver Crude Timing" />
   <meta name="author" content="Umesh Kumar Yadav" />
   <meta name="robots" content="index, follow" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
@@ -84,37 +84,44 @@
       line-height: 1.6;
     }
 
-    /* TOOL ONBOARDING STRIP */
-    .tool-guide-strip {
-      margin-top: 18px;
-      background: rgba(0, 242, 254, 0.08);
-      border: 1px solid rgba(0, 242, 254, 0.35);
-      border-radius: 14px;
-      padding: 14px 20px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 0.85rem;
+    /* PLAIN-ENGLISH INTRO SECTION: WHO ARE WE & WHAT WE DO */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+      margin-top: 20px;
     }
-    .guide-steps {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      align-items: center;
-      color: #e2e8f0;
-      font-weight: 600;
+    .about-card {
+      background: rgba(13, 37, 69, 0.82);
+      border: 1px solid rgba(0, 242, 254, 0.28);
+      border-radius: 18px;
+      padding: 22px 24px;
     }
-    .step-badge {
-      background: #00f2fe;
-      color: #020c1b;
+    .about-tag {
+      display: inline-block;
       font-family: 'JetBrains Mono', monospace;
-      font-weight: 900;
       font-size: 0.72rem;
-      padding: 2px 8px;
+      font-weight: 800;
+      color: #00f2fe;
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      padding: 4px 10px;
       border-radius: 6px;
-      margin-right: 6px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .about-heading {
+      font-size: 1.16rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0 0 10px 0;
+    }
+    .about-text {
+      margin: 0;
+      font-size: 0.94rem;
+      color: #cbd5e1;
+      line-height: 1.65;
     }
 
     .channel-bar {
@@ -202,6 +209,33 @@
       border-radius: 22px;
       box-shadow: 0 0 40px rgba(0, 242, 254, 0.16);
     }
+
+    /* INSIDE TOOL: CLEAR 3-STEP USER INSTRUCTION BAR */
+    .inside-tool-guide {
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px dashed rgba(0, 242, 254, 0.45);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.84rem;
+      color: #e2e8f0;
+    }
+    .step-badge {
+      background: #00f2fe;
+      color: #020c1b;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 900;
+      font-size: 0.7rem;
+      padding: 2px 7px;
+      border-radius: 5px;
+      margin-right: 5px;
+    }
+
     .terminal-header {
       display: flex;
       justify-content: space-between;
@@ -514,7 +548,7 @@
     <!-- 1. HERO HEADER -->
     <div class="hero-box">
       <div class="top-pill">
-        <span>PCB SOVEREIGN ENGINE — INTERACTIVE MARKET TIMING TOOL &nbsp;|&nbsp; LAUNCH: 02 JUNE 2026</span>
+        <span>PCB SOVEREIGN ENGINE — LIVE MARKET TIMING TOOL &nbsp;|&nbsp; LAUNCH: 02 JUNE 2026</span>
         <span class="pill-red">100% MECHANICAL CIRCUIT</span>
       </div>
       <h1 class="brand-title">Astro <span>MAPs</span> AI</h1>
@@ -524,22 +558,31 @@
       </div>
     </div>
 
-    <!-- 2. INTERACTIVE TOOL QUICK-GUIDE BAR -->
-    <div class="tool-guide-strip">
-      <div class="guide-steps">
-        <span><span class="step-badge">STEP 1</span>Choose Market (Nifty / BankNifty / Silver / Crude)</span>
-        <span><span class="step-badge">STEP 2</span>Pick Any Trading Date (1970–2030)</span>
-        <span><span class="step-badge">STEP 3</span>Click <b>⚡ GENERATE PCB</b> for Opening &amp; Hourly Slots</span>
+    <!-- 2. SIMPLE PLAIN-ENGLISH INTRO: WHO ARE WE & WHAT WE DO -->
+    <div class="about-grid">
+      <div class="about-card">
+        <span class="about-tag">WHO WE ARE</span>
+        <h2 class="about-heading">Quantitative Financial Market Research Platform</h2>
+        <p class="about-text">
+          Founded by Principal Architect <b>Umesh Kumar Yadav</b> after 36+ years of market research and 56 years of historical data auditing (1970–2026), <b>Astro MAPs AI</b> replaces guesswork and emotional trading with pure mathematical time-cycles and rule-based precision.
+        </p>
       </div>
-      <span class="app-badge">● LIVE INTERACTIVE TOOL</span>
+      <div class="about-card">
+        <span class="about-tag">WHAT THIS TOOL DOES</span>
+        <h2 class="about-heading">Predicts Market Opening Direction &amp; High-Activity Hours</h2>
+        <p class="about-text">
+          This interactive tool calculates exact <b>Gap-Up / Stand-By Opening Signals</b> and highlights the specific <b>Intraday Time Windows</b> when major institutional volatility hits <b>Nifty 50, Bank Nifty, MCX Silver, and Crude Oil</b> — helping traders know <i>when</i> to act and <i>when</i> to stay safe.
+        </p>
+      </div>
     </div>
 
     <!-- 3. OFFICIAL CHANNELS BAR -->
     <div class="channel-bar">
       <div class="channel-left">
+        <span class="app-badge">● LIVE INTERACTIVE TOOL</span>
         <div>
           <div style="font-weight: 800; font-size: 0.96rem;">Astro MAPs AI — Sovereign Terminal</div>
-          <div style="font-size: 0.8rem; color: #94a3b8;">Live &amp; Historical Market Timing Windows (Nifty 50, Bank Nifty, MCX Silver &amp; Crude Oil)</div>
+          <div style="font-size: 0.8rem; color: #94a3b8;">Check Live &amp; Historical Market Timing Windows • Connect on Official Channels:</div>
         </div>
       </div>
       <div class="social-links">
@@ -557,19 +600,27 @@
       </div>
       <div class="metric-card">
         <div class="metric-val">4 ASSETS</div>
-        <div class="metric-label">NSE INDICES &amp; MCX ENERGY / BULLION ENGINE</div>
+        <div class="metric-label">NIFTY 50 • BANK NIFTY • MCX SILVER • CRUDE OIL</div>
       </div>
       <div class="metric-card">
         <div class="metric-val">100%</div>
-        <div class="metric-label">MECHANICAL PCB ARCHITECTURE CALIBRATION</div>
+        <div class="metric-label">MECHANICAL RULE-BASED CALIBRATION</div>
       </div>
     </div>
 
     <!-- 5. CENTERPIECE: INTERACTIVE TIME-WINDOW GENERATOR TOOL -->
     <section id="astromaps-terminal" class="terminal-box">
+
+      <!-- INSIDE TOOL: STEP-BY-STEP USER GUIDE -->
+      <div class="inside-tool-guide">
+        <div><span class="step-badge">1</span><b>Select Market Tab</b> below (Nifty / BankNifty / Silver / Crude)</div>
+        <div><span class="step-badge">2</span><b>Pick Date</b> or click <b>⏭ NEXT SESSION</b></div>
+        <div><span class="step-badge">3</span>Click <b>⚡ GENERATE PCB</b> to view Opening &amp; Hourly Slots</div>
+      </div>
+
       <div class="terminal-header">
         <div>
-          <div style="font-family: 'JetBrains Mono', monospace; color: #00f2fe; font-size: 0.78rem; font-weight: 800; letter-spacing: 2px;">INTERACTIVE LIVE &amp; HISTORICAL TIMING TOOL (1970–2030)</div>
+          <div style="font-family: 'JetBrains Mono', monospace; color: #00f2fe; font-size: 0.78rem; font-weight: 800; letter-spacing: 2px;">LIVE &amp; HISTORICAL TIMING GENERATOR (1970–2030)</div>
           <h2 id="terminal-main-title" class="terminal-title">NIFTY 50 (NSE) PCB TIME-WINDOW GENERATOR</h2>
           <div id="session-notice-box" class="session-notice" style="display: none;"></div>
         </div>
@@ -715,7 +766,6 @@
     }
     const IS_FOUNDER = localStorage.getItem("astromaps_founder_mode") === "true";
 
-    // Auto-skip Saturday & Sunday to Next Trading Session (Monday)
     function getNextTradingDate(baseDateObj) {
       const d = new Date(baseDateObj.getTime());
       let skippedWeekend = false;
@@ -786,7 +836,6 @@
       let selectedDate = picker.value;
       if (!selectedDate) return;
 
-      // If user picks Saturday or Sunday manually, auto-advance to Monday
       const pickedObj = new Date(selectedDate + "T09:15:00");
       const adjusted = getNextTradingDate(pickedObj);
       if (adjusted.skippedWeekend) {

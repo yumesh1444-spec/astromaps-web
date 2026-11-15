@@ -460,6 +460,23 @@
       50% { box-shadow: 0 0 15px rgba(244, 63, 94, 0.85); }
     }
 
+    /* 100% SAFE & NO-PERMISSION TRUST STRIP */
+    .trust-strip {
+      margin-top: 14px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.38);
+      border-radius: 10px;
+      padding: 10px 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      color: #a7f3d0;
+    }
+
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
@@ -521,6 +538,12 @@
       font-weight: 900;
       color: #020c1b;
       font-size: 1.05rem;
+    }
+    .stats-cluster {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
     }
     .visitor-box {
       background: rgba(2, 12, 27, 0.75);
@@ -733,7 +756,13 @@
         </table>
       </div>
 
-      <p style="margin: 14px 0 0 0; font-size: 0.78rem; color: #64748b; text-align: right;">
+      <!-- 100% SAFE & NO-PERMISSION TRUST STRIP -->
+      <div class="trust-strip">
+        <div>🛡️ <b>100% SAFE WEB-APP:</b> No Risky APK Download • No Login / OTP • Zero Phone Permissions Required</div>
+        <div>📲 Chrome Menu (⋮) &rarr; <b>"Add to Home Screen"</b></div>
+      </div>
+
+      <p style="margin: 12px 0 0 0; font-size: 0.78rem; color: #64748b; text-align: right;">
         *Cross-verify intraday PCB kinetic windows on your external charting platform (TradingView / NSE / MCX Historical Data).
       </p>
     </section>
@@ -762,7 +791,7 @@
       </div>
     </div>
 
-    <!-- 7. SMART RESEARCHER SIGNATURE + WHATSAPP CHANNEL & DIRECT CONTACT + VISITOR COUNTER FOOTER -->
+    <!-- 7. SMART RESEARCHER SIGNATURE + WHATSAPP CHANNEL + VISITS & FOUNDER APP INSTALL TRACKER -->
     <footer class="researcher-footer">
       <div class="researcher-badge">
         <div class="avatar-ring">UY</div>
@@ -777,11 +806,22 @@
         </div>
       </div>
 
-      <div class="visitor-box">
-        <span class="pulse-dot"></span>
-        <div>
-          <div style="font-size: 0.68rem; color: #94a3b8; letter-spacing: 1px;">VERIFIED TERMINAL VISITS</div>
-          <div id="visitor-count" style="font-size: 1.05rem; font-weight: 900; color: #00f2fe;">...</div>
+      <div class="stats-cluster">
+        <div class="visitor-box">
+          <span class="pulse-dot"></span>
+          <div>
+            <div style="font-size: 0.68rem; color: #94a3b8; letter-spacing: 1px;">VERIFIED TERMINAL VISITS</div>
+            <div id="visitor-count" style="font-size: 1.05rem; font-weight: 900; color: #00f2fe;">...</div>
+          </div>
+        </div>
+
+        <!-- FOUNDER-ONLY APP INSTALL COUNTER (VISIBLE WHEN ?admin=umesh IS ACTIVE) -->
+        <div id="app-install-box" class="visitor-box" style="display: none; border-color: rgba(16, 185, 129, 0.5);">
+          <span class="pulse-dot" style="background: #facc15; box-shadow: 0 0 8px #facc15;"></span>
+          <div>
+            <div style="font-size: 0.68rem; color: #fde047; letter-spacing: 1px;">📲 APP INSTALLS (ADMIN)</div>
+            <div id="app-install-count" style="font-size: 1.05rem; font-weight: 900; color: #10b981;">...</div>
+          </div>
         </div>
       </div>
 
@@ -798,6 +838,8 @@
     const COUNTER_BASE = 165;
     const COUNTER_GET_URL = "https://api.counterapi.dev/v1/astromapsai/visits";
     const COUNTER_UP_URL = "https://api.counterapi.dev/v1/astromapsai/visits/up";
+    const INSTALL_GET_URL = "https://api.counterapi.dev/v1/astromapsai/app_installs";
+    const INSTALL_UP_URL = "https://api.counterapi.dev/v1/astromapsai/app_installs/up";
 
     let CURRENT_ASSET = "NIFTY";
 
@@ -860,6 +902,7 @@
 
       fetchAstroWindows();
       updateVisitorCounter();
+      loadAppInstallStats();
     });
 
     function switchAsset(assetKey, btnEl) {
@@ -890,6 +933,27 @@
         countEl.innerText = "166+";
       }
     }
+
+    async function loadAppInstallStats() {
+      if (!IS_FOUNDER) return;
+      const box = document.getElementById("app-install-box");
+      const countEl = document.getElementById("app-install-count");
+      box.style.display = "inline-flex";
+      try {
+        const res = await fetch(INSTALL_GET_URL);
+        if (!res.ok) throw new Error("Install counter error");
+        const data = await res.json();
+        countEl.innerText = (data.count || 0).toLocaleString("en-IN");
+      } catch (e) {
+        countEl.innerText = "0";
+      }
+    }
+
+    window.addEventListener("appinstalled", function() {
+      if (IS_FOUNDER || localStorage.getItem("astromaps_app_installed") === "true") return;
+      localStorage.setItem("astromaps_app_installed", "true");
+      fetch(INSTALL_UP_URL).catch(function() {});
+    });
 
     async function fetchAstroWindows() {
       const picker = document.getElementById("audit-date-picker");

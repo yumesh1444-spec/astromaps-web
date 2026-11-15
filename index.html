@@ -9,6 +9,9 @@
   <meta name="author" content="Umesh Kumar Yadav" />
   <meta name="robots" content="index, follow" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#00f2fe" />
+  <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3310/3310624.png" />
   <style>
     * { box-sizing: border-box; }
     body {
@@ -579,7 +582,7 @@
     <!-- 3. OFFICIAL CHANNELS BAR -->
     <div class="channel-bar">
       <div class="channel-left">
-        <span class="app-badge">● LIVE INTERACTIVE TOOL</span>
+        <span class="app-badge">● LIVE WEB &amp; MOBILE APP</span>
         <div>
           <div style="font-weight: 800; font-size: 0.96rem;">Astro MAPs AI — Sovereign Terminal</div>
           <div style="font-size: 0.8rem; color: #94a3b8;">Check Live &amp; Historical Market Timing Windows • Join Official Channels:</div>
@@ -915,6 +918,12 @@
       } finally {
         btn.innerText = "⚡ GENERATE PCB";
       }
+    }
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function() {
+        navigator.serviceWorker.register("/sw.js").catch(function() {});
+      });
     }
   </script>
 </body>

@@ -868,6 +868,17 @@
     }
     const IS_FOUNDER = localStorage.getItem("astromaps_founder_mode") === "true";
 
+    function isStandaloneApp() {
+      return (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) ||
+             (window.navigator.standalone === true);
+    }
+
+    function recordAppInstallOnce() {
+      if (IS_FOUNDER || localStorage.getItem("astromaps_app_installed") === "true") return;
+      localStorage.setItem("astromaps_app_installed", "true");
+      fetch(INSTALL_UP_URL, { keepalive: true }).catch(function() {});
+    }
+
     function getNextTradingDate(baseDateObj) {
       const d = new Date(baseDateObj.getTime());
       let skippedWeekend = false;
@@ -900,9 +911,17 @@
         notice.innerText = "📅 WEEKEND MARKET CLOSED • AUTO-SHOWING NEXT TRADING SESSION (" + next.dateStr + ")";
       }
 
+      if (isStandaloneApp()) {
+        recordAppInstallOnce();
+      }
+
       fetchAstroWindows();
       updateVisitorCounter();
       loadAppInstallStats();
+    });
+
+    window.addEventListener("appinstalled", function() {
+      recordAppInstallOnce();
     });
 
     function switchAsset(assetKey, btnEl) {
@@ -948,12 +967,6 @@
         countEl.innerText = "0";
       }
     }
-
-    window.addEventListener("appinstalled", function() {
-      if (IS_FOUNDER || localStorage.getItem("astromaps_app_installed") === "true") return;
-      localStorage.setItem("astromaps_app_installed", "true");
-      fetch(INSTALL_UP_URL).catch(function() {});
-    });
 
     async function fetchAstroWindows() {
       const picker = document.getElementById("audit-date-picker");

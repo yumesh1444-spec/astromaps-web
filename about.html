@@ -3,8 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Methodology &amp; Architecture — Astro MAPs AI</title>
+  <title>Astro MAPs AI — Live Market Opening &amp; Intraday Timing Tool</title>
+  <meta name="description" content="Astro MAPs AI by Principal Architect Umesh Kumar Yadav — Quantitative market timing tool for Nifty 50, Bank Nifty, MCX Silver & Crude Oil." />
+  <meta name="author" content="Umesh Kumar Yadav" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#00f2fe" />
+  <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3310/3310624.png" />
   <style>
     * { box-sizing: border-box; }
     body {
@@ -16,6 +21,7 @@
       color: #f8fafc;
     }
     .container { max-width: 1140px; margin: 0 auto; }
+
     .top-nav {
       position: sticky;
       top: 0;
@@ -23,74 +29,87 @@
       background: rgba(6, 19, 38, 0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(0, 242, 254, 0.25);
-      margin: 0 -16px 26px -16px;
+      margin: 0 -16px 22px -16px;
       padding: 12px 24px;
     }
-    .nav-inner { max-width: 1140px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
-    .nav-brand { text-decoration: none; font-size: 1.35rem; font-weight: 900; color: #ffffff; }
-    .nav-brand span { color: #00f2fe; }
-    .nav-links { display: flex; flex-wrap: wrap; gap: 8px; }
-    .nav-link { text-decoration: none; color: #cbd5e1; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 800; padding: 8px 14px; border-radius: 8px; border: 1px solid transparent; }
-    .nav-link:hover { color: #00f2fe; border-color: rgba(0, 242, 254, 0.35); background: rgba(0, 242, 254, 0.08); }
-    .nav-link.active { background: rgba(0, 242, 254, 0.16); color: #00f2fe; border-color: #00f2fe; }
-
-    .hero-box {
-      background: linear-gradient(180deg, rgba(16, 44, 82, 0.75) 0%, rgba(10, 28, 54, 0.85) 100%);
-      border: 1px solid rgba(0, 242, 254, 0.35);
-      border-radius: 22px;
-      padding: 34px 28px;
-      text-align: center;
-    }
-    .brand-title { font-size: 2.5rem; font-weight: 900; margin: 10px 0 8px 0; }
-    .brand-title span { color: #00f2fe; }
-    .quote-box {
-      max-width: 780px;
-      margin: 18px auto 0 auto;
-      text-align: left;
-      border-left: 3px solid #00f2fe;
-      padding-left: 18px;
-      color: #cbd5e1;
-      font-style: italic;
-      font-size: 0.98rem;
-      line-height: 1.6;
-    }
-
-    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-top: 22px; }
-    .metric-card { background: rgba(13, 37, 69, 0.78); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: 16px; padding: 22px 18px; text-align: center; }
-    .metric-val { font-family: 'JetBrains Mono', monospace; font-size: 2rem; font-weight: 900; color: #00f2fe; margin-bottom: 6px; }
-    .metric-label { font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; color: #94a3b8; letter-spacing: 1px; text-transform: uppercase; }
-
-    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(440px, 1fr)); gap: 18px; margin-top: 22px; }
-    .feature-card { background: rgba(13, 37, 69, 0.78); border: 1px solid rgba(0, 242, 254, 0.25); border-radius: 18px; padding: 24px; }
-    .feature-num { font-family: 'JetBrains Mono', monospace; color: #00f2fe; font-weight: 900; font-size: 1.1rem; margin-bottom: 8px; }
-    .feature-title { font-size: 1.15rem; font-weight: 800; color: #ffffff; margin-bottom: 10px; }
-    .feature-desc { font-size: 0.93rem; color: #cbd5e1; line-height: 1.65; margin: 0; }
-
-    .architect-card {
-      margin-top: 26px;
-      padding: 28px;
-      background: linear-gradient(145deg, rgba(13, 37, 69, 0.92), rgba(6, 19, 38, 0.96));
-      border: 1px solid rgba(0, 242, 254, 0.4);
-      border-radius: 20px;
+    .nav-inner {
+      max-width: 1140px;
+      margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 24px;
+      justify-content: space-between;
+      gap: 12px;
     }
-    .architect-photo {
-      width: 115px;
-      height: 115px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #00f2fe;
-      box-shadow: 0 0 22px rgba(0, 242, 254, 0.35);
+    .nav-brand {
+      text-decoration: none;
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 0.5px;
     }
+    .nav-brand span { color: #00f2fe; }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .nav-link {
+      text-decoration: none;
+      color: #cbd5e1;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+    .nav-link:hover {
+      color: #00f2fe;
+      border-color: rgba(0, 242, 254, 0.35);
+      background: rgba(0, 242, 254, 0.08);
+    }
+    .nav-link.active {
+      background: rgba(0, 242, 254, 0.16);
+      color: #00f2fe;
+      border-color: #00f2fe;
+    }
+
+    .app-compact-header { display: none; }
+
+    .hero-mini {
+      background: linear-gradient(180deg, rgba(16, 44, 82, 0.72) 0%, rgba(10, 28, 54, 0.85) 100%);
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      border-radius: 18px;
+      padding: 22px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(2, 12, 27, 0.7);
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #00f2fe;
+    }
+    .social-links { display: flex; gap: 8px; flex-wrap: wrap; }
     .social-btn {
       text-decoration: none;
       color: #ffffff;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 700;
-      padding: 9px 15px;
+      padding: 8px 13px;
       border-radius: 8px;
       display: inline-flex;
       align-items: center;
@@ -100,7 +119,232 @@
     .li { background: #1d4ed8; }
     .wa { background: #16a34a; }
     .tg { background: #0284c7; }
-    @media (max-width: 640px) { .features-grid { grid-template-columns: 1fr; } }
+
+    .terminal-box {
+      padding: 24px;
+      background: linear-gradient(145deg, rgba(13, 37, 69, 0.94), rgba(4, 15, 32, 0.98));
+      border: 1.5px solid rgba(0, 242, 254, 0.55);
+      border-radius: 22px;
+      box-shadow: 0 0 40px rgba(0, 242, 254, 0.16);
+    }
+    .inside-tool-guide {
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px dashed rgba(0, 242, 254, 0.45);
+      border-radius: 12px;
+      padding: 11px 16px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.83rem;
+      color: #e2e8f0;
+    }
+    .step-badge {
+      background: #00f2fe;
+      color: #020c1b;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 900;
+      font-size: 0.7rem;
+      padding: 2px 7px;
+      border-radius: 5px;
+      margin-right: 5px;
+    }
+    .terminal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      border-bottom: 1px solid rgba(0, 242, 254, 0.22);
+      padding-bottom: 18px;
+    }
+    .terminal-title {
+      margin: 5px 0 0 0;
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: #ffffff;
+    }
+    .session-notice {
+      display: inline-block;
+      margin-top: 8px;
+      background: rgba(250, 204, 21, 0.14);
+      border: 1px solid rgba(250, 204, 21, 0.45);
+      color: #fde047;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+    .asset-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(0, 242, 254, 0.18);
+    }
+    .asset-tab {
+      background: rgba(2, 12, 27, 0.8);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      color: #94a3b8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 10px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .asset-tab:hover { border-color: #00f2fe; color: #ffffff; }
+    .asset-tab.active {
+      background: linear-gradient(135deg, #0284c7, #00f2fe);
+      color: #020c1b;
+      border-color: #00f2fe;
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+    }
+    .command-wrapper { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+    .dock-hint {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: #fde047;
+    }
+    .command-dock {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      background: rgba(2, 10, 24, 0.92);
+      border: 1px solid rgba(0, 242, 254, 0.45);
+      padding: 6px 8px;
+      border-radius: 12px;
+    }
+    .quick-btn {
+      background: rgba(0, 242, 254, 0.12);
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      color: #00f2fe;
+      padding: 8px 11px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 0.74rem;
+      cursor: pointer;
+    }
+    .date-input {
+      background: rgba(13, 37, 69, 0.65);
+      color: #ffffff;
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 0.88rem;
+      color-scheme: dark;
+    }
+    .gen-btn {
+      background: linear-gradient(135deg, #00f2fe 0%, #10b981 100%);
+      color: #020c1b;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 900;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .row-ruler-lock { background: linear-gradient(90deg, rgba(250, 204, 21, 0.16) 0%, rgba(0, 242, 254, 0.05) 100%); border-left: 4px solid #facc15; border-bottom: 1px solid rgba(250, 204, 21, 0.3); }
+    .row-dual-lock { background: linear-gradient(90deg, rgba(244, 63, 94, 0.20) 0%, rgba(250, 204, 21, 0.10) 100%); border-left: 4px solid #f43f5e; border-bottom: 1px solid rgba(244, 63, 94, 0.35); }
+    .row-killzone { background: linear-gradient(90deg, rgba(0, 242, 254, 0.13) 0%, rgba(0, 242, 254, 0.03) 100%); border-left: 4px solid #00f2fe; border-bottom: 1px solid rgba(0, 242, 254, 0.25); }
+    .row-standard { background: rgba(2, 12, 27, 0.35); border-left: 4px solid transparent; border-bottom: 1px solid rgba(255, 255, 255, 0.06); opacity: 0.84; }
+    .badge-ruler { display: inline-block; white-space: nowrap; background: rgba(250, 204, 21, 0.18); border: 1px solid #facc15; color: #facc15; padding: 5px 11px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 800; }
+    .badge-dual { display: inline-block; white-space: nowrap; background: rgba(244, 63, 94, 0.22); border: 1px solid #fb7185; color: #fda4af; padding: 5px 11px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 800; }
+    .badge-killzone { display: inline-block; white-space: nowrap; background: rgba(0, 242, 254, 0.15); border: 1px solid #00f2fe; color: #00f2fe; padding: 5px 11px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 800; }
+    .badge-standard { display: inline-block; white-space: nowrap; background: rgba(148, 163, 184, 0.1); border: 1px solid rgba(148, 163, 184, 0.28); color: #94a3b8; padding: 4px 10px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 700; }
+
+    .trust-strip {
+      margin-top: 14px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.38);
+      border-radius: 10px;
+      padding: 10px 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      color: #a7f3d0;
+    }
+
+    .researcher-footer {
+      margin-top: 32px;
+      padding: 22px 26px;
+      background: rgba(10, 28, 54, 0.85);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      border-radius: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .researcher-badge { display: flex; align-items: center; gap: 14px; }
+    .founder-photo {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #00f2fe;
+      box-shadow: 0 0 12px rgba(0, 242, 254, 0.35);
+    }
+    .avatar-ring {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00f2fe, #2563eb);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 900;
+      color: #020c1b;
+      font-size: 1.1rem;
+    }
+    .stats-cluster { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .visitor-box {
+      background: rgba(2, 12, 27, 0.75);
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      border-radius: 12px;
+      padding: 10px 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .pulse-dot { width: 9px; height: 9px; border-radius: 50%; background: #10b981; box-shadow: 0 0 8px #10b981; }
+
+    @media all and (display-mode: standalone) {
+      body { padding: 10px 10px 30px 10px; }
+      .top-nav, .hero-mini, .inside-tool-guide { display: none !important; }
+      .app-compact-header {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(13, 37, 69, 0.95);
+        border: 1px solid rgba(0, 242, 254, 0.45);
+        border-radius: 14px;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+      }
+      .terminal-box { padding: 14px; border-radius: 16px; }
+    }
+    @media (max-width: 980px) {
+      .terminal-header { flex-direction: column; align-items: flex-start; }
+      .command-wrapper { align-items: flex-start; width: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -108,8 +352,8 @@
     <div class="nav-inner">
       <a href="index.html" class="nav-brand">Astro <span>MAPs</span> AI</a>
       <div class="nav-links">
-        <a href="index.html" class="nav-link">⚡ Home Tool</a>
-        <a href="about.html" class="nav-link active">🧭 Methodology</a>
+        <a href="index.html" class="nav-link active">⚡ Home Tool</a>
+        <a href="about.html" class="nav-link">🧭 Methodology</a>
         <a href="proof.html" class="nav-link">📊 Live Audits</a>
         <a href="guide.html" class="nav-link">📲 App Guide</a>
       </div>
@@ -117,71 +361,289 @@
   </nav>
 
   <div class="container">
-    <div class="hero-box">
-      <div style="font-family: 'JetBrains Mono', monospace; color: #00f2fe; font-size: 0.78rem; font-weight: 800; letter-spacing: 2px;">QUANTITATIVE MARKET ARCHITECTURE</div>
-      <h1 class="brand-title">Astro MAPs AI — <span>Methodology</span></h1>
-      <p style="color: #cbd5e1; max-width: 760px; margin: 0 auto; line-height: 1.6;">
-        A 100% mechanical, rule-based market predictive architecture engineered to eliminate guesswork and identify exact institutional timing windows across Indian equities and commodities.
-      </p>
-      <div class="quote-box">
-        "Financial markets do not move on speculative news. Large-scale capital rotates on mathematical time-harmonics, quantitative degree locks, and institutional PCB liquidity circuits."
+    <div class="app-compact-header">
+      <div>
+        <div style="font-size: 1.15rem; font-weight: 900; color: #ffffff;">Astro <span style="color: #00f2fe;">MAPs</span> AI</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #10b981; font-weight: 800;">● LIVE PCB TIMING APP</div>
+      </div>
+      <div style="display: flex; gap: 6px;">
+        <a href="https://t.me/AstroMapsai2026" target="_blank" style="background: #0284c7; color: #ffffff; text-decoration: none; font-size: 0.72rem; font-weight: 800; padding: 7px 10px; border-radius: 8px;">✈️ Telegram</a>
+        <a href="https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s" target="_blank" style="background: #16a34a; color: #ffffff; text-decoration: none; font-size: 0.72rem; font-weight: 800; padding: 7px 10px; border-radius: 8px;">📢 WhatsApp</a>
       </div>
     </div>
 
-    <div class="metrics-grid">
-      <div class="metric-card">
-        <div class="metric-val">56 YRS</div>
-        <div class="metric-label">HISTORICAL MARKET DATA AUDIT (1970–2026)</div>
+    <div class="hero-mini">
+      <div>
+        <div class="pill-badge">● PCB SOVEREIGN ENGINE • LAUNCH: 04 JUNE 2026 • 100% MECHANICAL</div>
+        <h1 style="margin: 8px 0 4px 0; font-size: 1.75rem; font-weight: 900;">Live Market Opening &amp; Intraday Time-Window Tool</h1>
+        <div style="font-size: 0.88rem; color: #cbd5e1;">Calibrated on 56 Years of Historical Data (1970–2026) • Nifty 50, Bank Nifty, MCX Silver &amp; Crude Oil</div>
       </div>
-      <div class="metric-card">
-        <div class="metric-val">4 ASSETS</div>
-        <div class="metric-label">NIFTY 50 • BANK NIFTY • MCX SILVER • CRUDE OIL</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-val">100%</div>
-        <div class="metric-label">MECHANICAL RULE-BASED CALIBRATION</div>
-      </div>
-    </div>
-
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-num">01</div>
-        <div class="feature-title">Intraday Regime Shift &amp; Kinetic Pivots</div>
-        <p class="feature-desc">Indian equity (09:15 AM – 03:30 PM IST) and MCX commodity sessions (09:00 AM – 11:30 PM IST) are mapped with real-time intraday regime shift detection and exact kinetic pivot timestamps.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">02</div>
-        <div class="feature-title">Sovereign Matrix Opening Law</div>
-        <p class="feature-desc">Determines deterministic Gap-Up and high-conviction opening vectors using proprietary additive polarity circuits, structural overrides, and exact degree-match locks.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">03</div>
-        <div class="feature-title">Precision Window Activation Protocol</div>
-        <p class="feature-desc">Eliminates false intraday noise by activating time windows strictly when an exact degree-match lock aligns with its active cycle or master chain vector.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">04</div>
-        <div class="feature-title">Cross-Asset Collateral Verification</div>
-        <p class="feature-desc">Nifty 50 and Bank Nifty expansions are cross-audited against sovereign liquidity benchmarks (MCX Silver &amp; Crude Oil) governed under unified IST reference timings.</p>
+      <div class="social-links">
+        <a href="https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s" target="_blank" class="social-btn wa">📢 WhatsApp Channel</a>
+        <a href="https://t.me/AstroMapsai2026" target="_blank" class="social-btn tg">✈️ Telegram Channel</a>
+        <a href="https://youtube.com/@AstroMAPSAI" target="_blank" class="social-btn yt">▶ YouTube</a>
+        <a href="https://www.linkedin.com/in/umesh-y-710274a2" target="_blank" class="social-btn li">in LinkedIn</a>
       </div>
     </div>
 
-    <div class="architect-card">
-      <img src="umesh.jpg" alt="Umesh Kumar Yadav" class="architect-photo" onerror="this.style.display='none';" />
-      <div style="flex: 1; min-width: 260px;">
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #00f2fe; font-weight: 800; letter-spacing: 1.5px;">FOUNDER &amp; PRINCIPAL ARCHITECT</div>
-        <h2 style="margin: 4px 0 10px 0; font-size: 1.55rem; font-weight: 900;">Umesh Kumar Yadav</h2>
-        <p style="margin: 0 0 16px 0; color: #cbd5e1; font-size: 0.94rem; line-height: 1.65;">
-          Drawing on 36+ years of independent research into mechanical market algorithms and a 56-year historical audit (1970–2026), Umesh Kumar Yadav architected Astro MAPs AI to give retail and institutional traders deterministic clarity on market opening direction and intraday momentum windows.
-        </p>
-        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-          <a href="https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s" target="_blank" class="social-btn wa">📢 Official WhatsApp Channel</a>
-          <a href="https://t.me/AstroMapsai2026" target="_blank" class="social-btn tg">✈️ Telegram Channel</a>
-          <a href="https://youtube.com/@AstroMAPSAI" target="_blank" class="social-btn yt">▶ YouTube (@AstroMAPSAI)</a>
-          <a href="https://www.linkedin.com/in/umesh-y-710274a2" target="_blank" class="social-btn li">in LinkedIn Profile</a>
+    <section id="astromaps-terminal" class="terminal-box">
+      <div class="inside-tool-guide">
+        <div><span class="step-badge">1</span><b>Select Market Tab</b> below (Nifty / BankNifty / Silver / Crude)</div>
+        <div><span class="step-badge">2</span><b>Pick Date</b> or click <b>⏭ NEXT SESSION</b></div>
+        <div><span class="step-badge">3</span>Click <b>⚡ GENERATE PCB</b> to view Opening &amp; Hourly Slots</div>
+      </div>
+
+      <div class="terminal-header">
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; color: #00f2fe; font-size: 0.78rem; font-weight: 800; letter-spacing: 2px;">LIVE &amp; HISTORICAL TIMING GENERATOR (1970–2030)</div>
+          <h2 id="terminal-main-title" class="terminal-title">NIFTY 50 (NSE) PCB TIME-WINDOW GENERATOR</h2>
+          <div id="session-notice-box" class="session-notice" style="display: none;"></div>
+        </div>
+
+        <div class="command-wrapper">
+          <div class="dock-hint">📅 SELECT TRADING DATE OR AUTO-NEXT SESSION:</div>
+          <div class="command-dock">
+            <button type="button" onclick="loadNextTradingSession()" class="quick-btn">⏭ NEXT SESSION</button>
+            <input type="date" id="audit-date-picker" min="1970-01-01" max="2030-12-31" class="date-input" />
+            <button id="gen-btn" onclick="fetchAstroWindows()" class="gen-btn">⚡ GENERATE PCB</button>
+          </div>
         </div>
       </div>
-    </div>
+
+      <div class="asset-tabs">
+        <button class="asset-tab active" onclick="switchAsset('NIFTY', this)">NIFTY 50 (NSE)</button>
+        <button class="asset-tab" onclick="switchAsset('BANKNIFTY', this)">BANK NIFTY (NSE)</button>
+        <button class="asset-tab" onclick="switchAsset('SILVER', this)">MCX SILVER</button>
+        <button class="asset-tab" onclick="switchAsset('CRUDE', this)">CRUDE OIL (MCX)</button>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 18px;">
+        <div style="background: rgba(2, 12, 27, 0.8); border: 1px solid rgba(0, 242, 254, 0.28); border-radius: 14px; padding: 16px;">
+          <div id="anchor-label" style="font-size: 0.75rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">PCB OPENING VECTOR (09:15 AM IST) • NIFTY 50</div>
+          <div id="opening-bias-text" style="margin-top: 6px; font-size: 1.04rem; font-weight: 800; color: #00f2fe;">Initializing PCB Sovereign Engine...</div>
+        </div>
+        <div style="background: rgba(2, 12, 27, 0.8); border: 1px solid rgba(0, 242, 254, 0.28); border-radius: 14px; padding: 16px;">
+          <div style="font-size: 0.75rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">CORE MATRIX CIRCUIT STATUS</div>
+          <div id="regime-alert-text" style="margin-top: 6px; font-size: 1.04rem; font-weight: 800; color: #f8fafc;">Calculating PCB Harmonics...</div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-top: 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: #cbd5e1;">
+        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #facc15; border-radius: 2px;"></span> PRIMARY PCB VECTOR (ACTIVE EXPANSION)</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #f43f5e; border-radius: 2px;"></span> DUAL-VECTOR PCB LOCK (PEAK VELOCITY)</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #00f2fe; border-radius: 2px;"></span> PCB KILL-ZONE (INSTITUTIONAL FLOW)</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #64748b; border-radius: 2px;"></span> STANDARD PCB CYCLE</span>
+      </div>
+
+      <div style="overflow-x: auto; margin-top: 12px; border-radius: 14px; border: 1px solid rgba(0, 242, 254, 0.25);">
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+          <thead>
+            <tr style="background: rgba(29, 78, 216, 0.5); color: #00f2fe; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;">
+              <th style="padding: 14px 16px; white-space: nowrap;">TIME WINDOW (IST)</th>
+              <th style="padding: 14px 16px;">SESSION PHASE</th>
+              <th style="padding: 14px 16px;">PCB KINETIC SIGNATURE</th>
+              <th style="padding: 14px 16px;">PCB STATUS</th>
+            </tr>
+          </thead>
+          <tbody id="h2h-table-body" style="font-size: 0.92rem;">
+            <tr><td colspan="4" style="padding: 16px; text-align: center; color: #94a3b8;">Loading PCB Sovereign Engine Windows...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="trust-strip">
+        <div>🛡️ <b>100% SAFE WEB-APP:</b> No Risky APK Download • No Login / OTP • Zero Phone Permissions Required</div>
+        <div><a href="guide.html" style="color: #00f2fe; font-weight: 800; text-decoration: none;">📲 View App Install Guide &rarr;</a></div>
+      </div>
+    </section>
+
+    <footer class="researcher-footer">
+      <div class="researcher-badge">
+        <img src="umesh.jpg" alt="Umesh Kumar Yadav" class="founder-photo" onerror="this.style.display='none'; document.getElementById('uy-fallback').style.display='flex';" />
+        <div id="uy-fallback" class="avatar-ring">UY</div>
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: #00f2fe; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;">Principal Architect</div>
+          <div style="font-size: 1.15rem; font-weight: 900; color: #ffffff; margin-top: 2px;">Umesh Kumar Yadav <span style="font-size: 0.82rem; font-weight: 600; color: #94a3b8;">• Astro MAPs AI</span></div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: 800; margin-top: 5px; display: flex; flex-wrap: wrap; gap: 12px;">
+            <a href="https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s" target="_blank" style="color: #00f2fe; text-decoration: none;">📢 WhatsApp Channel</a>
+            <span style="color: #475569;">•</span>
+            <a href="https://t.me/AstroMapsai2026" target="_blank" style="color: #38bdf8; text-decoration: none;">✈️ Telegram Channel</a>
+            <span style="color: #475569;">•</span>
+            <a href="https://youtube.com/@AstroMAPSAI" target="_blank" style="color: #f87171; text-decoration: none;">▶ YouTube</a>
+            <span style="color: #475569;">•</span>
+            <a href="https://www.linkedin.com/in/umesh-y-710274a2" target="_blank" style="color: #60a5fa; text-decoration: none;">in LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-cluster">
+        <div class="visitor-box">
+          <span class="pulse-dot"></span>
+          <div>
+            <div style="font-size: 0.68rem; color: #94a3b8; letter-spacing: 1px;">VERIFIED TERMINAL VISITS</div>
+            <div id="visitor-count" style="font-size: 1.05rem; font-weight: 900; color: #00f2fe;">...</div>
+          </div>
+        </div>
+        <div id="app-install-box" class="visitor-box" style="display: none; border-color: rgba(16, 185, 129, 0.5);">
+          <span class="pulse-dot" style="background: #facc15; box-shadow: 0 0 8px #facc15;"></span>
+          <div>
+            <div style="font-size: 0.68rem; color: #fde047; letter-spacing: 1px;">📲 APP INSTALLS (ADMIN)</div>
+            <div id="app-install-count" style="font-size: 1.05rem; font-weight: 900; color: #10b981;">...</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: right; font-size: 0.8rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">
+        <div>36+ YEARS MECHANICAL MARKET ARCHITECTURE</div>
+        <div style="color: #64748b; font-size: 0.74rem; margin-top: 3px;">© 2026 Astro MAPs AI • PCB Sovereign Engine</div>
+      </div>
+    </footer>
   </div>
+
+  <script>
+    const API_URL = "https://astromaps-engine.onrender.com/api/predict";
+    const COUNTER_BASE = 165;
+    const COUNTER_GET_URL = "https://api.counterapi.dev/v1/astromapsai/visits";
+    const COUNTER_UP_URL = "https://api.counterapi.dev/v1/astromapsai/visits/up";
+    const INSTALL_GET_URL = "https://api.counterapi.dev/v1/astromapsai/app_installs";
+    const INSTALL_UP_URL = "https://api.counterapi.dev/v1/astromapsai/app_installs/up";
+
+    let CURRENT_ASSET = "NIFTY";
+    const ASSET_HEADERS = {
+      NIFTY: { title: "NIFTY 50 (NSE) PCB TIME-WINDOW GENERATOR", anchor: "PCB OPENING VECTOR (09:15 AM IST) • NIFTY 50" },
+      BANKNIFTY: { title: "BANK NIFTY (NSE) PCB TIME-WINDOW GENERATOR", anchor: "PCB OPENING VECTOR (09:15 AM IST) • BANK NIFTY" },
+      SILVER: { title: "MCX SILVER PCB TIME-WINDOW GENERATOR", anchor: "MCX PCB ANCHOR (09:00 AM IST • INDIA REF) • MCX SILVER" },
+      CRUDE: { title: "MCX CRUDE OIL PCB TIME-WINDOW GENERATOR", anchor: "MCX PCB ANCHOR (09:00 AM IST • INDIA REF) • CRUDE OIL" }
+    };
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("admin") === "umesh") {
+      localStorage.setItem("astromaps_founder_mode", "true");
+    }
+    const IS_FOUNDER = localStorage.getItem("astromaps_founder_mode") === "true";
+
+    function isStandaloneApp() {
+      return (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || (window.navigator.standalone === true);
+    }
+    function recordAppInstallOnce() {
+      if (IS_FOUNDER || localStorage.getItem("astromaps_app_installed") === "true") return;
+      localStorage.setItem("astromaps_app_installed", "true");
+      fetch(INSTALL_UP_URL, { keepalive: true }).catch(function() {});
+    }
+    function getNextTradingDate(baseDateObj) {
+      const d = new Date(baseDateObj.getTime());
+      let skippedWeekend = false;
+      while (d.getDay() === 0 || d.getDay() === 6) { d.setDate(d.getDate() + 1); skippedWeekend = true; }
+      return { dateStr: d.toISOString().split("T")[0], skippedWeekend: skippedWeekend };
+    }
+    function loadNextTradingSession() {
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const next = getNextTradingDate(tomorrow);
+      document.getElementById("audit-date-picker").value = next.dateStr;
+      const notice = document.getElementById("session-notice-box");
+      notice.style.display = "inline-block";
+      notice.innerText = "⏭ SHOWING NEXT TRADING SESSION: " + next.dateStr;
+      fetchAstroWindows();
+    }
+
+    window.addEventListener("DOMContentLoaded", function() {
+      const today = new Date();
+      const next = getNextTradingDate(today);
+      document.getElementById("audit-date-picker").value = next.dateStr;
+      if (next.skippedWeekend) {
+        const notice = document.getElementById("session-notice-box");
+        notice.style.display = "inline-block";
+        notice.innerText = "📅 WEEKEND MARKET CLOSED • AUTO-SHOWING NEXT TRADING SESSION (" + next.dateStr + ")";
+      }
+      if (isStandaloneApp()) recordAppInstallOnce();
+      fetchAstroWindows();
+      updateVisitorCounter();
+      loadAppInstallStats();
+    });
+
+    window.addEventListener("appinstalled", function() { recordAppInstallOnce(); });
+
+    function switchAsset(assetKey, btnEl) {
+      CURRENT_ASSET = assetKey;
+      document.querySelectorAll(".asset-tab").forEach(function(b) { b.classList.remove("active"); });
+      btnEl.classList.add("active");
+      document.getElementById("terminal-main-title").innerText = ASSET_HEADERS[assetKey].title;
+      document.getElementById("anchor-label").innerText = ASSET_HEADERS[assetKey].anchor;
+      fetchAstroWindows();
+    }
+
+    async function updateVisitorCounter() {
+      const countEl = document.getElementById("visitor-count");
+      const alreadyCounted = sessionStorage.getItem("astromaps_session_counted") === "true";
+      const endpoint = (IS_FOUNDER || alreadyCounted) ? COUNTER_GET_URL : COUNTER_UP_URL;
+      try {
+        const res = await fetch(endpoint);
+        if (!res.ok) throw new Error("Counter error");
+        const data = await res.json();
+        countEl.innerText = (COUNTER_BASE + (data.count || 0)).toLocaleString("en-IN");
+        sessionStorage.setItem("astromaps_session_counted", "true");
+      } catch (e) { countEl.innerText = "166+"; }
+    }
+
+    async function loadAppInstallStats() {
+      if (!IS_FOUNDER) return;
+      document.getElementById("app-install-box").style.display = "inline-flex";
+      const countEl = document.getElementById("app-install-count");
+      try {
+        const res = await fetch(INSTALL_GET_URL);
+        if (!res.ok) throw new Error("Install error");
+        const data = await res.json();
+        countEl.innerText = (data.count || 0).toLocaleString("en-IN");
+      } catch (e) { countEl.innerText = "0"; }
+    }
+
+    async function fetchAstroWindows() {
+      const picker = document.getElementById("audit-date-picker");
+      let selectedDate = picker.value;
+      if (!selectedDate) return;
+      const adjusted = getNextTradingDate(new Date(selectedDate + "T09:15:00"));
+      if (adjusted.skippedWeekend) {
+        selectedDate = adjusted.dateStr;
+        picker.value = selectedDate;
+        const notice = document.getElementById("session-notice-box");
+        notice.style.display = "inline-block";
+        notice.innerText = "📅 WEEKEND SKIPPED • AUTO-ADJUSTED TO NEXT TRADING DAY (" + selectedDate + ")";
+      }
+      const btn = document.getElementById("gen-btn");
+      btn.innerText = "⏳ SCANNING PCB...";
+      document.getElementById("opening-bias-text").innerText = "Running PCB Sovereign Engine (" + CURRENT_ASSET + ")...";
+      try {
+        const res = await fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ date: selectedDate, asset: CURRENT_ASSET, is_admin: IS_FOUNDER })
+        });
+        if (!res.ok) throw new Error("Server busy");
+        const data = await res.json();
+        document.getElementById("opening-bias-text").innerText = data.opening_bias.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
+        document.getElementById("regime-alert-text").innerText = data.regime_alert.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
+        const tbody = document.getElementById("h2h-table-body");
+        tbody.innerHTML = "";
+        data.h2h_slots.forEach(function(slot) {
+          const cleanTag = slot.priority_tag.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
+          const cleanPhase = slot.phase.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
+          const cleanAction = slot.action_bias.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
+          const tier = slot.tier || "std";
+          let rowClass = "row-standard", badgeClass = "badge-standard", timeColor = "#94a3b8";
+          if (tier === "dual") { rowClass = "row-dual-lock"; badgeClass = "badge-dual"; timeColor = "#fda4af"; }
+          else if (tier === "ruler") { rowClass = "row-ruler-lock"; badgeClass = "badge-ruler"; timeColor = "#facc15"; }
+          else if (tier === "kill") { rowClass = "row-killzone"; badgeClass = "badge-killzone"; timeColor = "#00f2fe"; }
+          tbody.innerHTML += '<tr class="' + rowClass + '"><td style="padding: 14px 16px; white-space: nowrap; font-family: \'JetBrains Mono\', monospace; font-weight: 800; color: ' + timeColor + ';">' + slot.time_window + '</td><td style="padding: 14px 16px; color: #f1f5f9; font-weight: 600;">' + cleanPhase + '</td><td style="padding: 14px 16px; color: #ffffff; font-weight: 700;">' + cleanAction + '</td><td style="padding: 14px 16px;"><span class="' + badgeClass + '">' + cleanTag + '</span></td></tr>';
+        });
+      } catch (err) {
+        document.getElementById("opening-bias-text").innerText = "Waking up Sovereign Server... Click Generate PCB again in 15s.";
+        document.getElementById("h2h-table-body").innerHTML = '<tr><td colspan="4" style="padding: 16px; text-align: center; color: #00f2fe;">Server waking up — click <b>⚡ GENERATE PCB</b> again in 15 seconds.</td></tr>';
+      } finally { btn.innerText = "⚡ GENERATE PCB"; }
+    }
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function() { navigator.serviceWorker.register("/sw.js").catch(function() {}); });
+    }
+  </script>
 </body>
 </html>

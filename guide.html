@@ -1,1 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App Install &amp; User Guide — Astro MAPs AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0 16px 60px 16px;
+      background: radial-gradient(circle at 50% 0%, #0f294a 0%, #061326 60%, #020813 100%);
+      background-color: #061326;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #f8fafc;
+    }
+    .container { max-width: 1140px; margin: 0 auto; }
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(6, 19, 38, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 242, 254, 0.25);
+      margin: 0 -16px 26px -16px;
+      padding: 12px 24px;
+    }
+    .nav-inner { max-width: 1140px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+    .nav-brand { text-decoration: none; font-size: 1.35rem; font-weight: 900; color: #ffffff; }
+    .nav-brand span { color: #00f2fe; }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 8px; }
+    .nav-link { text-decoration: none; color: #cbd5e1; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 800; padding: 8px 14px; border-radius: 8px; border: 1px solid transparent; }
+    .nav-link:hover { color: #00f2fe; border-color: rgba(0, 242, 254, 0.35); background: rgba(0, 242, 254, 0.08); }
+    .nav-link.active { background: rgba(0, 242, 254, 0.16); color: #00f2fe; border-color: #00f2fe; }
 
+    .hero-box {
+      background: linear-gradient(180deg, rgba(16, 44, 82, 0.75) 0%, rgba(10, 28, 54, 0.85) 100%);
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      border-radius: 22px;
+      padding: 30px 26px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .install-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    .install-card {
+      background: rgba(13, 37, 69, 0.85);
+      border: 1px solid rgba(0, 242, 254, 0.28);
+      border-radius: 18px;
+      padding: 22px;
+    }
+    .install-card h3 { margin: 0 0 12px 0; color: #00f2fe; font-size: 1.15rem; }
+    .install-card ol { margin: 0; padding-left: 20px; color: #e2e8f0; line-height: 1.75; font-size: 0.93rem; }
+
+    .legend-box {
+      background: rgba(13, 37, 69, 0.85);
+      border: 1px solid rgba(0, 242, 254, 0.28);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .legend-row {
+      padding: 14px 16px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+    .l-yellow { background: rgba(250, 204, 21, 0.14); border-left: 4px solid #facc15; }
+    .l-red { background: rgba(244, 63, 94, 0.16); border-left: 4px solid #f43f5e; }
+    .l-cyan { background: rgba(0, 242, 254, 0.12); border-left: 4px solid #00f2fe; }
+    .l-slate { background: rgba(148, 163, 184, 0.1); border-left: 4px solid #64748b; margin-bottom: 0; }
+
+    .wa-banner {
+      background: rgba(22, 163, 74, 0.16);
+      border: 1px solid rgba(34, 197, 94, 0.5);
+      border-radius: 16px;
+      padding: 20px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .wa-btn {
+      text-decoration: none;
+      background: #16a34a;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.86rem;
+      padding: 11px 18px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Astro <span>MAPs</span> AI</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">⚡ Home Tool</a>
+        <a href="about.html" class="nav-link">🧭 Methodology</a>
+        <a href="proof.html" class="nav-link">📊 Live Audits</a>
+        <a href="guide.html" class="nav-link active">📲 App Guide</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="hero-box">
+      <div style="font-family: 'JetBrains Mono', monospace; color: #10b981; font-size: 0.78rem; font-weight: 800; letter-spacing: 2px;">100% SAFE • NO APK • NO OTP • ZERO PERMISSIONS</div>
+      <h1 style="margin: 8px 0 6px 0; font-size: 2.2rem; font-weight: 900;">App Install &amp; <span style="color: #00f2fe;">User Guide</span></h1>
+      <p style="margin: 0; color: #cbd5e1; font-size: 0.94rem;">Install Astro MAPs AI directly on your mobile or desktop home screen in 10 seconds and learn how to read intraday timing slots.</p>
+    </div>
+
+    <div class="install-grid">
+      <div class="install-card">
+        <h3>📱 Android (Google Chrome)</h3>
+        <ol>
+          <li>Open <b>astromapsai.com</b> in Google Chrome.</li>
+          <li>Tap the <b>three dots (⋮)</b> in the top-right corner.</li>
+          <li>Tap <b>"Add to Home screen"</b> or <b>"Install app"</b>.</li>
+          <li>Launch directly from your home screen in compact app mode.</li>
+        </ol>
+      </div>
+      <div class="install-card">
+        <h3>🍎 iPhone / iPad (Safari)</h3>
+        <ol>
+          <li>Open <b>astromapsai.com</b> in Apple Safari.</li>
+          <li>Tap the <b>Share icon (□↑)</b> at the bottom bar.</li>
+          <li>Scroll down and tap <b>"Add to Home Screen"</b>.</li>
+          <li>Tap <b>Add</b> in the top-right corner.</li>
+        </ol>
+      </div>
+      <div class="install-card">
+        <h3>💻 Desktop / Laptop (Chrome / Edge)</h3>
+        <ol>
+          <li>Open <b>astromapsai.com</b> in Chrome or Edge.</li>
+          <li>Click the <b>Install icon</b> on the right side of the address bar.</li>
+          <li>Click <b>"Install"</b> to launch Astro MAPs AI as a standalone window.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="legend-box">
+      <h2 style="margin: 0 0 14px 0; font-size: 1.25rem;">How to Read Color-Coded Timing Windows</h2>
+      <div class="legend-row l-yellow">
+        <b style="color: #facc15;">YELLOW — PRIMARY PCB VECTOR (ACTIVE EXPANSION):</b> Highlights key primary expansion windows where directional momentum or trend continuation activates.
+      </div>
+      <div class="legend-row l-red">
+        <b style="color: #fda4af;">RED — DUAL-VECTOR PCB LOCK (PEAK VELOCITY):</b> High-intensity kinetic zone where dual alignments trigger sharp breakouts or rapid reversals.
+      </div>
+      <div class="legend-row l-cyan">
+        <b style="color: #00f2fe;">CYAN — PCB KILL-ZONE (INSTITUTIONAL FLOW):</b> Institutional liquidity rotation windows ideal for cross-verifying price action on TradingView.
+      </div>
+      <div class="legend-row l-slate">
+        <b style="color: #cbd5e1;">SLATE — STANDARD PCB CYCLE:</b> Neutral consolidation or reference transit slots where low-conviction trades are avoided.
+      </div>
+    </div>
+
+    <div class="wa-banner">
+      <div>
+        <div style="font-weight: 900; font-size: 1.05rem; color: #ffffff;">Stay Connected on Official Channels</div>
+        <div style="font-size: 0.86rem; color: #cbd5e1; margin-top: 3px;">Join our Official WhatsApp Channel for live updates, tool releases, and market timing announcements.</div>
+      </div>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <a href="https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s" target="_blank" class="wa-btn">📢 Join WhatsApp Channel</a>
+        <a href="https://youtube.com/@AstroMAPSAI" target="_blank" class="wa-btn" style="background: #dc2626;">▶ Subscribe YouTube</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

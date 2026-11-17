@@ -22,7 +22,6 @@
     }
     .container { max-width: 1140px; margin: 0 auto; }
 
-    /* TOP NAVIGATION BAR */
     .top-nav {
       position: sticky;
       top: 0;
@@ -77,7 +76,6 @@
       border-color: #00f2fe;
     }
 
-    /* COMPACT APP TOP BAR (VISIBLE ONLY IN INSTALLED MOBILE APP) */
     .app-compact-header { display: none; }
 
     .hero-mini {
@@ -120,6 +118,7 @@
     .yt { background: #dc2626; }
     .li { background: #1d4ed8; }
     .wa { background: #16a34a; }
+    .tg { background: #0284c7; }
 
     .terminal-box {
       padding: 24px;
@@ -264,6 +263,48 @@
     .badge-killzone { display: inline-block; white-space: nowrap; background: rgba(0, 242, 254, 0.15); border: 1px solid #00f2fe; color: #00f2fe; padding: 5px 11px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 800; }
     .badge-standard { display: inline-block; white-space: nowrap; background: rgba(148, 163, 184, 0.1); border: 1px solid rgba(148, 163, 184, 0.28); color: #94a3b8; padding: 4px 10px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 700; }
 
+    /* Admin Pre-Market Broadcast Box */
+    .admin-social-box {
+      display: none;
+      margin-top: 18px;
+      background: rgba(2, 12, 27, 0.92);
+      border: 1.5px solid rgba(250, 204, 21, 0.55);
+      border-radius: 14px;
+      padding: 16px 18px;
+    }
+    .admin-social-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .copy-social-btn {
+      background: linear-gradient(135deg, #facc15, #f59e0b);
+      color: #020c1b;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 900;
+      font-size: 0.76rem;
+      cursor: pointer;
+    }
+    .social-preview-textarea {
+      width: 100%;
+      min-height: 185px;
+      background: rgba(13, 37, 69, 0.55);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      border-radius: 10px;
+      color: #f8fafc;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      line-height: 1.55;
+      padding: 12px;
+      resize: vertical;
+    }
+
     .trust-strip {
       margin-top: 14px;
       background: rgba(16, 185, 129, 0.1);
@@ -367,7 +408,10 @@
         <div style="font-size: 1.15rem; font-weight: 900; color: #ffffff;">Astro <span style="color: #00f2fe;">MAPs</span> AI</div>
         <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #10b981; font-weight: 800;">● LIVE PCB TIMING APP</div>
       </div>
-      <a href="https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s" target="_blank" style="background: #16a34a; color: #ffffff; text-decoration: none; font-size: 0.74rem; font-weight: 800; padding: 7px 12px; border-radius: 8px;">📢 Channel</a>
+      <div style="display: flex; gap: 6px;">
+        <a href="https://t.me/AstroMapsai2026" target="_blank" style="background: #0284c7; color: #ffffff; text-decoration: none; font-size: 0.72rem; font-weight: 800; padding: 7px 10px; border-radius: 8px;">✈️ Telegram</a>
+        <a href="https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s" target="_blank" style="background: #16a34a; color: #ffffff; text-decoration: none; font-size: 0.72rem; font-weight: 800; padding: 7px 10px; border-radius: 8px;">📢 WhatsApp</a>
+      </div>
     </div>
 
     <div class="hero-mini">
@@ -377,9 +421,10 @@
         <div style="font-size: 0.88rem; color: #cbd5e1;">Calibrated on 56 Years of Historical Data (1970–2026) • Nifty 50, Bank Nifty, MCX Silver &amp; Crude Oil</div>
       </div>
       <div class="social-links">
+        <a href="https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s" target="_blank" class="social-btn wa">📢 WhatsApp Channel</a>
+        <a href="https://t.me/AstroMapsai2026" target="_blank" class="social-btn tg">✈️ Telegram Channel</a>
         <a href="https://youtube.com/@AstroMAPSAI" target="_blank" class="social-btn yt">▶ YouTube</a>
         <a href="https://www.linkedin.com/in/umesh-y-710274a2" target="_blank" class="social-btn li">in LinkedIn</a>
-        <a href="https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s" target="_blank" class="social-btn wa">📢 WhatsApp Channel</a>
       </div>
     </div>
 
@@ -448,6 +493,17 @@
         </table>
       </div>
 
+      <!-- ADMIN ONLY: 1-CLICK ALL-SOCIAL PRE-MARKET BROADCAST BOX -->
+      <div id="admin-social-box" class="admin-social-box">
+        <div class="admin-social-header">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 800; color: #fde047;">
+            📢 PRE-MARKET BROADCAST READY (TELEGRAM • WHATSAPP • YOUTUBE • LINKEDIN • FB • INSTA)
+          </div>
+          <button type="button" id="copy-social-btn" onclick="copySocialPremarketPost()" class="copy-social-btn">📋 Copy Pre-Market Post</button>
+        </div>
+        <textarea id="social-post-textarea" class="social-preview-textarea" readonly></textarea>
+      </div>
+
       <div class="trust-strip">
         <div>🛡️ <b>100% SAFE WEB-APP:</b> No Risky APK Download • No Login / OTP • Zero Phone Permissions Required</div>
         <div><a href="guide.html" style="color: #00f2fe; font-weight: 800; text-decoration: none;">📲 View App Install Guide &rarr;</a></div>
@@ -462,7 +518,9 @@
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: #00f2fe; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;">Principal Architect</div>
           <div style="font-size: 1.15rem; font-weight: 900; color: #ffffff; margin-top: 2px;">Umesh Kumar Yadav <span style="font-size: 0.82rem; font-weight: 600; color: #94a3b8;">• Astro MAPs AI</span></div>
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: 800; margin-top: 5px; display: flex; flex-wrap: wrap; gap: 12px;">
-            <a href="https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s" target="_blank" style="color: #00f2fe; text-decoration: none;">📢 Official WhatsApp Channel</a>
+            <a href="https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s" target="_blank" style="color: #00f2fe; text-decoration: none;">📢 WhatsApp Channel</a>
+            <span style="color: #475569;">•</span>
+            <a href="https://t.me/AstroMapsai2026" target="_blank" style="color: #38bdf8; text-decoration: none;">✈️ Telegram Channel</a>
             <span style="color: #475569;">•</span>
             <a href="https://youtube.com/@AstroMAPSAI" target="_blank" style="color: #f87171; text-decoration: none;">▶ YouTube</a>
             <span style="color: #475569;">•</span>
@@ -542,7 +600,25 @@
       fetchAstroWindows();
     }
 
+    function copySocialPremarketPost() {
+      const textarea = document.getElementById("social-post-textarea");
+      const btn = document.getElementById("copy-social-btn");
+      if (!textarea || !textarea.value) return;
+      navigator.clipboard.writeText(textarea.value).then(function() {
+        btn.innerText = "✅ Copied for All Channels!";
+        setTimeout(function() { btn.innerText = "📋 Copy Pre-Market Post"; }, 2500);
+      }).catch(function() {
+        textarea.select();
+        document.execCommand("copy");
+        btn.innerText = "✅ Copied!";
+        setTimeout(function() { btn.innerText = "📋 Copy Pre-Market Post"; }, 2500);
+      });
+    }
+
     window.addEventListener("DOMContentLoaded", function() {
+      if (IS_FOUNDER) {
+        document.getElementById("admin-social-box").style.display = "block";
+      }
       const today = new Date();
       const next = getNextTradingDate(today);
       document.getElementById("audit-date-picker").value = next.dateStr;
@@ -616,21 +692,44 @@
         });
         if (!res.ok) throw new Error("Server busy");
         const data = await res.json();
-        document.getElementById("opening-bias-text").innerText = data.opening_bias.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
-        document.getElementById("regime-alert-text").innerText = data.regime_alert.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
+        const cleanBias = data.opening_bias.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
+        const cleanRegime = data.regime_alert.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
+        document.getElementById("opening-bias-text").innerText = cleanBias;
+        document.getElementById("regime-alert-text").innerText = cleanRegime;
+
         const tbody = document.getElementById("h2h-table-body");
         tbody.innerHTML = "";
+        const activeSlotsForPost = [];
+
         data.h2h_slots.forEach(function(slot) {
           const cleanTag = slot.priority_tag.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
           const cleanPhase = slot.phase.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
           const cleanAction = slot.action_bias.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
           const tier = slot.tier || "std";
           let rowClass = "row-standard", badgeClass = "badge-standard", timeColor = "#94a3b8";
-          if (tier === "dual") { rowClass = "row-dual-lock"; badgeClass = "badge-dual"; timeColor = "#fda4af"; }
-          else if (tier === "ruler") { rowClass = "row-ruler-lock"; badgeClass = "badge-ruler"; timeColor = "#facc15"; }
-          else if (tier === "kill") { rowClass = "row-killzone"; badgeClass = "badge-killzone"; timeColor = "#00f2fe"; }
+          if (tier === "dual") { rowClass = "row-dual-lock"; badgeClass = "badge-dual"; timeColor = "#fda4af"; activeSlotsForPost.push("• " + slot.time_window + " (" + cleanTag + ")"); }
+          else if (tier === "ruler") { rowClass = "row-ruler-lock"; badgeClass = "badge-ruler"; timeColor = "#facc15"; activeSlotsForPost.push("• " + slot.time_window + " (" + cleanTag + ")"); }
+          else if (tier === "kill") { rowClass = "row-killzone"; badgeClass = "badge-killzone"; timeColor = "#00f2fe"; activeSlotsForPost.push("• " + slot.time_window + " (" + cleanTag + ")"); }
           tbody.innerHTML += '<tr class="' + rowClass + '"><td style="padding: 14px 16px; white-space: nowrap; font-family: \'JetBrains Mono\', monospace; font-weight: 800; color: ' + timeColor + ';">' + slot.time_window + '</td><td style="padding: 14px 16px; color: #f1f5f9; font-weight: 600;">' + cleanPhase + '</td><td style="padding: 14px 16px; color: #ffffff; font-weight: 700;">' + cleanAction + '</td><td style="padding: 14px 16px;"><span class="' + badgeClass + '">' + cleanTag + '</span></td></tr>';
         });
+
+        if (IS_FOUNDER) {
+          const slotsBlock = activeSlotsForPost.length > 0 ? activeSlotsForPost.join("\n") : "• Standard Cycle Observation (Wait for Intraday Pivot)";
+          const postText = data.social_premarket_post || (
+            "⚡ ASTRO MAPs AI — PRE-MARKET TIMING BRIEF (" + selectedDate + ")\n" +
+            "📊 Asset: " + CURRENT_ASSET + "\n" +
+            "🧭 Opening Vector: " + cleanBias + "\n" +
+            "🔐 Matrix Status: " + cleanRegime + "\n\n" +
+            "⏱️ Key Intraday PCB Windows (IST):\n" +
+            slotsBlock + "\n\n" +
+            "🌐 Live Interactive Tool: https://astromapsai.com\n" +
+            "✈️ Telegram: https://t.me/AstroMapsai2026\n" +
+            "📢 WhatsApp: https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s\n" +
+            "▶️ YouTube: https://youtube.com/@AstroMAPSAI\n" +
+            "#AstroMAPsAI #Nifty50 #BankNifty #MCX #MarketTiming #UmeshKumarYadav"
+          );
+          document.getElementById("social-post-textarea").value = postText;
+        }
       } catch (err) {
         document.getElementById("opening-bias-text").innerText = "Waking up Sovereign Server... Click Generate PCB again in 15s.";
         document.getElementById("h2h-table-body").innerHTML = '<tr><td colspan="4" style="padding: 16px; text-align: center; color: #00f2fe;">Server waking up — click <b>⚡ GENERATE PCB</b> again in 15 seconds.</td></tr>';

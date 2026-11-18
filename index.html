@@ -461,11 +461,11 @@
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 18px;">
         <div style="background: rgba(2, 12, 27, 0.8); border: 1px solid rgba(0, 242, 254, 0.28); border-radius: 14px; padding: 16px;">
           <div id="anchor-label" style="font-size: 0.75rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">PCB OPENING VECTOR (09:15 AM IST) • NIFTY 50</div>
-          <div id="opening-bias-text" style="margin-top: 6px; font-size: 1.04rem; font-weight: 800; color: #00f2fe;">Initializing PCB Sovereign Engine...</div>
+          <div id="opening-bias-text" style="margin-top: 6px; font-size: 1.04rem; font-weight: 800; color: #00f2fe;">Awakening Sovereign Engine...</div>
         </div>
         <div style="background: rgba(2, 12, 27, 0.8); border: 1px solid rgba(0, 242, 254, 0.28); border-radius: 14px; padding: 16px;">
           <div style="font-size: 0.75rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">CORE MATRIX CIRCUIT STATUS</div>
-          <div id="regime-alert-text" style="margin-top: 6px; font-size: 1.04rem; font-weight: 800; color: #f8fafc;">Calculating PCB Harmonics...</div>
+          <div id="regime-alert-text" style="margin-top: 6px; font-size: 1.04rem; font-weight: 800; color: #f8fafc;">Connecting to Backend Harmonics...</div>
         </div>
       </div>
 
@@ -487,7 +487,7 @@
             </tr>
           </thead>
           <tbody id="h2h-table-body" style="font-size: 0.92rem;">
-            <tr><td colspan="4" style="padding: 16px; text-align: center; color: #94a3b8;">Loading PCB Sovereign Engine Windows...</td></tr>
+            <tr><td colspan="4" style="padding: 16px; text-align: center; color: #94a3b8;">Click <b>⚡ GENERATE PCB</b> to load windows...</td></tr>
           </tbody>
         </table>
       </div>
@@ -553,6 +553,7 @@
 
   <script>
     const API_URL = "https://astromaps-engine.onrender.com/api/predict";
+    const PING_URL = "https://astromaps-engine.onrender.com/api/health";
     const COUNTER_BASE = 165;
     const COUNTER_GET_URL = "https://api.counterapi.dev/v1/astromapsai/visits";
     const COUNTER_UP_URL = "https://api.counterapi.dev/v1/astromapsai/visits/up";
@@ -626,6 +627,10 @@
         notice.innerText = "📅 WEEKEND MARKET CLOSED • AUTO-SHOWING NEXT TRADING SESSION (" + next.dateStr + ")";
       }
       if (isStandaloneApp()) recordAppInstallOnce();
+      
+      // Background Wake-up ping to Render backend
+      fetch(PING_URL).catch(function() {});
+
       fetchAstroWindows();
       updateVisitorCounter();
       loadAppInstallStats();
@@ -682,6 +687,8 @@
       const btn = document.getElementById("gen-btn");
       btn.innerText = "⏳ SCANNING PCB...";
       document.getElementById("opening-bias-text").innerText = "Running PCB Sovereign Engine (" + CURRENT_ASSET + ")...";
+      document.getElementById("regime-alert-text").innerText = "Auditing Planetary Harmonics...";
+      
       try {
         const res = await fetch(API_URL, {
           method: "POST",
@@ -729,8 +736,9 @@
           document.getElementById("social-post-textarea").value = postText;
         }
       } catch (err) {
-        document.getElementById("opening-bias-text").innerText = "Waking up Sovereign Server... Click Generate PCB again in 15s.";
-        document.getElementById("h2h-table-body").innerHTML = '<tr><td colspan="4" style="padding: 16px; text-align: center; color: #00f2fe;">Server waking up — click <b>⚡ GENERATE PCB</b> again in 15 seconds.</td></tr>';
+        document.getElementById("opening-bias-text").innerText = "Server waking up... Click ⚡ GENERATE PCB again.";
+        document.getElementById("regime-alert-text").innerText = "Cold Start Warm-up in Progress...";
+        document.getElementById("h2h-table-body").innerHTML = '<tr><td colspan="4" style="padding: 16px; text-align: center; color: #00f2fe;">Server is waking up from sleep mode — click <b>⚡ GENERATE PCB</b> again.</td></tr>';
       } finally { btn.innerText = "⚡ GENERATE PCB"; }
     }
     if ("serviceWorker" in navigator) {

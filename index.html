@@ -661,7 +661,12 @@
     async function fetchAstroWindowsWithRetry(retries = 5, delay = 4000) {
       const picker = document.getElementById("audit-date-picker");
       let selectedDate = picker.value;
-      if (!selectedDate) return;
+      if (!selectedDate) {
+        const today = new Date();
+        const next = getNextTradingDate(today);
+        selectedDate = next.dateStr;
+        picker.value = selectedDate;
+      }
       
       const adjusted = getNextTradingDate(new Date(selectedDate + "T09:15:00"));
       if (adjusted.skippedWeekend) {
@@ -702,7 +707,7 @@
           return;
         } catch (err) {
           if (i < retries - 1) {
-            btn.innerText = `⏳ RETRYING (${i+1}/${retries})...`;
+            btn.innerText = `⏳ WAKING UP (${i+1}/${retries})...`;
             await new Promise(resolve => setTimeout(resolve, delay));
           }
         }

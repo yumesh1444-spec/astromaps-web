@@ -263,6 +263,7 @@
     .badge-killzone { display: inline-block; white-space: nowrap; background: rgba(0, 242, 254, 0.15); border: 1px solid #00f2fe; color: #00f2fe; padding: 5px 11px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 800; }
     .badge-standard { display: inline-block; white-space: nowrap; background: rgba(148, 163, 184, 0.1); border: 1px solid rgba(148, 163, 184, 0.28); color: #94a3b8; padding: 4px 10px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 700; }
 
+    /* Admin Pre-Market Broadcast Box */
     .admin-social-box {
       display: none;
       margin-top: 18px;
@@ -415,7 +416,7 @@
 
     <div class="hero-mini">
       <div>
-        <div class="pill-badge">● PCB SOVEREIGN ENGINE • LAUNCH: 02 JUNE 2026 • 100% MECHANICAL</div>
+        <div class="pill-badge">● PCB SOVEREIGN ENGINE • LAUNCH: 04 JUNE 2026 • 100% MECHANICAL</div>
         <h1 style="margin: 8px 0 4px 0; font-size: 1.75rem; font-weight: 900;">Live Market Opening &amp; Intraday Time-Window Tool</h1>
         <div style="font-size: 0.88rem; color: #cbd5e1;">Calibrated on 56 Years of Historical Data (1970–2026) • Nifty 50, Bank Nifty, MCX Silver &amp; Crude Oil</div>
       </div>
@@ -458,14 +459,25 @@
         <button class="asset-tab" onclick="switchAsset('CRUDE', this)">CRUDE OIL (MCX)</button>
       </div>
 
-      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-top: 22px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: #cbd5e1;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 18px;">
+        <div style="background: rgba(2, 12, 27, 0.8); border: 1px solid rgba(0, 242, 254, 0.28); border-radius: 14px; padding: 16px;">
+          <div id="anchor-label" style="font-size: 0.75rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">PCB OPENING VECTOR (09:15 AM IST) • NIFTY 50</div>
+          <div id="opening-bias-text" style="margin-top: 6px; font-size: 1.04rem; font-weight: 800; color: #00f2fe;">Initializing PCB Sovereign Engine...</div>
+        </div>
+        <div style="background: rgba(2, 12, 27, 0.8); border: 1px solid rgba(0, 242, 254, 0.28); border-radius: 14px; padding: 16px;">
+          <div style="font-size: 0.75rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">CORE MATRIX CIRCUIT STATUS</div>
+          <div id="regime-alert-text" style="margin-top: 6px; font-size: 1.04rem; font-weight: 800; color: #f8fafc;">Calculating PCB Harmonics...</div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-top: 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: #cbd5e1;">
         <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #facc15; border-radius: 2px;"></span> PRIMARY PCB VECTOR (ACTIVE EXPANSION)</span>
         <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #f43f5e; border-radius: 2px;"></span> DUAL-VECTOR PCB LOCK (PEAK VELOCITY)</span>
         <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #00f2fe; border-radius: 2px;"></span> PCB KILL-ZONE (INSTITUTIONAL FLOW)</span>
         <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #64748b; border-radius: 2px;"></span> STANDARD PCB CYCLE</span>
       </div>
 
-      <div style="overflow-x: auto; margin-top: 14px; border-radius: 14px; border: 1px solid rgba(0, 242, 254, 0.25);">
+      <div style="overflow-x: auto; margin-top: 12px; border-radius: 14px; border: 1px solid rgba(0, 242, 254, 0.25);">
         <table style="width: 100%; border-collapse: collapse; text-align: left;">
           <thead>
             <tr style="background: rgba(29, 78, 216, 0.5); color: #00f2fe; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;">
@@ -476,11 +488,12 @@
             </tr>
           </thead>
           <tbody id="h2h-table-body" style="font-size: 0.92rem;">
-            <tr><td colspan="4" style="padding: 16px; text-align: center; color: #94a3b8;">Click <b>⚡ GENERATE PCB</b> to load windows...</td></tr>
+            <tr><td colspan="4" style="padding: 16px; text-align: center; color: #94a3b8;">Loading PCB Sovereign Engine Windows...</td></tr>
           </tbody>
         </table>
       </div>
 
+      <!-- ADMIN ONLY: 1-CLICK ALL-SOCIAL PRE-MARKET BROADCAST BOX -->
       <div id="admin-social-box" class="admin-social-box">
         <div class="admin-social-header">
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 800; color: #fde047;">
@@ -542,7 +555,6 @@
 
   <script>
     const API_URL = "https://astromaps-engine.onrender.com/api/predict";
-    const PING_URL = "https://astromaps-engine.onrender.com/api/health";
     const COUNTER_BASE = 165;
     const COUNTER_GET_URL = "https://api.counterapi.dev/v1/astromapsai/visits";
     const COUNTER_UP_URL = "https://api.counterapi.dev/v1/astromapsai/visits/up";
@@ -551,10 +563,10 @@
 
     let CURRENT_ASSET = "NIFTY";
     const ASSET_HEADERS = {
-      NIFTY: { title: "NIFTY 50 (NSE) PCB TIME-WINDOW GENERATOR" },
-      BANKNIFTY: { title: "BANK NIFTY (NSE) PCB TIME-WINDOW GENERATOR" },
-      SILVER: { title: "MCX SILVER PCB TIME-WINDOW GENERATOR" },
-      CRUDE: { title: "MCX CRUDE OIL PCB TIME-WINDOW GENERATOR" }
+      NIFTY: { title: "NIFTY 50 (NSE) PCB TIME-WINDOW GENERATOR", anchor: "PCB OPENING VECTOR (09:15 AM IST) • NIFTY 50" },
+      BANKNIFTY: { title: "BANK NIFTY (NSE) PCB TIME-WINDOW GENERATOR", anchor: "PCB OPENING VECTOR (09:15 AM IST) • BANK NIFTY" },
+      SILVER: { title: "MCX SILVER PCB TIME-WINDOW GENERATOR", anchor: "MCX PCB ANCHOR (09:00 AM IST • INDIA REF) • MCX SILVER" },
+      CRUDE: { title: "MCX CRUDE OIL PCB TIME-WINDOW GENERATOR", anchor: "MCX PCB ANCHOR (09:00 AM IST • INDIA REF) • CRUDE OIL" }
     };
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -585,7 +597,7 @@
       const notice = document.getElementById("session-notice-box");
       notice.style.display = "inline-block";
       notice.innerText = "⏭ SHOWING NEXT TRADING SESSION: " + next.dateStr;
-      fetchAstroWindowsWithRetry();
+      fetchAstroWindows();
     }
 
     function copySocialPremarketPost() {
@@ -616,9 +628,7 @@
         notice.innerText = "📅 WEEKEND MARKET CLOSED • AUTO-SHOWING NEXT TRADING SESSION (" + next.dateStr + ")";
       }
       if (isStandaloneApp()) recordAppInstallOnce();
-
-      fetch(PING_URL).catch(function() {});
-      fetchAstroWindowsWithRetry();
+      fetchAstroWindows();
       updateVisitorCounter();
       loadAppInstallStats();
     });
@@ -630,7 +640,8 @@
       document.querySelectorAll(".asset-tab").forEach(function(b) { b.classList.remove("active"); });
       btnEl.classList.add("active");
       document.getElementById("terminal-main-title").innerText = ASSET_HEADERS[assetKey].title;
-      fetchAstroWindowsWithRetry();
+      document.getElementById("anchor-label").innerText = ASSET_HEADERS[assetKey].anchor;
+      fetchAstroWindows();
     }
 
     async function updateVisitorCounter() {
@@ -658,66 +669,74 @@
       } catch (e) { countEl.innerText = "0"; }
     }
 
-    async function fetchAstroWindowsWithRetry(retries = 5, delay = 4000) {
+    async function fetchAstroWindows() {
       const picker = document.getElementById("audit-date-picker");
       let selectedDate = picker.value;
-      if (!selectedDate) {
-        const today = new Date();
-        const next = getNextTradingDate(today);
-        selectedDate = next.dateStr;
-        picker.value = selectedDate;
-      }
-      
+      if (!selectedDate) return;
       const adjusted = getNextTradingDate(new Date(selectedDate + "T09:15:00"));
       if (adjusted.skippedWeekend) {
         selectedDate = adjusted.dateStr;
         picker.value = selectedDate;
+        const notice = document.getElementById("session-notice-box");
+        notice.style.display = "inline-block";
+        notice.innerText = "📅 WEEKEND SKIPPED • AUTO-ADJUSTED TO NEXT TRADING DAY (" + selectedDate + ")";
       }
-
       const btn = document.getElementById("gen-btn");
-      btn.innerText = "⏳ AWAKENING SERVER...";
+      btn.innerText = "⏳ SCANNING PCB...";
+      document.getElementById("opening-bias-text").innerText = "Running PCB Sovereign Engine (" + CURRENT_ASSET + ")...";
+      try {
+        const res = await fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ date: selectedDate, asset: CURRENT_ASSET, is_admin: IS_FOUNDER })
+        });
+        if (!res.ok) throw new Error("Server busy");
+        const data = await res.json();
+        const cleanBias = data.opening_bias.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
+        const cleanRegime = data.regime_alert.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
+        document.getElementById("opening-bias-text").innerText = cleanBias;
+        document.getElementById("regime-alert-text").innerText = cleanRegime;
 
-      for (let i = 0; i < retries; i++) {
-        try {
-          const res = await fetch(API_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ date: selectedDate, asset: CURRENT_ASSET, is_admin: IS_FOUNDER })
-          });
-          if (!res.ok) throw new Error("Server starting up");
-          const data = await res.json();
+        const tbody = document.getElementById("h2h-table-body");
+        tbody.innerHTML = "";
+        const activeSlotsForPost = [];
 
-          const tbody = document.getElementById("h2h-table-body");
-          tbody.innerHTML = "";
+        data.h2h_slots.forEach(function(slot) {
+          const cleanTag = slot.priority_tag.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
+          const cleanPhase = slot.phase.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
+          const cleanAction = slot.action_bias.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
+          const tier = slot.tier || "std";
+          let rowClass = "row-standard", badgeClass = "badge-standard", timeColor = "#94a3b8";
+          if (tier === "dual") { rowClass = "row-dual-lock"; badgeClass = "badge-dual"; timeColor = "#fda4af"; activeSlotsForPost.push("• " + slot.time_window + " (" + cleanTag + ")"); }
+          else if (tier === "ruler") { rowClass = "row-ruler-lock"; badgeClass = "badge-ruler"; timeColor = "#facc15"; activeSlotsForPost.push("• " + slot.time_window + " (" + cleanTag + ")"); }
+          else if (tier === "kill") { rowClass = "row-killzone"; badgeClass = "badge-killzone"; timeColor = "#00f2fe"; activeSlotsForPost.push("• " + slot.time_window + " (" + cleanTag + ")"); }
+          tbody.innerHTML += '<tr class="' + rowClass + '"><td style="padding: 14px 16px; white-space: nowrap; font-family: \'JetBrains Mono\', monospace; font-weight: 800; color: ' + timeColor + ';">' + slot.time_window + '</td><td style="padding: 14px 16px; color: #f1f5f9; font-weight: 600;">' + cleanPhase + '</td><td style="padding: 14px 16px; color: #ffffff; font-weight: 700;">' + cleanAction + '</td><td style="padding: 14px 16px;"><span class="' + badgeClass + '">' + cleanTag + '</span></td></tr>';
+        });
 
-          data.h2h_slots.forEach(function(slot) {
-            const tier = slot.tier || "std";
-            let rowClass = "row-standard", badgeClass = "badge-standard", timeColor = "#94a3b8";
-            if (tier === "dual") { rowClass = "row-dual-lock"; badgeClass = "badge-dual"; timeColor = "#fda4af"; }
-            else if (tier === "ruler") { rowClass = "row-ruler-lock"; badgeClass = "badge-ruler"; timeColor = "#facc15"; }
-            else if (tier === "kill") { rowClass = "row-killzone"; badgeClass = "badge-killzone"; timeColor = "#00f2fe"; }
-            tbody.innerHTML += '<tr class="' + rowClass + '"><td style="padding: 14px 16px; white-space: nowrap; font-family: \'JetBrains Mono\', monospace; font-weight: 800; color: ' + timeColor + ';">' + slot.time_window + '</td><td style="padding: 14px 16px; color: #f1f5f9; font-weight: 600;">' + slot.phase + '</td><td style="padding: 14px 16px; color: #ffffff; font-weight: 700;">' + slot.action_bias + '</td><td style="padding: 14px 16px;"><span class="' + badgeClass + '">' + slot.priority_tag + '</span></td></tr>';
-          });
-
-          if (IS_FOUNDER) {
-            document.getElementById("social-post-textarea").value = data.social_premarket_post || "";
-          }
-
-          btn.innerText = "⚡ GENERATE PCB";
-          return;
-        } catch (err) {
-          if (i < retries - 1) {
-            btn.innerText = `⏳ WAKING UP (${i+1}/${retries})...`;
-            await new Promise(resolve => setTimeout(resolve, delay));
-          }
+        if (IS_FOUNDER) {
+          const slotsBlock = activeSlotsForPost.length > 0 ? activeSlotsForPost.join("\n") : "• Standard Cycle Observation (Wait for Intraday Pivot)";
+          const postText = data.social_premarket_post || (
+            "⚡ ASTRO MAPs AI — PRE-MARKET TIMING BRIEF (" + selectedDate + ")\n" +
+            "📊 Asset: " + CURRENT_ASSET + "\n" +
+            "🧭 Opening Vector: " + cleanBias + "\n" +
+            "🔐 Matrix Status: " + cleanRegime + "\n\n" +
+            "⏱️ Key Intraday PCB Windows (IST):\n" +
+            slotsBlock + "\n\n" +
+            "🌐 Live Interactive Tool: https://astromapsai.com\n" +
+            "✈️ Telegram: https://t.me/AstroMapsai2026\n" +
+            "📢 WhatsApp: https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s\n" +
+            "▶️ YouTube: https://youtube.com/@AstroMAPSAI\n" +
+            "#AstroMAPsAI #Nifty50 #BankNifty #MCX #MarketTiming #UmeshKumarYadav"
+          );
+          document.getElementById("social-post-textarea").value = postText;
         }
-      }
-
-      btn.innerText = "⚡ GENERATE PCB";
+      } catch (err) {
+        document.getElementById("opening-bias-text").innerText = "Waking up Sovereign Server... Click Generate PCB again in 15s.";
+        document.getElementById("h2h-table-body").innerHTML = '<tr><td colspan="4" style="padding: 16px; text-align: center; color: #00f2fe;">Server waking up — click <b>⚡ GENERATE PCB</b> again in 15 seconds.</td></tr>';
+      } finally { btn.innerText = "⚡ GENERATE PCB"; }
     }
-
-    function fetchAstroWindows() {
-      fetchAstroWindowsWithRetry(1, 1000);
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function() { navigator.serviceWorker.register("/sw.js").catch(function() {}); });
     }
   </script>
 </body>

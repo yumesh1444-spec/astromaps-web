@@ -596,7 +596,7 @@
       const notice = document.getElementById("session-notice-box");
       notice.style.display = "inline-block";
       notice.innerText = "⏭ SHOWING NEXT TRADING SESSION: " + next.dateStr;
-      fetchAstroWindows();
+      fetchAstroWindowsWithRetry();
     }
 
     function copySocialPremarketPost() {
@@ -627,11 +627,9 @@
         notice.innerText = "📅 WEEKEND MARKET CLOSED • AUTO-SHOWING NEXT TRADING SESSION (" + next.dateStr + ")";
       }
       if (isStandaloneApp()) recordAppInstallOnce();
-      
-      // Background Wake-up ping to Render backend
-      fetch(PING_URL).catch(function() {});
 
-      fetchAstroWindows();
+      fetch(PING_URL).catch(function() {});
+      fetchAstroWindowsWithRetry();
       updateVisitorCounter();
       loadAppInstallStats();
     });
@@ -644,7 +642,7 @@
       btnEl.classList.add("active");
       document.getElementById("terminal-main-title").innerText = ASSET_HEADERS[assetKey].title;
       document.getElementById("anchor-label").innerText = ASSET_HEADERS[assetKey].anchor;
-      fetchAstroWindows();
+      fetchAstroWindowsWithRetry();
     }
 
     async function updateVisitorCounter() {
@@ -672,77 +670,69 @@
       } catch (e) { countEl.innerText = "0"; }
     }
 
-    async function fetchAstroWindows() {
+    async function fetchAstroWindowsWithRetry(retries = 5, delay = 4000) {
       const picker = document.getElementById("audit-date-picker");
       let selectedDate = picker.value;
       if (!selectedDate) return;
+      
       const adjusted = getNextTradingDate(new Date(selectedDate + "T09:15:00"));
       if (adjusted.skippedWeekend) {
         selectedDate = adjusted.dateStr;
         picker.value = selectedDate;
-        const notice = document.getElementById("session-notice-box");
-        notice.style.display = "inline-block";
-        notice.innerText = "📅 WEEKEND SKIPPED • AUTO-ADJUSTED TO NEXT TRADING DAY (" + selectedDate + ")";
       }
+
       const btn = document.getElementById("gen-btn");
-      btn.innerText = "⏳ SCANNING PCB...";
-      document.getElementById("opening-bias-text").innerText = "Running PCB Sovereign Engine (" + CURRENT_ASSET + ")...";
-      document.getElementById("regime-alert-text").innerText = "Auditing Planetary Harmonics...";
-      
-      try {
-        const res = await fetch(API_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ date: selectedDate, asset: CURRENT_ASSET, is_admin: IS_FOUNDER })
-        });
-        if (!res.ok) throw new Error("Server busy");
-        const data = await res.json();
-        const cleanBias = data.opening_bias.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
-        const cleanRegime = data.regime_alert.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
-        document.getElementById("opening-bias-text").innerText = cleanBias;
-        document.getElementById("regime-alert-text").innerText = cleanRegime;
+      btn.innerText = "⏳ AWAKENING SERVER...";
+      document.getElementById("opening-bias-text").innerText = "Waking up Sovereign Server (Cold Start)...";
+      document.getElementById("regime-alert-text").innerText = "Establishing Connection to Render...";
 
-        const tbody = document.getElementById("h2h-table-body");
-        tbody.innerHTML = "";
-        const activeSlotsForPost = [];
+      for (let i = 0; i < retries; i++) {
+        try {
+          const res = await fetch(API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ date: selectedDate, asset: CURRENT_ASSET, is_admin: IS_FOUNDER })
+          });
+          if (!res.ok) throw new Error("Server starting up");
+          const data = await res.json();
+          
+          document.getElementById("opening-bias-text").innerText = data.opening_bias;
+          document.getElementById("regime-alert-text").innerText = data.regime_alert;
 
-        data.h2h_slots.forEach(function(slot) {
-          const cleanTag = slot.priority_tag.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
-          const cleanPhase = slot.phase.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
-          const cleanAction = slot.action_bias.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
-          const tier = slot.tier || "std";
-          let rowClass = "row-standard", badgeClass = "badge-standard", timeColor = "#94a3b8";
-          if (tier === "dual") { rowClass = "row-dual-lock"; badgeClass = "badge-dual"; timeColor = "#fda4af"; activeSlotsForPost.push("• " + slot.time_window + " (" + cleanTag + ")"); }
-          else if (tier === "ruler") { rowClass = "row-ruler-lock"; badgeClass = "badge-ruler"; timeColor = "#facc15"; activeSlotsForPost.push("• " + slot.time_window + " (" + cleanTag + ")"); }
-          else if (tier === "kill") { rowClass = "row-killzone"; badgeClass = "badge-killzone"; timeColor = "#00f2fe"; activeSlotsForPost.push("• " + slot.time_window + " (" + cleanTag + ")"); }
-          tbody.innerHTML += '<tr class="' + rowClass + '"><td style="padding: 14px 16px; white-space: nowrap; font-family: \'JetBrains Mono\', monospace; font-weight: 800; color: ' + timeColor + ';">' + slot.time_window + '</td><td style="padding: 14px 16px; color: #f1f5f9; font-weight: 600;">' + cleanPhase + '</td><td style="padding: 14px 16px; color: #ffffff; font-weight: 700;">' + cleanAction + '</td><td style="padding: 14px 16px;"><span class="' + badgeClass + '">' + cleanTag + '</span></td></tr>';
-        });
+          const tbody = document.getElementById("h2h-table-body");
+          tbody.innerHTML = "";
+          const activeSlotsForPost = [];
 
-        if (IS_FOUNDER) {
-          const slotsBlock = activeSlotsForPost.length > 0 ? activeSlotsForPost.join("\n") : "• Standard Cycle Observation (Wait for Intraday Pivot)";
-          const postText = data.social_premarket_post || (
-            "⚡ ASTRO MAPs AI — PRE-MARKET TIMING BRIEF (" + selectedDate + ")\n" +
-            "📊 Asset: " + CURRENT_ASSET + "\n" +
-            "🧭 Opening Vector: " + cleanBias + "\n" +
-            "🔐 Matrix Status: " + cleanRegime + "\n\n" +
-            "⏱️ Key Intraday PCB Windows (IST):\n" +
-            slotsBlock + "\n\n" +
-            "🌐 Live Interactive Tool: https://astromapsai.com\n" +
-            "✈️ Telegram: https://t.me/AstroMapsai2026\n" +
-            "📢 WhatsApp: https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s\n" +
-            "▶️ YouTube: https://youtube.com/@AstroMAPSAI\n" +
-            "#AstroMAPsAI #Nifty50 #BankNifty #MCX #MarketTiming #UmeshKumarYadav"
-          );
-          document.getElementById("social-post-textarea").value = postText;
+          data.h2h_slots.forEach(function(slot) {
+            const tier = slot.tier || "std";
+            let rowClass = "row-standard", badgeClass = "badge-standard", timeColor = "#94a3b8";
+            if (tier === "dual") { rowClass = "row-dual-lock"; badgeClass = "badge-dual"; timeColor = "#fda4af"; activeSlotsForPost.push("• " + slot.time_window + " (" + slot.priority_tag + ")"); }
+            else if (tier === "ruler") { rowClass = "row-ruler-lock"; badgeClass = "badge-ruler"; timeColor = "#facc15"; activeSlotsForPost.push("• " + slot.time_window + " (" + slot.priority_tag + ")"); }
+            else if (tier === "kill") { rowClass = "row-killzone"; badgeClass = "badge-killzone"; timeColor = "#00f2fe"; activeSlotsForPost.push("• " + slot.time_window + " (" + slot.priority_tag + ")"); }
+            tbody.innerHTML += '<tr class="' + rowClass + '"><td style="padding: 14px 16px; white-space: nowrap; font-family: \'JetBrains Mono\', monospace; font-weight: 800; color: ' + timeColor + ';">' + slot.time_window + '</td><td style="padding: 14px 16px; color: #f1f5f9; font-weight: 600;">' + slot.phase + '</td><td style="padding: 14px 16px; color: #ffffff; font-weight: 700;">' + slot.action_bias + '</td><td style="padding: 14px 16px;"><span class="' + badgeClass + '">' + slot.priority_tag + '</span></td></tr>';
+          });
+
+          if (IS_FOUNDER) {
+            document.getElementById("social-post-textarea").value = data.social_premarket_post || "";
+          }
+
+          btn.innerText = "⚡ GENERATE PCB";
+          return;
+        } catch (err) {
+          if (i < retries - 1) {
+            document.getElementById("opening-bias-text").innerText = `Waking up Server... Retry ${i+1}/${retries} in ${delay/1000}s`;
+            await new Promise(resolve => setTimeout(resolve, delay));
+          }
         }
-      } catch (err) {
-        document.getElementById("opening-bias-text").innerText = "Server waking up... Click ⚡ GENERATE PCB again.";
-        document.getElementById("regime-alert-text").innerText = "Cold Start Warm-up in Progress...";
-        document.getElementById("h2h-table-body").innerHTML = '<tr><td colspan="4" style="padding: 16px; text-align: center; color: #00f2fe;">Server is waking up from sleep mode — click <b>⚡ GENERATE PCB</b> again.</td></tr>';
-      } finally { btn.innerText = "⚡ GENERATE PCB"; }
+      }
+
+      document.getElementById("opening-bias-text").innerText = "Server Asleep. Click ⚡ GENERATE PCB to retry.";
+      document.getElementById("regime-alert-text").innerText = "Ready.";
+      btn.innerText = "⚡ GENERATE PCB";
     }
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", function() { navigator.serviceWorker.register("/sw.js").catch(function() {}); });
+
+    function fetchAstroWindows() {
+      fetchAstroWindowsWithRetry(1, 1000);
     }
   </script>
 </body>

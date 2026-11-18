@@ -708,7 +708,7 @@
             let rowClass = "row-standard", badgeClass = "badge-standard", timeColor = "#94a3b8";
             if (tier === "dual") { rowClass = "row-dual-lock"; badgeClass = "badge-dual"; timeColor = "#fda4af"; activeSlotsForPost.push("• " + slot.time_window + " (" + slot.priority_tag + ")"); }
             else if (tier === "ruler") { rowClass = "row-ruler-lock"; badgeClass = "badge-ruler"; timeColor = "#facc15"; activeSlotsForPost.push("• " + slot.time_window + " (" + slot.priority_tag + ")"); }
-            else if (tier === "kill") { rowClass = "row-killzone"; badgeClass = "badge-killzone"; timeColor = "#00f2fe"; activeSlotsFor_post.push("• " + slot.time_window + " (" + slot.priority_tag + ")"); }
+            else if (tier === "kill") { rowClass = "row-killzone"; badgeClass = "badge-killzone"; timeColor = "#00f2fe"; activeSlotsForPost.push("• " + slot.time_window + " (" + slot.priority_tag + ")"); }
             tbody.innerHTML += '<tr class="' + rowClass + '"><td style="padding: 14px 16px; white-space: nowrap; font-family: \'JetBrains Mono\', monospace; font-weight: 800; color: ' + timeColor + ';">' + slot.time_window + '</td><td style="padding: 14px 16px; color: #f1f5f9; font-weight: 600;">' + slot.phase + '</td><td style="padding: 14px 16px; color: #ffffff; font-weight: 700;">' + slot.action_bias + '</td><td style="padding: 14px 16px;"><span class="' + badgeClass + '">' + slot.priority_tag + '</span></td></tr>';
           });
 

@@ -554,4 +554,166 @@
       NIFTY: { title: "NIFTY 50 (NSE) PCB TIME-WINDOW GENERATOR" },
       BANKNIFTY: { title: "BANK NIFTY (NSE) PCB TIME-WINDOW GENERATOR" },
       SILVER: { title: "MCX SILVER PCB TIME-WINDOW GENERATOR" },
-      CRUDE: { title: "MCX CRUDE
+      CRUDE: { title: "MCX CRUDE OIL PCB TIME-WINDOW GENERATOR" }
+    };
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("admin") === "umesh") {
+      localStorage.setItem("astromaps_founder_mode", "true");
+    }
+    const IS_FOUNDER = localStorage.getItem("astromaps_founder_mode") === "true";
+
+    function isStandaloneApp() {
+      return (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || (window.navigator.standalone === true);
+    }
+    function recordAppInstallOnce() {
+      if (IS_FOUNDER || localStorage.getItem("astromaps_app_installed") === "true") return;
+      localStorage.setItem("astromaps_app_installed", "true");
+      fetch(INSTALL_UP_URL, { keepalive: true }).catch(function() {});
+    }
+    function getNextTradingDate(baseDateObj) {
+      const d = new Date(baseDateObj.getTime());
+      let skippedWeekend = false;
+      while (d.getDay() === 0 || d.getDay() === 6) { d.setDate(d.getDate() + 1); skippedWeekend = true; }
+      return { dateStr: d.toISOString().split("T")[0], skippedWeekend: skippedWeekend };
+    }
+    function loadNextTradingSession() {
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const next = getNextTradingDate(tomorrow);
+      document.getElementById("audit-date-picker").value = next.dateStr;
+      const notice = document.getElementById("session-notice-box");
+      notice.style.display = "inline-block";
+      notice.innerText = "⏭ SHOWING NEXT TRADING SESSION: " + next.dateStr;
+      fetchAstroWindowsWithRetry();
+    }
+
+    function copySocialPremarketPost() {
+      const textarea = document.getElementById("social-post-textarea");
+      const btn = document.getElementById("copy-social-btn");
+      if (!textarea || !textarea.value) return;
+      navigator.clipboard.writeText(textarea.value).then(function() {
+        btn.innerText = "✅ Copied for All Channels!";
+        setTimeout(function() { btn.innerText = "📋 Copy Pre-Market Post"; }, 2500);
+      }).catch(function() {
+        textarea.select();
+        document.execCommand("copy");
+        btn.innerText = "✅ Copied!";
+        setTimeout(function() { btn.innerText = "📋 Copy Pre-Market Post"; }, 2500);
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", function() {
+      if (IS_FOUNDER) {
+        document.getElementById("admin-social-box").style.display = "block";
+      }
+      const today = new Date();
+      const next = getNextTradingDate(today);
+      document.getElementById("audit-date-picker").value = next.dateStr;
+      if (next.skippedWeekend) {
+        const notice = document.getElementById("session-notice-box");
+        notice.style.display = "inline-block";
+        notice.innerText = "📅 WEEKEND MARKET CLOSED • AUTO-SHOWING NEXT TRADING SESSION (" + next.dateStr + ")";
+      }
+      if (isStandaloneApp()) recordAppInstallOnce();
+
+      fetch(PING_URL).catch(function() {});
+      fetchAstroWindowsWithRetry();
+      updateVisitorCounter();
+      loadAppInstallStats();
+    });
+
+    window.addEventListener("appinstalled", function() { recordAppInstallOnce(); });
+
+    function switchAsset(assetKey, btnEl) {
+      CURRENT_ASSET = assetKey;
+      document.querySelectorAll(".asset-tab").forEach(function(b) { b.classList.remove("active"); });
+      btnEl.classList.add("active");
+      document.getElementById("terminal-main-title").innerText = ASSET_HEADERS[assetKey].title;
+      fetchAstroWindowsWithRetry();
+    }
+
+    async function updateVisitorCounter() {
+      const countEl = document.getElementById("visitor-count");
+      const alreadyCounted = sessionStorage.getItem("astromaps_session_counted") === "true";
+      const endpoint = (IS_FOUNDER || alreadyCounted) ? COUNTER_GET_URL : COUNTER_UP_URL;
+      try {
+        const res = await fetch(endpoint);
+        if (!res.ok) throw new Error("Counter error");
+        const data = await res.json();
+        countEl.innerText = (COUNTER_BASE + (data.count || 0)).toLocaleString("en-IN");
+        sessionStorage.setItem("astromaps_session_counted", "true");
+      } catch (e) { countEl.innerText = "166+"; }
+    }
+
+    async function loadAppInstallStats() {
+      if (!IS_FOUNDER) return;
+      document.getElementById("app-install-box").style.display = "inline-flex";
+      const countEl = document.getElementById("app-install-count");
+      try {
+        const res = await fetch(INSTALL_GET_URL);
+        if (!res.ok) throw new Error("Install error");
+        const data = await res.json();
+        countEl.innerText = (data.count || 0).toLocaleString("en-IN");
+      } catch (e) { countEl.innerText = "0"; }
+    }
+
+    async function fetchAstroWindowsWithRetry(retries = 5, delay = 4000) {
+      const picker = document.getElementById("audit-date-picker");
+      let selectedDate = picker.value;
+      if (!selectedDate) return;
+      
+      const adjusted = getNextTradingDate(new Date(selectedDate + "T09:15:00"));
+      if (adjusted.skippedWeekend) {
+        selectedDate = adjusted.dateStr;
+        picker.value = selectedDate;
+      }
+
+      const btn = document.getElementById("gen-btn");
+      btn.innerText = "⏳ AWAKENING SERVER...";
+
+      for (let i = 0; i < retries; i++) {
+        try {
+          const res = await fetch(API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ date: selectedDate, asset: CURRENT_ASSET, is_admin: IS_FOUNDER })
+          });
+          if (!res.ok) throw new Error("Server starting up");
+          const data = await res.json();
+
+          const tbody = document.getElementById("h2h-table-body");
+          tbody.innerHTML = "";
+
+          data.h2h_slots.forEach(function(slot) {
+            const tier = slot.tier || "std";
+            let rowClass = "row-standard", badgeClass = "badge-standard", timeColor = "#94a3b8";
+            if (tier === "dual") { rowClass = "row-dual-lock"; badgeClass = "badge-dual"; timeColor = "#fda4af"; }
+            else if (tier === "ruler") { rowClass = "row-ruler-lock"; badgeClass = "badge-ruler"; timeColor = "#facc15"; }
+            else if (tier === "kill") { rowClass = "row-killzone"; badgeClass = "badge-killzone"; timeColor = "#00f2fe"; }
+            tbody.innerHTML += '<tr class="' + rowClass + '"><td style="padding: 14px 16px; white-space: nowrap; font-family: \'JetBrains Mono\', monospace; font-weight: 800; color: ' + timeColor + ';">' + slot.time_window + '</td><td style="padding: 14px 16px; color: #f1f5f9; font-weight: 600;">' + slot.phase + '</td><td style="padding: 14px 16px; color: #ffffff; font-weight: 700;">' + slot.action_bias + '</td><td style="padding: 14px 16px;"><span class="' + badgeClass + '">' + slot.priority_tag + '</span></td></tr>';
+          });
+
+          if (IS_FOUNDER) {
+            document.getElementById("social-post-textarea").value = data.social_premarket_post || "";
+          }
+
+          btn.innerText = "⚡ GENERATE PCB";
+          return;
+        } catch (err) {
+          if (i < retries - 1) {
+            btn.innerText = `⏳ RETRYING (${i+1}/${retries})...`;
+            await new Promise(resolve => setTimeout(resolve, delay));
+          }
+        }
+      }
+
+      btn.innerText = "⚡ GENERATE PCB";
+    }
+
+    function fetchAstroWindows() {
+      fetchAstroWindowsWithRetry(1, 1000);
+    }
+  </script>
+</body>
+</html>

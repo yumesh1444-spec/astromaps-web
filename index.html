@@ -673,9 +673,9 @@
           tbody.innerHTML = "";
 
           data.h2h_slots.forEach(function(slot) {
-            const cleanTag = slot.priority_tag.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
-            const cleanPhase = slot.phase.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
-            const cleanAction = slot.action_bias.replace(/MSL/g, "CHAIN").replace(/HORA/gi, "CYCLE").replace(/v\d+\.\d+/gi, "");
+            const cleanTag = slot.priority_tag.replace(/v\d+\.\d+/gi, "");
+            const cleanPhase = slot.phase.replace(/v\d+\.\d+/gi, "");
+            const cleanAction = slot.action_bias.replace(/v\d+\.\d+/gi, "");
             const tier = slot.tier || "std";
             let rowClass = "row-standard", badgeClass = "badge-standard", timeColor = "#94a3b8";
             if (tier === "dual") { rowClass = "row-dual-lock"; badgeClass = "badge-dual"; timeColor = "#fda4af"; }

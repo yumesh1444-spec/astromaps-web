@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astro MAPs AI — Global Gold & Bitcoin Matrix</title>
+  <style>
+    :root {
+      --bg: #090d16;
+      --card: #111827;
+      --border: #1f2937;
+      --gold: #f59e0b;
+      --gold-soft: rgba(245, 158, 11, 0.14);
+      --green: #10b981;
+      --red: #ef4444;
+      --blue: #3b82f6;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+    body { background: var(--bg); color: var(--text); padding: 20px; line-height: 1.5; }
+    .container { max-width: 960px; margin: 0 auto; }
+    .topbar {
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+      padding-bottom: 18px; border-bottom: 1px solid var(--border); margin-bottom: 24px;
+    }
+    .brand h1 { font-size: 1.35rem; font-weight: 800; letter-spacing: 0.5px; color: var(--gold); }
+    .brand p { font-size: 0.82rem; color: var(--muted); }
+    .nav-btn {
+      text-decoration: none; color: var(--text); background: var(--card); border: 1px solid var(--border);
+      padding: 8px 14px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; transition: 0.2s;
+    }
+    .nav-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    .controls {
+      display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px;
+      background: var(--card); padding: 16px; border-radius: 12px; border: 1px solid var(--border);
+      margin-bottom: 22px;
+    }
+    @media (max-width: 640px) { .controls { grid-template-columns: 1fr; } }
+    label { display: block; font-size: 0.75rem; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.6px; }
+    select, input[type="date"], button {
+      width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border);
+      background: #0b1120; color: var(--text); font-size: 0.95rem;
+    }
+    button.run-btn {
+      background: linear-gradient(135deg, #f59e0b, #d97706); color: #090d16;
+      font-weight: 800; border: none; cursor: pointer; align-self: end; padding: 11px 22px;
+    }
+    button.run-btn:hover { opacity: 0.92; }
+
+    .verdict-card {
+      background: var(--card); border: 1px solid var(--border); border-left: 5px solid var(--gold);
+      border-radius: 12px; padding: 20px; margin-bottom: 22px;
+    }
+    .verdict-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+    .badge {
+      padding: 5px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.4px;
+      background: var(--gold-soft); color: var(--gold); border: 1px solid rgba(245, 158, 11, 0.35);
+    }
+    .badge.bull { background: rgba(16, 185, 129, 0.15); color: var(--green); border-color: rgba(16, 185, 129, 0.4); }
+    .badge.bear { background: rgba(239, 68, 68, 0.15); color: var(--red); border-color: rgba(239, 68, 68, 0.4); }
+    .verdict-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 6px; }
+    .verdict-sub { color: var(--muted); font-size: 0.92rem; }
+    .edge-pill {
+      display: inline-block; margin-top: 12px; padding: 6px 12px; border-radius: 8px;
+      background: rgba(59, 130, 246, 0.14); color: #93c5fd; font-size: 0.82rem; font-weight: 600;
+    }
+
+    .section-title { font-size: 1rem; font-weight: 700; margin-bottom: 12px; color: var(--gold); }
+    .slots-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+    .slot-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px;
+    }
+    .slot-card.ruler { border-color: rgba(245, 158, 11, 0.55); }
+    .slot-card.kill { border-color: rgba(239, 68, 68, 0.55); }
+    .slot-time { font-size: 0.95rem; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+    .slot-phase { font-size: 0.8rem; color: var(--gold); font-weight: 600; margin-bottom: 8px; }
+    .slot-bias { font-size: 0.85rem; color: var(--muted); margin-bottom: 10px; }
+    .slot-tag {
+      display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 3px 8px;
+      border-radius: 6px; background: #1f2937; color: #e5e7eb;
+    }
+
+    .admin-box {
+      margin-top: 20px; padding: 14px; border-radius: 8px; background: #0f172a;
+      border: 1px dashed var(--gold); font-family: monospace; font-size: 0.82rem; color: #fde68a;
+      display: none;
+    }
+    .footer { margin-top: 32px; text-align: center; font-size: 0.78rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <h1>ASTRO MAPs AI — GLOBAL MATRIX</h1>
+        <p>Deterministic Quantitative Timing • Gold (GC=F) & Bitcoin (BTC-USD)</p>
+      </div>
+      <a href="index.html" class="nav-btn">← Indian Indices & MCX Portal</a>
+    </div>
+
+    <div class="controls">
+      <div>
+        <label for="assetSelect">Global Asset</label>
+        <select id="assetSelect">
+          <option value="GOLD">GOLD — COMEX / MCX Bullion (GC=F)</option>
+          <option value="BTC">BITCOIN — Spot Crypto (BTC-USD)</option>
+        </select>
+      </div>
+      <div>
+        <label for="dateInput">Trading Date (IST)</label>
+        <input type="date" id="dateInput" />
+      </div>
+      <button class="run-btn" onclick="loadGlobalMatrix()">Generate Matrix</button>
+    </div>
+
+    <div id="resultArea">
+      <div class="verdict-card">
+        <div class="verdict-header">
+          <span class="badge" id="tierBadge">LOADING...</span>
+          <span style="font-size:0.8rem; color:var(--muted);" id="tickerLabel">—</span>
+        </div>
+        <div class="verdict-title" id="biasTitle">Initializing Global Quantitative Engine...</div>
+        <div class="verdict-sub" id="execSummary">Fetching planetary resonance & session timing windows.</div>
+        <div class="edge-pill" id="edgePill" style="display:none;"></div>
+      </div>
+
+      <div class="section-title">24-Hour Global Session Timing Windows (IST)</div>
+      <div class="slots-grid" id="slotsGrid"></div>
+
+      <div class="admin-box" id="adminBox"></div>
+    </div>
+
+    <div class="footer">
+      Astro MAPs AI • Official Launch: 02 June 2026 • Mechanical Predictive Market Research
+    </div>
+  </div>
+
+  <script>
+    // Replace with your live Render backend URL
+    const API_BASE = "https://astro-maps-ai.onrender.com";
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const isAdmin = urlParams.get("admin") === "1";
+
+    // Default to today's IST date
+    const todayStr = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
+    document.getElementById("dateInput").value = todayStr;
+
+    async function loadGlobalMatrix() {
+      const asset = document.getElementById("assetSelect").value;
+      const dateVal = document.getElementById("dateInput").value || todayStr;
+
+      document.getElementById("biasTitle").textContent = `Calculating ${asset} Matrix for ${dateVal}...`;
+      document.getElementById("slotsGrid").innerHTML = "";
+
+      try {
+        const res = await fetch(`${API_BASE}/api/global-matrix`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ date: dateVal, asset: asset, is_admin: isAdmin })
+        });
+        const data = await res.json();
+
+        const tierBadge = document.getElementById("tierBadge");
+        tierBadge.textContent = data.conviction_tier || "ACTIVE";
+        tierBadge.className = "badge " + (
+          data.regime === "BULLISH_EXPANSION" ? "bull" :
+          data.regime === "BEARISH_PRESSURE" ? "bear" : ""
+        );
+
+        document.getElementById("tickerLabel").textContent = `${data.benchmark_ticker} • ${data.date}`;
+        document.getElementById("biasTitle").textContent = data.bias_direction;
+        document.getElementById("execSummary").textContent = data.executive_summary;
+
+        const edgePill = document.getElementById("edgePill");
+        if (data.historical_edge_pct) {
+          edgePill.style.display = "inline-block";
+          edgePill.textContent = `2020–2026 Backtested Regime Edge: ${data.historical_edge_pct}%`;
+        } else {
+          edgePill.style.display = "none";
+        }
+
+        const grid = document.getElementById("slotsGrid");
+        (data.session_windows || []).forEach(slot => {
+          const card = document.createElement("div");
+          card.className = `slot-card ${slot.tier}`;
+          card.innerHTML = `
+            <div class="slot-time">${slot.time_window}</div>
+            <div class="slot-phase">${slot.phase}</div>
+            <div class="slot-bias">${slot.action_bias}</div>
+            <span class="slot-tag">${slot.priority_tag}</span>
+          `;
+          grid.appendChild(card);
+        });
+
+        const adminBox = document.getElementById("adminBox");
+        if (isAdmin && data.admin_debug) {
+          adminBox.style.display = "block";
+          adminBox.textContent = `ADMIN DEBUG: ${data.admin_debug}`;
+        } else {
+          adminBox.style.display = "none";
+        }
+      } catch (err) {
+        document.getElementById("biasTitle").textContent = "Backend Connection Error";
+        document.getElementById("execSummary").textContent = "Please ensure Render server is awake and API_BASE URL is configured.";
+      }
+    }
+
+    loadGlobalMatrix();
+  </script>
+</body>
+</html>

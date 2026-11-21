@@ -3,347 +3,668 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Astro MAPs AI — Global Gold &amp; Bitcoin Matrix</title>
+  <title>Astro MAPs AI — Global Gold &amp; Bitcoin Timing Matrix</title>
+  <meta name="description" content="Astro MAPs AI by Principal Architect Umesh Kumar Yadav — Quantitative market timing tool for COMEX/MCX Gold & Bitcoin (BTC-USD)." />
+  <meta name="author" content="Umesh Kumar Yadav" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#00f2fe" />
+  <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3310/3310624.png" />
   <style>
-    :root {
-      --bg-deep: #06101e;
-      --bg-panel: #0b192c;
-      --bg-card: #0e2038;
-      --border-cyan: rgba(34, 211, 238, 0.25);
-      --border-subtle: rgba(148, 163, 184, 0.16);
-      --cyan: #22d3ee;
-      --cyan-glow: rgba(34, 211, 238, 0.16);
-      --emerald: #10b981;
-      --amber: #f59e0b;
-      --rose: #ef4444;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+    * { box-sizing: border-box; }
     body {
-      background: radial-gradient(circle at top center, #0c213d 0%, var(--bg-deep) 65%);
-      color: var(--text-main);
-      min-height: 100vh;
+      margin: 0;
+      padding: 0 16px 60px 16px;
+      background: radial-gradient(circle at 50% 0%, #0f294a 0%, #061326 60%, #020813 100%);
+      background-color: #061326;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #f8fafc;
     }
+    .container { max-width: 1140px; margin: 0 auto; }
 
-    /* Top Header Bar Matching astromapsai.com */
-    .navbar {
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
-      padding: 14px 32px;
-      background: rgba(6, 16, 30, 0.92);
-      border-bottom: 1px solid var(--border-subtle);
-      position: sticky; top: 0; z-index: 50;
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(6, 19, 38, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 242, 254, 0.25);
+      margin: 0 -16px 22px -16px;
+      padding: 12px 24px;
     }
-    .logo { font-size: 1.15rem; font-weight: 800; letter-spacing: 0.4px; color: #fff; text-decoration: none; }
-    .logo span { color: var(--cyan); }
-    .nav-links { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .nav-links a {
-      text-decoration: none; color: var(--text-muted); font-size: 0.82rem; font-weight: 600;
-      padding: 7px 14px; border-radius: 8px; border: 1px solid transparent; transition: 0.2s;
+    .nav-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
     }
-    .nav-links a:hover { color: #fff; background: rgba(255, 255, 255, 0.05); }
-    .nav-links a.active {
-      color: var(--cyan); background: var(--cyan-glow); border-color: var(--border-cyan);
+    .nav-brand {
+      text-decoration: none;
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 0.5px;
     }
+    .nav-brand span { color: #00f2fe; }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 8px; }
+    .nav-link {
+      text-decoration: none;
+      color: #cbd5e1;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+    .nav-link:hover { color: #00f2fe; border-color: rgba(0, 242, 254, 0.35); background: rgba(0, 242, 254, 0.08); }
+    .nav-link.active { background: rgba(0, 242, 254, 0.16); color: #00f2fe; border-color: #00f2fe; }
 
-    .container { max-width: 1120px; margin: 26px auto; padding: 0 20px; }
+    .app-compact-header { display: none; }
 
-    /* Hero Banner Card */
-    .hero-card {
-      background: linear-gradient(135deg, rgba(14, 32, 56, 0.95), rgba(9, 22, 40, 0.98));
-      border: 1px solid var(--border-cyan);
-      border-radius: 14px;
-      padding: 24px 28px;
+    .hero-mini {
+      background: linear-gradient(180deg, rgba(16, 44, 82, 0.72) 0%, rgba(10, 28, 54, 0.85) 100%);
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      border-radius: 18px;
+      padding: 22px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
       margin-bottom: 20px;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
     }
-    .pill-tag {
-      display: inline-block; font-size: 0.68rem; font-weight: 800; letter-spacing: 1px;
-      color: var(--cyan); background: var(--cyan-glow); border: 1px solid var(--border-cyan);
-      padding: 4px 10px; border-radius: 999px; margin-bottom: 10px; text-transform: uppercase;
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(2, 12, 27, 0.7);
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #00f2fe;
     }
-    .hero-card h1 { font-size: 1.65rem; font-weight: 800; margin-bottom: 6px; }
-    .hero-card p { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; }
-    .social-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .social-links { display: flex; gap: 8px; flex-wrap: wrap; }
     .social-btn {
-      text-decoration: none; font-size: 0.78rem; font-weight: 700; padding: 7px 14px;
-      border-radius: 7px; color: #fff; display: inline-flex; align-items: center; gap: 6px;
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 8px 13px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
-    .btn-wa { background: #16a34a; }
-    .btn-tg { background: #0284c7; }
-    .btn-yt { background: #dc2626; }
-    .btn-li { background: #1d4ed8; }
+    .yt { background: #dc2626; }
+    .li { background: #1d4ed8; }
+    .wa { background: #16a34a; }
+    .tg { background: #0284c7; }
 
-    /* Main Generator Panel */
-    .generator-panel {
-      background: var(--bg-panel);
-      border: 1px solid var(--border-cyan);
-      border-radius: 14px;
+    .terminal-box {
       padding: 24px;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+      background: linear-gradient(145deg, rgba(13, 37, 69, 0.94), rgba(4, 15, 32, 0.98));
+      border: 1.5px solid rgba(0, 242, 254, 0.55);
+      border-radius: 22px;
+      box-shadow: 0 0 40px rgba(0, 242, 254, 0.16);
     }
-    .gen-header {
-      display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;
-      padding-bottom: 18px; border-bottom: 1px solid var(--border-subtle); margin-bottom: 18px;
+    .inside-tool-guide {
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px dashed rgba(0, 242, 254, 0.45);
+      border-radius: 12px;
+      padding: 11px 16px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.83rem;
+      color: #e2e8f0;
     }
-    .gen-sub { font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; color: var(--cyan); text-transform: uppercase; margin-bottom: 4px; }
-    .gen-title { font-size: 1.25rem; font-weight: 800; letter-spacing: 0.3px; }
-    .status-strip {
-      display: inline-block; margin-top: 8px; font-size: 0.72rem; font-weight: 700;
-      padding: 4px 10px; border-radius: 6px; background: rgba(245, 158, 11, 0.14);
-      color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.35);
+    .step-badge {
+      background: #00f2fe;
+      color: #020c1b;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 900;
+      font-size: 0.7rem;
+      padding: 2px 7px;
+      border-radius: 5px;
+      margin-right: 5px;
+    }
+    .terminal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      border-bottom: 1px solid rgba(0, 242, 254, 0.22);
+      padding-bottom: 18px;
+    }
+    .terminal-title { margin: 5px 0 0 0; font-size: 1.3rem; font-weight: 900; color: #ffffff; }
+    .session-notice {
+      display: inline-block;
+      margin-top: 8px;
+      background: rgba(250, 204, 21, 0.14);
+      border: 1px solid rgba(250, 204, 21, 0.45);
+      color: #fde047;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+    .asset-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(0, 242, 254, 0.18);
+    }
+    .asset-tab {
+      background: rgba(2, 12, 27, 0.8);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      color: #94a3b8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 10px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .asset-tab:hover { border-color: #00f2fe; color: #ffffff; }
+    .asset-tab.active {
+      background: linear-gradient(135deg, #0284c7, #00f2fe);
+      color: #020c1b;
+      border-color: #00f2fe;
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+    }
+    .command-wrapper { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+    .dock-hint { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 800; color: #fde047; }
+    .command-dock {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      background: rgba(2, 10, 24, 0.92);
+      border: 1px solid rgba(0, 242, 254, 0.45);
+      padding: 6px 8px;
+      border-radius: 12px;
+    }
+    .quick-btn {
+      background: rgba(0, 242, 254, 0.12);
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      color: #00f2fe;
+      padding: 8px 11px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 0.74rem;
+      cursor: pointer;
+    }
+    .date-input {
+      background: rgba(13, 37, 69, 0.65);
+      color: #ffffff;
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 0.88rem;
+      color-scheme: dark;
+    }
+    .gen-btn {
+      background: linear-gradient(135deg, #00f2fe 0%, #10b981 100%);
+      color: #020c1b;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 900;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-family: 'JetBrains Mono', monospace;
     }
 
-    .controls-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .date-box {
-      background: var(--bg-deep); border: 1px solid var(--border-cyan); color: #fff;
-      padding: 9px 12px; border-radius: 8px; font-size: 0.85rem; font-weight: 600;
+    /* Global Regime Verdict Card */
+    .regime-card {
+      margin-top: 18px;
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.14) 0%, rgba(13, 37, 69, 0.85) 100%);
+      border: 1.5px solid rgba(0, 242, 254, 0.45);
+      border-left: 5px solid #00f2fe;
+      border-radius: 14px;
+      padding: 16px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
     }
-    .btn-action {
-      padding: 10px 16px; border-radius: 8px; font-size: 0.8rem; font-weight: 800;
-      letter-spacing: 0.5px; cursor: pointer; border: none; text-transform: uppercase; transition: 0.2s;
-    }
-    .btn-today { background: #1e293b; color: var(--cyan); border: 1px solid var(--border-cyan); }
-    .btn-generate { background: var(--emerald); color: #042f2e; }
-    .btn-generate:hover { filter: brightness(1.08); }
-
-    /* Asset Tabs Matching Index Tabs */
-    .asset-tabs { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
-    .tab-btn {
-      padding: 9px 18px; border-radius: 8px; font-size: 0.78rem; font-weight: 800;
-      letter-spacing: 0.5px; cursor: pointer; background: var(--bg-deep);
-      color: var(--text-muted); border: 1px solid var(--border-subtle); text-transform: uppercase;
-    }
-    .tab-btn.active {
-      background: var(--cyan); color: #06101e; border-color: var(--cyan);
-      box-shadow: 0 0 16px rgba(34, 211, 238, 0.35);
-    }
-
-    /* Regime Summary Box */
-    .regime-banner {
-      display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center;
-      background: var(--bg-card); border: 1px solid var(--border-cyan);
-      border-radius: 10px; padding: 16px 20px; margin-bottom: 20px;
-    }
-    @media (max-width: 680px) { .regime-banner { grid-template-columns: 1fr; } }
-    .regime-label { font-size: 0.72rem; font-weight: 700; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.8px; }
-    .regime-value { font-size: 1.2rem; font-weight: 800; margin: 4px 0; }
-    .regime-desc { font-size: 0.85rem; color: var(--text-muted); }
-    .regime-metrics { text-align: right; }
-    @media (max-width: 680px) { .regime-metrics { text-align: left; } }
-    .tier-badge {
-      display: inline-block; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem;
-      font-weight: 800; letter-spacing: 0.5px; background: var(--cyan-glow); color: var(--cyan);
-      border: 1px solid var(--border-cyan);
-    }
-    .tier-badge.bull { background: rgba(16, 185, 129, 0.16); color: #34d399; border-color: rgba(16, 185, 129, 0.4); }
-    .tier-badge.bear { background: rgba(239, 68, 68, 0.16); color: #f87171; border-color: rgba(239, 68, 68, 0.4); }
-    .edge-text { font-size: 0.78rem; color: #fbbf24; font-weight: 700; margin-top: 6px; }
-
-    /* Table Matching Index PCB Time-Window Table */
-    .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border-subtle); }
-    table { width: 100%; border-collapse: collapse; background: var(--bg-deep); }
-    th {
-      text-align: left; padding: 12px 16px; font-size: 0.72rem; font-weight: 800;
-      letter-spacing: 0.8px; color: var(--cyan); background: #091729;
-      border-bottom: 1px solid var(--border-cyan); text-transform: uppercase;
-    }
-    td {
-      padding: 14px 16px; font-size: 0.86rem; border-bottom: 1px solid var(--border-subtle);
-      vertical-align: middle;
-    }
-    tr:last-child td { border-bottom: none; }
-    .td-time { font-weight: 800; color: var(--cyan); white-space: nowrap; }
-    .td-phase { font-weight: 600; color: #e2e8f0; }
-    .td-sig { color: #cbd5e1; }
-    .status-pill {
-      display: inline-block; padding: 5px 10px; border-radius: 6px; font-size: 0.7rem;
-      font-weight: 800; letter-spacing: 0.5px; background: rgba(34, 211, 238, 0.14);
-      color: var(--cyan); border: 1px solid var(--border-cyan); white-space: nowrap;
-    }
-    .status-pill.kill {
-      background: rgba(239, 68, 68, 0.16); color: #f87171; border-color: rgba(239, 68, 68, 0.4);
-    }
-    .status-pill.std {
-      background: rgba(148, 163, 184, 0.12); color: #cbd5e1; border-color: rgba(148, 163, 184, 0.25);
+    .regime-card.bull { border-left-color: #10b981; background: linear-gradient(90deg, rgba(16, 185, 129, 0.18) 0%, rgba(13, 37, 69, 0.85) 100%); }
+    .regime-card.bear { border-left-color: #f43f5e; background: linear-gradient(90deg, rgba(244, 63, 94, 0.18) 0%, rgba(13, 37, 69, 0.85) 100%); }
+    .regime-title { font-size: 1.2rem; font-weight: 900; color: #ffffff; margin: 4px 0; }
+    .regime-summary { font-size: 0.86rem; color: #cbd5e1; }
+    .edge-pill {
+      display: inline-block;
+      margin-top: 6px;
+      background: rgba(250, 204, 21, 0.16);
+      border: 1px solid rgba(250, 204, 21, 0.45);
+      color: #fde047;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 6px;
     }
 
-    .admin-debug {
-      margin-top: 16px; padding: 12px 16px; border-radius: 8px; background: #071324;
-      border: 1px dashed #f59e0b; color: #fde68a; font-family: monospace; font-size: 0.8rem;
+    /* Highlighted Table Tiers */
+    .row-ruler-lock { background: linear-gradient(90deg, rgba(250, 204, 21, 0.18) 0%, rgba(0, 242, 254, 0.06) 100%); border-left: 4px solid #facc15; border-bottom: 1px solid rgba(250, 204, 21, 0.35); }
+    .row-dual-lock { background: linear-gradient(90deg, rgba(244, 63, 94, 0.22) 0%, rgba(250, 204, 21, 0.12) 100%); border-left: 4px solid #f43f5e; border-bottom: 1px solid rgba(244, 63, 94, 0.38); }
+    .row-killzone { background: linear-gradient(90deg, rgba(0, 242, 254, 0.16) 0%, rgba(0, 242, 254, 0.04) 100%); border-left: 4px solid #00f2fe; border-bottom: 1px solid rgba(0, 242, 254, 0.3); }
+    .row-standard { background: rgba(2, 12, 27, 0.35); border-left: 4px solid transparent; border-bottom: 1px solid rgba(255, 255, 255, 0.06); opacity: 0.85; }
+
+    .badge-ruler { display: inline-block; white-space: nowrap; background: rgba(250, 204, 21, 0.20); border: 1px solid #facc15; color: #facc15; padding: 5px 11px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 800; }
+    .badge-dual { display: inline-block; white-space: nowrap; background: rgba(244, 63, 94, 0.24); border: 1px solid #fb7185; color: #fda4af; padding: 5px 11px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 800; }
+    .badge-killzone { display: inline-block; white-space: nowrap; background: rgba(0, 242, 254, 0.18); border: 1px solid #00f2fe; color: #00f2fe; padding: 5px 11px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 800; }
+    .badge-standard { display: inline-block; white-space: nowrap; background: rgba(148, 163, 184, 0.1); border: 1px solid rgba(148, 163, 184, 0.28); color: #94a3b8; padding: 4px 10px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 700; }
+
+    /* Admin Debug Box (Visible only when ?admin=umesh is active) */
+    .admin-social-box {
       display: none;
+      margin-top: 18px;
+      background: rgba(2, 12, 27, 0.92);
+      border: 1.5px solid rgba(250, 204, 21, 0.55);
+      border-radius: 14px;
+      padding: 16px 18px;
+    }
+
+    .trust-strip {
+      margin-top: 14px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.38);
+      border-radius: 10px;
+      padding: 10px 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      color: #a7f3d0;
+    }
+
+    .researcher-footer {
+      margin-top: 32px;
+      padding: 22px 26px;
+      background: rgba(10, 28, 54, 0.85);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      border-radius: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .researcher-badge { display: flex; align-items: center; gap: 14px; }
+    .founder-photo {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #00f2fe;
+      box-shadow: 0 0 12px rgba(0, 242, 254, 0.35);
+    }
+    .avatar-ring {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00f2fe, #2563eb);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 900;
+      color: #020c1b;
+      font-size: 1.1rem;
+    }
+    .stats-cluster { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .visitor-box {
+      background: rgba(2, 12, 27, 0.75);
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      border-radius: 12px;
+      padding: 10px 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .pulse-dot { width: 9px; height: 9px; border-radius: 50%; background: #10b981; box-shadow: 0 0 8px #10b981; }
+
+    @media all and (display-mode: standalone) {
+      body { padding: 10px 10px 30px 10px; }
+      .top-nav, .hero-mini, .inside-tool-guide { display: none !important; }
+      .app-compact-header {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(13, 37, 69, 0.95);
+        border: 1px solid rgba(0, 242, 254, 0.45);
+        border-radius: 14px;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+      }
+      .terminal-box { padding: 14px; border-radius: 16px; }
+    }
+    @media (max-width: 980px) {
+      .terminal-header { flex-direction: column; align-items: flex-start; }
+      .command-wrapper { align-items: flex-start; width: 100%; }
     }
   </style>
 </head>
 <body>
-
-  <nav class="navbar">
-    <a href="index.html" class="logo">Astro <span>MAPs</span> AI</a>
-    <div class="nav-links">
-      <a href="index.html">⚡ Home Tool</a>
-      <a href="global.html" class="active">🌐 Global Gold &amp; BTC</a>
-      <a href="index.html#methodology">Methodology</a>
-      <a href="index.html#audits">Live Audits</a>
-      <a href="index.html#guide">App Guide</a>
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Astro <span>MAPs</span> AI</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home Tool</a>
+        <a href="about.html" class="nav-link">Methodology</a>
+        <a href="proof.html" class="nav-link">Live Audits</a>
+        <a href="guide.html" class="nav-link">App Guide</a>
+        <a href="global.html" class="nav-link active">🌐 Global Gold &amp; BTC</a>
+      </div>
     </div>
   </nav>
 
   <div class="container">
-    <div class="hero-card">
-      <div class="pill-tag">• PCB SOVEREIGN ENGINE • LAUNCH: 02 JUNE 2026 • 100% MECHANICAL</div>
-      <h1>Global Bullion &amp; Crypto Time-Window Matrix</h1>
-      <p>Backtested Planetary Resonance &amp; Intraday Session Windows • COMEX/MCX Gold (GC=F) &amp; Bitcoin (BTC-USD)</p>
-      <div class="social-row">
-        <a href="https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s" target="_blank" class="social-btn btn-wa">WhatsApp Channel</a>
-        <a href="https://t.me/AstroMapsai2026" target="_blank" class="social-btn btn-tg">Telegram Channel</a>
-        <a href="https://youtube.com/@AstroMAPSAI" target="_blank" class="social-btn btn-yt">YouTube</a>
-        <a href="https://www.linkedin.com/in/umesh-y-710274a2" target="_blank" class="social-btn btn-li">LinkedIn</a>
+    <div class="app-compact-header">
+      <div>
+        <div style="font-size: 1.15rem; font-weight: 900; color: #ffffff;">Astro <span style="color: #00f2fe;">MAPs</span> AI</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #10b981; font-weight: 800;">● GLOBAL GOLD &amp; BTC MATRIX</div>
+      </div>
+      <div style="display: flex; gap: 6px;">
+        <a href="index.html" style="background: #0284c7; color: #ffffff; text-decoration: none; font-size: 0.72rem; font-weight: 800; padding: 7px 10px; border-radius: 8px;">⚡ NSE/MCX</a>
       </div>
     </div>
 
-    <div class="generator-panel">
-      <div class="gen-header">
+    <div class="hero-mini">
+      <div>
+        <div class="pill-badge">● PCB SOVEREIGN ENGINE • LAUNCH: 02 JUNE 2026 • 100% MECHANICAL</div>
+        <h1 style="margin: 8px 0 4px 0; font-size: 1.75rem; font-weight: 900;">Global Gold &amp; Bitcoin Time-Window Matrix</h1>
+        <div style="font-size: 0.88rem; color: #cbd5e1;">Backtested Planetary Resonance &amp; Intraday Session Windows • COMEX/MCX Gold (GC=F) &amp; Bitcoin (BTC-USD)</div>
+      </div>
+      <div class="social-links">
+        <a href="https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s" target="_blank" class="social-btn wa">📢 WhatsApp Channel</a>
+        <a href="https://t.me/AstroMapsai2026" target="_blank" class="social-btn tg">✈️ Telegram Channel</a>
+        <a href="https://youtube.com/@AstroMAPSAI" target="_blank" class="social-btn yt">▶ YouTube</a>
+        <a href="https://www.linkedin.com/in/umesh-y-710274a2" target="_blank" class="social-btn li">in LinkedIn</a>
+      </div>
+    </div>
+
+    <section id="astromaps-global-terminal" class="terminal-box">
+      <div class="inside-tool-guide">
+        <div><span class="step-badge">1</span><b>Select Global Asset</b> below (COMEX/MCX Gold or Bitcoin)</div>
+        <div><span class="step-badge">2</span><b>Pick Date</b> or click <b>📅 TODAY IST</b></div>
+        <div><span class="step-badge">3</span>Click <b>⚡ GENERATE PCB</b> to view Opening Regime &amp; Global Slots</div>
+      </div>
+
+      <div class="terminal-header">
         <div>
-          <div class="gen-sub">LIVE &amp; HISTORICAL GLOBAL TIMING GENERATOR (2020–2030)</div>
-          <div class="gen-title" id="panelTitle">GOLD BULLION (GC=F) PCB TIME-WINDOW GENERATOR</div>
-          <div class="status-strip" id="benchmarkStrip">BENCHMARK: GC=F (COMEX / MCX GOLD) • IST SESSION CLOCK</div>
+          <div style="font-family: 'JetBrains Mono', monospace; color: #00f2fe; font-size: 0.78rem; font-weight: 800; letter-spacing: 2px;">LIVE &amp; HISTORICAL GLOBAL TIMING GENERATOR (2020–2030)</div>
+          <h2 id="terminal-main-title" class="terminal-title">COMEX / MCX GOLD (GC=F) PCB TIME-WINDOW GENERATOR</h2>
+          <div id="session-notice-box" class="session-notice">BENCHMARK: GC=F (COMEX / MCX GOLD) • IST SESSION CLOCK</div>
         </div>
-        <div class="controls-row">
-          <button class="btn-action btn-today" onclick="setToday()">TODAY IST</button>
-          <input type="date" id="datePicker" class="date-box" />
-          <button class="btn-action btn-generate" onclick="fetchGlobalMatrix()">⚡ GENERATE PCB</button>
+
+        <div class="command-wrapper">
+          <div class="dock-hint">📅 SELECT TRADING DATE (IST):</div>
+          <div class="command-dock">
+            <button type="button" onclick="loadTodaySession()" class="quick-btn">📅 TODAY IST</button>
+            <input type="date" id="audit-date-picker" min="2020-01-01" max="2030-12-31" class="date-input" />
+            <button id="gen-btn" onclick="fetchGlobalMatrix()" class="gen-btn">⚡ GENERATE PCB</button>
+          </div>
         </div>
       </div>
 
       <div class="asset-tabs">
-        <button class="tab-btn active" id="tab-GOLD" onclick="selectAsset('GOLD')">COMEX / MCX GOLD</button>
-        <button class="tab-btn" id="tab-BTC" onclick="selectAsset('BTC')">BITCOIN (BTC-USD)</button>
+        <button class="asset-tab active" onclick="switchGlobalAsset('GOLD', this)">COMEX / MCX GOLD (GC=F)</button>
+        <button class="asset-tab" onclick="switchGlobalAsset('BTC', this)">BITCOIN (BTC-USD)</button>
       </div>
 
-      <div class="regime-banner">
+      <div id="regime-card" class="regime-card">
         <div>
-          <div class="regime-label">OPENING REGIME &amp; DIRECTIONAL BIAS</div>
-          <div class="regime-value" id="biasDirection">Loading Matrix...</div>
-          <div class="regime-desc" id="execSummary">Connecting to Sovereign Engine...</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 800; color: #00f2fe; letter-spacing: 1.5px;">DAILY REGIME &amp; DIRECTIONAL BIAS</div>
+          <div id="regime-bias-title" class="regime-title">Connecting to Sovereign Engine...</div>
+          <div id="regime-summary-text" class="regime-summary">Scanning planetary resonance &amp; session liquidity windows...</div>
+          <div id="regime-edge-pill" class="edge-pill" style="display: none;"></div>
         </div>
-        <div class="regime-metrics">
-          <div class="tier-badge" id="tierBadge">INITIALIZING</div>
-          <div class="edge-text" id="edgeDisplay"></div>
+        <div>
+          <span id="regime-tier-badge" class="badge-ruler">INITIALIZING</span>
         </div>
       </div>
 
-      <div class="table-wrap">
-        <table>
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-top: 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: #cbd5e1;">
+        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #facc15; border-radius: 2px;"></span> PRIMARY PCB VECTOR (ACTIVE EXPANSION)</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #f43f5e; border-radius: 2px;"></span> DUAL-VECTOR PCB LOCK (PEAK VELOCITY)</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #00f2fe; border-radius: 2px;"></span> PCB KILL-ZONE (INSTITUTIONAL FLOW)</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #64748b; border-radius: 2px;"></span> STANDARD PCB CYCLE</span>
+      </div>
+
+      <div style="overflow-x: auto; margin-top: 12px; border-radius: 14px; border: 1px solid rgba(0, 242, 254, 0.25);">
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
           <thead>
-            <tr>
-              <th>TIME WINDOW (IST)</th>
-              <th>SESSION PHASE</th>
-              <th>PCB KINETIC SIGNATURE</th>
-              <th>PCB STATUS</th>
+            <tr style="background: rgba(29, 78, 216, 0.5); color: #00f2fe; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;">
+              <th style="padding: 14px 16px; white-space: nowrap;">TIME WINDOW (IST)</th>
+              <th style="padding: 14px 16px;">SESSION PHASE</th>
+              <th style="padding: 14px 16px;">PCB KINETIC SIGNATURE</th>
+              <th style="padding: 14px 16px;">PCB STATUS</th>
             </tr>
           </thead>
-          <tbody id="slotsBody">
-            <tr><td colspan="4" style="text-align:center; color:var(--text-muted);">Loading intraday timing windows...</td></tr>
+          <tbody id="h2h-table-body" style="font-size: 0.92rem;">
+            <tr><td colspan="4" style="padding: 16px; text-align: center; color: #94a3b8;">Loading Global PCB Sovereign Engine Windows...</td></tr>
           </tbody>
         </table>
       </div>
 
-      <div class="admin-debug" id="adminDebugBox"></div>
-    </div>
+      <div id="admin-debug-box" class="admin-social-box">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 800; color: #fde047; margin-bottom: 6px;">
+          🔐 FOUNDER ADMIN INTERNAL MATRIX DIAGNOSTIC
+        </div>
+        <div id="admin-debug-text" style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #e2e8f0;"></div>
+      </div>
+
+      <div class="trust-strip">
+        <div>🛡️ <b>100% SAFE WEB-APP:</b> No Risky APK Download • No Login / OTP • Zero Phone Permissions Required</div>
+        <div><a href="index.html" style="color: #00f2fe; font-weight: 800; text-decoration: none;">&larr; Back to Nifty / BankNifty / MCX Terminal</a></div>
+      </div>
+    </section>
+
+    <footer class="researcher-footer">
+      <div class="researcher-badge">
+        <img src="umesh.jpg" alt="Umesh Kumar Yadav" class="founder-photo" onerror="this.style.display='none'; document.getElementById('uy-fallback').style.display='flex';" />
+        <div id="uy-fallback" class="avatar-ring">UY</div>
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: #00f2fe; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;">Principal Architect</div>
+          <div style="font-size: 1.15rem; font-weight: 900; color: #ffffff; margin-top: 2px;">Umesh Kumar Yadav <span style="font-size: 0.82rem; font-weight: 600; color: #94a3b8;">• Astro MAPs AI</span></div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: 800; margin-top: 5px; display: flex; flex-wrap: wrap; gap: 12px;">
+            <a href="https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s" target="_blank" style="color: #00f2fe; text-decoration: none;">📢 WhatsApp Channel</a>
+            <span style="color: #475569;">•</span>
+            <a href="https://t.me/AstroMapsai2026" target="_blank" style="color: #38bdf8; text-decoration: none;">✈️ Telegram Channel</a>
+            <span style="color: #475569;">•</span>
+            <a href="https://youtube.com/@AstroMAPSAI" target="_blank" style="color: #f87171; text-decoration: none;">▶ YouTube</a>
+            <span style="color: #475569;">•</span>
+            <a href="https://www.linkedin.com/in/umesh-y-710274a2" target="_blank" style="color: #60a5fa; text-decoration: none;">in LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-cluster">
+        <div class="visitor-box">
+          <span class="pulse-dot"></span>
+          <div>
+            <div style="font-size: 0.68rem; color: #94a3b8; letter-spacing: 1px;">VERIFIED TERMINAL VISITS</div>
+            <div id="visitor-count" style="font-size: 1.05rem; font-weight: 900; color: #00f2fe;">...</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: right; font-size: 0.8rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">
+        <div>36+ YEARS MECHANICAL MARKET ARCHITECTURE</div>
+        <div style="color: #64748b; font-size: 0.74rem; margin-top: 3px;">© 2026 Astro MAPs AI • PCB Sovereign Engine</div>
+      </div>
+    </footer>
   </div>
 
   <script>
-    // Update this URL to match your exact Render backend URL from index.html
-    const API_BASE = "https://astro-maps-ai.onrender.com";
+    const GLOBAL_API_URL = "https://astromaps-engine.onrender.com/api/global-matrix";
+    const PING_URL = "https://astromaps-engine.onrender.com/api/health";
+    const COUNTER_BASE = 165;
+    const COUNTER_GET_URL = "https://api.counterapi.dev/v1/astromapsai/visits";
 
-    let currentAsset = "GOLD";
-    const isAdmin = new URLSearchParams(window.location.search).get("admin") === "1";
+    let CURRENT_GLOBAL_ASSET = "GOLD";
+    const GLOBAL_HEADERS = {
+      GOLD: {
+        title: "COMEX / MCX GOLD (GC=F) PCB TIME-WINDOW GENERATOR",
+        notice: "BENCHMARK: GC=F (COMEX / MCX GOLD) • IST SESSION CLOCK"
+      },
+      BTC: {
+        title: "BITCOIN (BTC-USD) 24H PCB TIME-WINDOW GENERATOR",
+        notice: "BENCHMARK: BTC-USD (SPOT CRYPTO) • 24H IST SESSION CLOCK"
+      }
+    };
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("admin") === "umesh") {
+      localStorage.setItem("astromaps_founder_mode", "true");
+    }
+    const IS_FOUNDER = localStorage.getItem("astromaps_founder_mode") === "true";
 
     function getTodayIST() {
       return new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
     }
 
-    function setToday() {
-      document.getElementById("datePicker").value = getTodayIST();
+    function loadTodaySession() {
+      const todayStr = getTodayIST();
+      document.getElementById("audit-date-picker").value = todayStr;
       fetchGlobalMatrix();
     }
 
-    function selectAsset(asset) {
-      currentAsset = asset;
-      document.getElementById("tab-GOLD").classList.toggle("active", asset === "GOLD");
-      document.getElementById("tab-BTC").classList.toggle("active", asset === "BTC");
-
-      document.getElementById("panelTitle").textContent =
-        asset === "GOLD"
-          ? "GOLD BULLION (GC=F) PCB TIME-WINDOW GENERATOR"
-          : "BITCOIN (BTC-USD) 24H PCB TIME-WINDOW GENERATOR";
-
+    function switchGlobalAsset(assetKey, btnEl) {
+      CURRENT_GLOBAL_ASSET = assetKey;
+      document.querySelectorAll(".asset-tab").forEach(function(b) { b.classList.remove("active"); });
+      btnEl.classList.add("active");
+      document.getElementById("terminal-main-title").innerText = GLOBAL_HEADERS[assetKey].title;
+      document.getElementById("session-notice-box").innerText = GLOBAL_HEADERS[assetKey].notice;
       fetchGlobalMatrix();
     }
 
-    async function fetchGlobalMatrix() {
-      const dateVal = document.getElementById("datePicker").value || getTodayIST();
-      document.getElementById("biasDirection").textContent = `Computing ${currentAsset} Regime (${dateVal})...`;
-
+    async function loadVisitorCounter() {
+      const countEl = document.getElementById("visitor-count");
       try {
-        const response = await fetch(`${API_BASE}/api/global-matrix`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            date: dateVal,
-            asset: currentAsset,
-            is_admin: isAdmin
-          })
-        });
-        const data = await response.json();
+        const res = await fetch(COUNTER_GET_URL);
+        if (!res.ok) throw new Error("Counter error");
+        const data = await res.json();
+        countEl.innerText = (COUNTER_BASE + (data.count || 0)).toLocaleString("en-IN");
+      } catch (e) { countEl.innerText = "166+"; }
+    }
 
-        document.getElementById("benchmarkStrip").textContent =
-          `BENCHMARK: ${data.benchmark_ticker} • ACTIVE DATE: ${data.date}`;
+    async function fetchGlobalMatrix(retries = 4) {
+      const picker = document.getElementById("audit-date-picker");
+      let selectedDate = picker.value;
+      if (!selectedDate) {
+        selectedDate = getTodayIST();
+        picker.value = selectedDate;
+      }
 
-        document.getElementById("biasDirection").textContent = data.bias_direction;
-        document.getElementById("execSummary").textContent = data.executive_summary;
+      const btn = document.getElementById("gen-btn");
+      btn.innerText = "⏳ SCANNING PCB...";
 
-        const tierEl = document.getElementById("tierBadge");
-        tierEl.textContent = data.conviction_tier;
-        tierEl.className = "tier-badge " + (
-          data.regime === "BULLISH_EXPANSION" ? "bull" :
-          data.regime === "BEARISH_PRESSURE" ? "bear" : ""
-        );
+      for (let attempt = 0; attempt < retries; attempt++) {
+        try {
+          const res = await fetch(GLOBAL_API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              date: selectedDate,
+              asset: CURRENT_GLOBAL_ASSET,
+              is_admin: IS_FOUNDER
+            })
+          });
+          if (!res.ok) throw new Error("Server busy");
+          const data = await res.json();
 
-        const edgeEl = document.getElementById("edgeDisplay");
-        edgeEl.textContent = data.historical_edge_pct
-          ? `2020–2026 Audit Edge: ${data.historical_edge_pct}%`
-          : "";
+          const card = document.getElementById("regime-card");
+          card.className = "regime-card " + (
+            data.regime === "BULLISH_EXPANSION" ? "bull" :
+            data.regime === "BEARISH_PRESSURE" ? "bear" : ""
+          );
+          document.getElementById("regime-bias-title").innerText = data.bias_direction;
+          document.getElementById("regime-summary-text").innerText = data.executive_summary;
 
-        const tbody = document.getElementById("slotsBody");
-        tbody.innerHTML = "";
-        (data.session_windows || []).forEach(slot => {
-          const pillClass = slot.tier === "kill" ? "kill" : (slot.tier === "std" ? "std" : "");
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td class="td-time">${slot.time_window}</td>
-            <td class="td-phase">${slot.phase}</td>
-            <td class="td-sig">${slot.action_bias}</td>
-            <td><span class="status-pill ${pillClass}">${slot.priority_tag}</span></td>
-          `;
-          tbody.appendChild(tr);
-        });
+          const tierBadge = document.getElementById("regime-tier-badge");
+          tierBadge.innerText = data.conviction_tier;
+          tierBadge.className = data.regime === "BEARISH_PRESSURE" ? "badge-dual" : "badge-ruler";
 
-        const debugBox = document.getElementById("adminDebugBox");
-        if (isAdmin && data.admin_debug) {
-          debugBox.style.display = "block";
-          debugBox.textContent = `ADMIN INTERNAL MATRIX: ${data.admin_debug}`;
-        } else {
-          debugBox.style.display = "none";
+          const edgePill = document.getElementById("regime-edge-pill");
+          if (data.historical_edge_pct) {
+            edgePill.style.display = "inline-block";
+            edgePill.innerText = "📊 2020–2026 BACKTESTED REGIME EDGE: " + data.historical_edge_pct + "%";
+          } else {
+            edgePill.style.display = "none";
+          }
+
+          const tbody = document.getElementById("h2h-table-body");
+          tbody.innerHTML = "";
+          (data.session_windows || []).forEach(function(slot) {
+            const cleanTag = slot.priority_tag.replace(/v\d+\.\d+/gi, "");
+            const cleanPhase = slot.phase.replace(/v\d+\.\d+/gi, "");
+            const cleanAction = slot.action_bias.replace(/v\d+\.\d+/gi, "");
+            const tier = slot.tier || "std";
+            let rowClass = "row-standard", badgeClass = "badge-standard", timeColor = "#94a3b8";
+            if (tier === "dual") { rowClass = "row-dual-lock"; badgeClass = "badge-dual"; timeColor = "#fda4af"; }
+            else if (tier === "ruler") { rowClass = "row-ruler-lock"; badgeClass = "badge-ruler"; timeColor = "#facc15"; }
+            else if (tier === "kill") { rowClass = "row-killzone"; badgeClass = "badge-killzone"; timeColor = "#00f2fe"; }
+
+            tbody.innerHTML += '<tr class="' + rowClass + '">' +
+              '<td style="padding: 14px 16px; white-space: nowrap; font-family: \'JetBrains Mono\', monospace; font-weight: 800; color: ' + timeColor + ';">' + slot.time_window + '</td>' +
+              '<td style="padding: 14px 16px; color: #f1f5f9; font-weight: 600;">' + cleanPhase + '</td>' +
+              '<td style="padding: 14px 16px; color: #ffffff; font-weight: 700;">' + cleanAction + '</td>' +
+              '<td style="padding: 14px 16px;"><span class="' + badgeClass + '">' + cleanTag + '</span></td>' +
+            '</tr>';
+          });
+
+          if (IS_FOUNDER && data.admin_debug) {
+            document.getElementById("admin-debug-box").style.display = "block";
+            document.getElementById("admin-debug-text").innerText = data.admin_debug;
+          }
+
+          btn.innerText = "⚡ GENERATE PCB";
+          return;
+        } catch (err) {
+          if (attempt < retries - 1) {
+            btn.innerText = "⏳ WAKING SERVER (" + (attempt + 1) + "/" + retries + ")...";
+            await new Promise(function(r) { setTimeout(r, 4000); });
+          } else {
+            document.getElementById("regime-bias-title").innerText = "Server Waking Up";
+            document.getElementById("regime-summary-text").innerText = "Please click ⚡ GENERATE PCB again in 10 seconds once Render API (v7.8.2) is awake.";
+            document.getElementById("h2h-table-body").innerHTML = '<tr><td colspan="4" style="padding: 16px; text-align: center; color: #00f2fe;">Server waking up — click <b>⚡ GENERATE PCB</b> again in 10 seconds.</td></tr>';
+            btn.innerText = "⚡ GENERATE PCB";
+          }
         }
-      } catch (err) {
-        document.getElementById("biasDirection").textContent = "Server Sync Pending";
-        document.getElementById("execSummary").textContent = "Please ensure Render API (v7.8.2) is deployed and awake.";
       }
     }
 
-    document.getElementById("datePicker").value = getTodayIST();
-    fetchGlobalMatrix();
+    window.addEventListener("DOMContentLoaded", function() {
+      document.getElementById("audit-date-picker").value = getTodayIST();
+      fetch(PING_URL).catch(function() {});
+      fetchGlobalMatrix();
+      loadVisitorCounter();
+    });
   </script>
 </body>
 </html>

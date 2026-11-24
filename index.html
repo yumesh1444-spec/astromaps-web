@@ -171,25 +171,6 @@
       padding: 4px 10px;
       border-radius: 6px;
     }
-    .holiday-banner {
-      display: none;
-      margin-top: 16px;
-      padding: 13px 16px;
-      border-radius: 12px;
-      border: 1.5px solid rgba(244, 63, 94, 0.65);
-      background: linear-gradient(90deg, rgba(190, 24, 93, 0.24), rgba(153, 27, 27, 0.16));
-      color: #fecdd3;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      font-weight: 800;
-    }
-    .holiday-banner-sub {
-      margin-top: 5px;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.84rem;
-      font-weight: 600;
-      color: #ffe4e6;
-    }
     .asset-tabs {
       display: flex;
       flex-wrap: wrap;
@@ -267,20 +248,11 @@
     .row-dual-lock { background: linear-gradient(90deg, rgba(244, 63, 94, 0.22) 0%, rgba(250, 204, 21, 0.12) 100%); border-left: 4px solid #f43f5e; border-bottom: 1px solid rgba(244, 63, 94, 0.38); }
     .row-killzone { background: linear-gradient(90deg, rgba(0, 242, 254, 0.16) 0%, rgba(0, 242, 254, 0.04) 100%); border-left: 4px solid #00f2fe; border-bottom: 1px solid rgba(0, 242, 254, 0.3); }
     .row-standard { background: rgba(2, 12, 27, 0.35); border-left: 4px solid transparent; border-bottom: 1px solid rgba(255, 255, 255, 0.06); opacity: 0.85; }
-    .row-holiday { background: rgba(153, 27, 27, 0.14); border-left: 4px solid #f43f5e; border-bottom: 1px solid rgba(244, 63, 94, 0.25); opacity: 0.85; }
-
+    
     .badge-ruler { display: inline-block; white-space: nowrap; background: rgba(250, 204, 21, 0.20); border: 1px solid #facc15; color: #facc15; padding: 5px 11px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 800; }
     .badge-dual { display: inline-block; white-space: nowrap; background: rgba(244, 63, 94, 0.24); border: 1px solid #fb7185; color: #fda4af; padding: 5px 11px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 800; }
     .badge-killzone { display: inline-block; white-space: nowrap; background: rgba(0, 242, 254, 0.18); border: 1px solid #00f2fe; color: #00f2fe; padding: 5px 11px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 800; }
     .badge-standard { display: inline-block; white-space: nowrap; background: rgba(148, 163, 184, 0.1); border: 1px solid rgba(148, 163, 184, 0.28); color: #94a3b8; padding: 4px 10px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 700; }
-    .badge-holiday { display: inline-block; white-space: nowrap; background: rgba(244, 63, 94, 0.22); border: 1px solid #fb7185; color: #fecdd3; padding: 5px 11px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 800; }
-
-    .admin-slot-audit {
-      margin-top: 6px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      color: #93c5fd;
-    }
 
     /* Admin Pre-Market Broadcast Box */
     .admin-social-box {
@@ -437,7 +409,7 @@
 
     <div class="hero-mini">
       <div>
-        <div class="pill-badge">● PCB SOVEREIGN ENGINE • LAUNCH: 04 JUNE 2026 • 100% MECHANICAL</div>
+        <div class="pill-badge">● PCB SOVEREIGN ENGINE • LAUNCH: 02 JUNE 2026 • 100% MECHANICAL</div>
         <h1 style="margin: 8px 0 4px 0; font-size: 1.75rem; font-weight: 900;">Live Market Opening &amp; Intraday Time-Window Tool</h1>
         <div style="font-size: 0.88rem; color: #cbd5e1;">Calibrated on 56 Years of Historical Data (1970–2026) • Nifty 50, Bank Nifty, MCX Silver &amp; Crude Oil</div>
       </div>
@@ -471,12 +443,6 @@
             <button id="gen-btn" onclick="fetchAstroWindows()" class="gen-btn">⚡ GENERATE PCB</button>
           </div>
         </div>
-      </div>
-
-      <!-- Holiday / No-Trade Banner -->
-      <div id="holiday-banner" class="holiday-banner">
-        <div id="holiday-banner-title">🛑 NO TRADE DAY — MARKET HOLIDAY</div>
-        <div id="holiday-banner-sub" class="holiday-banner-sub"></div>
       </div>
 
       <div class="asset-tabs">
@@ -578,29 +544,6 @@
     const INSTALL_GET_URL = "https://api.counterapi.dev/v1/astromapsai/app_installs";
     const INSTALL_UP_URL = "https://api.counterapi.dev/v1/astromapsai/app_installs/up";
 
-    const NSE_HOLIDAYS_2026 = {
-      "2026-01-26": "Republic Day",
-      "2026-03-03": "Holi",
-      "2026-03-26": "Shri Ram Navami",
-      "2026-03-31": "Shri Mahavir Jayanti",
-      "2026-04-03": "Good Friday",
-      "2026-04-14": "Dr. Baba Saheb Ambedkar Jayanti",
-      "2026-05-01": "Maharashtra Day",
-      "2026-05-28": "Bakri Id",
-      "2026-06-26": "Muharram",
-      "2026-09-14": "Ganesh Chaturthi",
-      "2026-10-02": "Mahatma Gandhi Jayanti",
-      "2026-10-20": "Dussehra",
-      "2026-11-10": "Diwali-Balipratipada",
-      "2026-11-24": "Prakash Gurpurb Sri Guru Nanak Dev",
-      "2026-12-25": "Christmas"
-    };
-
-    const MCX_MORNING_CLOSED_2026 = {
-      "2026-11-10": "Diwali-Balipratipada — Morning session closed; evening session open",
-      "2026-11-24": "Prakash Gurpurb Sri Guru Nanak Dev — Morning session closed; evening session open"
-    };
-
     let CURRENT_ASSET = "NIFTY";
     const ASSET_HEADERS = {
       NIFTY: { title: "NIFTY 50 (NSE) PCB TIME-WINDOW GENERATOR" },
@@ -623,63 +566,22 @@
       localStorage.setItem("astromaps_app_installed", "true");
       fetch(INSTALL_UP_URL, { keepalive: true }).catch(function() {});
     }
-    function formatDateLocal(dateObj) {
-      const y = dateObj.getFullYear();
-      const m = String(dateObj.getMonth() + 1).padStart(2, "0");
-      const d = String(dateObj.getDate()).padStart(2, "0");
-      return y + "-" + m + "-" + d;
-    }
-    function getHolidayInfo(dateStr, assetKey) {
-      const isEquity = (assetKey === "NIFTY" || assetKey === "BANKNIFTY");
-      if (isEquity && NSE_HOLIDAYS_2026[dateStr]) {
-        return { isHoliday: true, mode: "FULL_HOLIDAY_NO_TRADE", reason: NSE_HOLIDAYS_2026[dateStr] };
-      }
-      if (!isEquity && MCX_MORNING_CLOSED_2026[dateStr]) {
-        return { isHoliday: true, mode: "MORNING_CLOSED_EVENING_OPEN", reason: MCX_MORNING_CLOSED_2026[dateStr] };
-      }
-      return { isHoliday: false, mode: null, reason: null };
-    }
-    function getNextTradingDate(baseDateObj, assetKey = CURRENT_ASSET) {
+    function getNextTradingDate(baseDateObj) {
       const d = new Date(baseDateObj.getTime());
       let skippedWeekend = false;
-      let skippedHoliday = false;
-      const isEquity = (assetKey === "NIFTY" || assetKey === "BANKNIFTY");
-      while (d.getDay() === 0 || d.getDay() === 6 || (isEquity && NSE_HOLIDAYS_2026[formatDateLocal(d)])) {
-        if (d.getDay() === 0 || d.getDay() === 6) skippedWeekend = true;
-        if (isEquity && NSE_HOLIDAYS_2026[formatDateLocal(d)]) skippedHoliday = true;
-        d.setDate(d.getDate() + 1);
-      }
-      return { dateStr: formatDateLocal(d), skippedWeekend: skippedWeekend, skippedHoliday: skippedHoliday };
+      while (d.getDay() === 0 || d.getDay() === 6) { d.setDate(d.getDate() + 1); skippedWeekend = true; }
+      return { dateStr: d.toISOString().split("T")[0], skippedWeekend: skippedWeekend };
     }
     function loadNextTradingSession() {
       const currentVal = document.getElementById("audit-date-picker").value;
       const base = currentVal ? new Date(currentVal + "T09:15:00") : new Date();
       base.setDate(base.getDate() + 1);
-      const next = getNextTradingDate(base, CURRENT_ASSET);
+      const next = getNextTradingDate(base);
       document.getElementById("audit-date-picker").value = next.dateStr;
       const notice = document.getElementById("session-notice-box");
       notice.style.display = "inline-block";
       notice.innerText = "⏭ SHOWING NEXT TRADING SESSION: " + next.dateStr;
       fetchAstroWindows();
-    }
-    function updateHolidayBannerUI(dateStr, assetKey, apiData) {
-      const banner = document.getElementById("holiday-banner");
-      const titleEl = document.getElementById("holiday-banner-title");
-      const subEl = document.getElementById("holiday-banner-sub");
-      const localHol = getHolidayInfo(dateStr, assetKey);
-      const isHol = Boolean((apiData && apiData.is_holiday) || localHol.isHoliday);
-      const reason = (apiData && apiData.holiday_name) || localHol.reason || "Exchange Holiday";
-
-      if (isHol) {
-        banner.style.display = "block";
-        titleEl.textContent = "🛑 " + assetKey + " — NO TRADE DAY / MARKET HOLIDAY";
-        subEl.textContent = "Date: " + dateStr + " | " + reason + ".";
-      } else {
-        banner.style.display = "none";
-        titleEl.textContent = "";
-        subEl.textContent = "";
-      }
-      return { isHol, reason };
     }
 
     function copySocialPremarketPost() {
@@ -702,20 +604,13 @@
         document.getElementById("admin-social-box").style.display = "block";
       }
       const today = new Date();
-      const todayStr = formatDateLocal(today);
-      document.getElementById("audit-date-picker").value = todayStr;
-
-      const holInfo = getHolidayInfo(todayStr, CURRENT_ASSET);
-      const notice = document.getElementById("session-notice-box");
-      if (today.getDay() === 0 || today.getDay() === 6) {
+      const next = getNextTradingDate(today);
+      document.getElementById("audit-date-picker").value = next.dateStr;
+      if (next.skippedWeekend) {
+        const notice = document.getElementById("session-notice-box");
         notice.style.display = "inline-block";
-        notice.innerText = "📅 WEEKEND MARKET CLOSED (" + todayStr + ")";
-      } else if (holInfo.isHoliday) {
-        notice.style.display = "inline-block";
-        notice.innerText = "🛑 NO TRADE DAY — " + holInfo.reason + " (" + todayStr + ")";
+        notice.innerText = "📅 WEEKEND MARKET CLOSED • AUTO-SHOWING NEXT TRADING SESSION (" + next.dateStr + ")";
       }
-      updateHolidayBannerUI(todayStr, CURRENT_ASSET, null);
-
       if (isStandaloneApp()) recordAppInstallOnce();
       fetch(PING_URL).catch(function() {});
       fetchAstroWindows();
@@ -762,20 +657,18 @@
       const picker = document.getElementById("audit-date-picker");
       let selectedDate = picker.value;
       if (!selectedDate) {
-        selectedDate = formatDateLocal(new Date());
+        const next = getNextTradingDate(new Date());
+        selectedDate = next.dateStr;
         picker.value = selectedDate;
       }
-
-      const holState = updateHolidayBannerUI(selectedDate, CURRENT_ASSET, null);
-      const isEquity = (CURRENT_ASSET === "NIFTY" || CURRENT_ASSET === "BANKNIFTY");
-      const notice = document.getElementById("session-notice-box");
-      if (holState.isHoliday) {
+      const adjusted = getNextTradingDate(new Date(selectedDate + "T09:15:00"));
+      if (adjusted.skippedWeekend) {
+        selectedDate = adjusted.dateStr;
+        picker.value = selectedDate;
+        const notice = document.getElementById("session-notice-box");
         notice.style.display = "inline-block";
-        notice.innerText = "🛑 NO TRADE DAY — " + holState.reason + " (" + selectedDate + ")";
-      } else {
-        notice.style.display = "none";
+        notice.innerText = "📅 WEEKEND SKIPPED • AUTO-ADJUSTED TO NEXT TRADING DAY (" + selectedDate + ")";
       }
-
       const btn = document.getElementById("gen-btn");
       btn.innerText = "⏳ SCANNING PCB...";
 
@@ -788,59 +681,20 @@
           });
           if (!res.ok) throw new Error("Server busy");
           const data = await res.json();
-          const finalHol = updateHolidayBannerUI(selectedDate, CURRENT_ASSET, data);
 
           const tbody = document.getElementById("h2h-table-body");
           tbody.innerHTML = "";
 
-          (data.h2h_slots || []).forEach(function(slot) {
-            const cleanTag = (slot.priority_tag || "").replace(/v\d+\.\d+/gi, "");
-            const cleanPhase = (slot.phase || "").replace(/v\d+\.\d+/gi, "");
-            let cleanAction = (slot.action_bias || "").replace(/v\d+\.\d+/gi, "");
+          data.h2h_slots.forEach(function(slot) {
+            const cleanTag = slot.priority_tag.replace(/v\d+\.\d+/gi, "");
+            const cleanPhase = slot.phase.replace(/v\d+\.\d+/gi, "");
+            const cleanAction = slot.action_bias.replace(/v\d+\.\d+/gi, "");
             const tier = slot.tier || "std";
-
-            const isFullEquityHoliday = finalHol.isHoliday && isEquity;
-            const isMorningMcxClosed = finalHol.isHoliday && !isEquity && (slot.priority_tag === "MORNING CLOSED");
-
             let rowClass = "row-standard", badgeClass = "badge-standard", timeColor = "#94a3b8";
-            let displayBadge = cleanTag;
-
-            if (isFullEquityHoliday) {
-              rowClass = "row-holiday";
-              badgeClass = "badge-holiday";
-              timeColor = "#fda4af";
-              cleanAction = "NO TRADE DAY — Market Holiday (" + finalHol.reason + ")";
-              displayBadge = "HOLIDAY • NO TRADE";
-            } else if (isMorningMcxClosed) {
-              rowClass = "row-holiday";
-              badgeClass = "badge-holiday";
-              timeColor = "#fda4af";
-              cleanAction = "MORNING SESSION CLOSED (" + finalHol.reason + ")";
-              displayBadge = "MORNING CLOSED";
-            } else if (tier === "dual") {
-              rowClass = "row-dual-lock";
-              badgeClass = "badge-dual";
-              timeColor = "#fda4af";
-            } else if (tier === "ruler") {
-              rowClass = "row-ruler-lock";
-              badgeClass = "badge-ruler";
-              timeColor = "#facc15";
-            } else if (tier === "kill") {
-              rowClass = "row-killzone";
-              badgeClass = "badge-killzone";
-              timeColor = "#00f2fe";
-            }
-
-            const auditHtml = (IS_FOUNDER && slot.admin_slot_audit)
-              ? '<div class="admin-slot-audit">' + slot.admin_slot_audit + '</div>'
-              : "";
-
-            tbody.innerHTML += '<tr class="' + rowClass + '">' +
-              '<td style="padding: 14px 16px; white-space: nowrap; font-family: \'JetBrains Mono\', monospace; font-weight: 800; color: ' + timeColor + ';">' + slot.time_window + '</td>' +
-              '<td style="padding: 14px 16px; color: #f1f5f9; font-weight: 600;">' + cleanPhase + '</td>' +
-              '<td style="padding: 14px 16px; color: #ffffff; font-weight: 700;">' + cleanAction + auditHtml + '</td>' +
-              '<td style="padding: 14px 16px;"><span class="' + badgeClass + '">' + displayBadge + '</span></td>' +
-              '</tr>';
+            if (tier === "dual") { rowClass = "row-dual-lock"; badgeClass = "badge-dual"; timeColor = "#fda4af"; }
+            else if (tier === "ruler") { rowClass = "row-ruler-lock"; badgeClass = "badge-ruler"; timeColor = "#facc15"; }
+            else if (tier === "kill") { rowClass = "row-killzone"; badgeClass = "badge-killzone"; timeColor = "#00f2fe"; }
+            tbody.innerHTML += '<tr class="' + rowClass + '"><td style="padding: 14px 16px; white-space: nowrap; font-family: \'JetBrains Mono\', monospace; font-weight: 800; color: ' + timeColor + ';">' + slot.time_window + '</td><td style="padding: 14px 16px; color: #f1f5f9; font-weight: 600;">' + cleanPhase + '</td><td style="padding: 14px 16px; color: #ffffff; font-weight: 700;">' + cleanAction + '</td><td style="padding: 14px 16px;"><span class="' + badgeClass + '">' + cleanTag + '</span></td></tr>';
           });
 
           if (IS_FOUNDER && data.social_premarket_post) {

@@ -14,6 +14,37 @@
       background-color: #061326;
       font-family: 'Plus Jakarta Sans', sans-serif;
       color: #f8fafc;
+      /* Finalized: 2026-11-24 — Sync Top Line Size on Non-Home Views (About, Audit, Methodology, Guide) */
+[data-view]:not([data-view="home"]) header,
+[data-view]:not([data-view="home"]) nav,
+[data-view]:not([data-view="home"]) .top-nav,
+[data-view]:not([data-view="home"]) .navbar,
+.page-section:not(#home):not(.home-view) header,
+.page-section:not(#home):not(.home-view) nav,
+.view-panel:not(#view-home):not(.active-home) .top-nav {
+  min-height: 56px !important;
+  height: 56px !important;
+  padding: 0 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+}
+
+[data-view]:not([data-view="home"]) nav a,
+[data-view]:not([data-view="home"]) nav button,
+[data-view]:not([data-view="home"]) .top-nav a,
+[data-view]:not([data-view="home"]) .top-nav button,
+.page-section:not(#home):not(.home-view) nav a,
+.page-section:not(#home):not(.home-view) nav button,
+.page-section:not(#home):not(.home-view) .top-nav a,
+.page-section:not(#home):not(.home-view) .top-nav button {
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+  padding: 7px 14px !important;
+  white-space: nowrap !important;
+  box-sizing: border-box !important;
+}
     }
     .container { max-width: 1140px; margin: 0 auto; }
     .top-nav {

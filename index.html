@@ -170,7 +170,7 @@
     .wa { background: #16a34a; }
     .tg { background: #0284c7; }
 
-    /* 2 Compact Home Windows: Time-In/Time-Out + Yesterday Hit/Miss */
+    /* 2 Compact Home Windows: Time-In/Time-Out + Latest Hit/Miss */
     .compact-windows-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -544,7 +544,7 @@
       </div>
     </div>
 
-    <!-- 2 CHHOTI WINDOWS: TIME-IN/TIME-OUT & LATEST HIT/MISS -->
+    <!-- 2 COMPACT HOME WINDOWS: TIME-IN/TIME-OUT & LATEST HIT/MISS -->
     <div class="compact-windows-grid">
       <div class="compact-win-card">
         <div class="compact-win-top">
@@ -870,13 +870,21 @@
       if (IS_FOUNDER) {
         document.getElementById("admin-social-box").style.display = "block";
       }
-      const today = new Date();
-      const next = getNextTradingDate(today);
-      document.getElementById("audit-date-picker").value = next.dateStr;
-      if (next.skippedWeekend) {
+      const queryDate = urlParams.get("date");
+      if (queryDate && /^\d{4}-\d{2}-\d{2}$/.test(queryDate)) {
+        document.getElementById("audit-date-picker").value = queryDate;
         const notice = document.getElementById("session-notice-box");
         notice.style.display = "inline-block";
-        notice.innerText = "📅 WEEKEND MARKET CLOSED • AUTO-SHOWING NEXT TRADING SESSION (" + next.dateStr + ")";
+        notice.innerText = "✨ MAGIC DATE SELECTED: " + queryDate;
+      } else {
+        const today = new Date();
+        const next = getNextTradingDate(today);
+        document.getElementById("audit-date-picker").value = next.dateStr;
+        if (next.skippedWeekend) {
+          const notice = document.getElementById("session-notice-box");
+          notice.style.display = "inline-block";
+          notice.innerText = "📅 WEEKEND MARKET CLOSED • AUTO-SHOWING NEXT TRADING SESSION (" + next.dateStr + ")";
+        }
       }
       if (isStandaloneApp()) recordAppInstallOnce();
       fetch(PING_URL).catch(function() {});
@@ -939,7 +947,7 @@
         picker.value = selectedDate;
       }
       const adjusted = getNextTradingDate(new Date(selectedDate + "T09:15:00"));
-      if (adjusted.skippedWeekend) {
+      if (adjusted.skippedWeekend && !urlParams.get("date")) {
         selectedDate = adjusted.dateStr;
         picker.value = selectedDate;
         const notice = document.getElementById("session-notice-box");

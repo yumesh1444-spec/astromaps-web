@@ -521,7 +521,7 @@
     <div class="app-compact-header">
       <div>
         <div style="font-size: 1.15rem; font-weight: 900; color: #ffffff;">Astro <span style="color: #00f2fe;">MAPs</span> AI</div>
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #10b981; font-weight: 800;">● LIVE PCB TIMING APP</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #10b981; font-weight: 800;">● LIVE TIMING APP</div>
       </div>
       <div style="display: flex; gap: 6px;">
         <a href="global.html" style="background: #f59e0b; color: #020c1b; text-decoration: none; font-size: 0.72rem; font-weight: 800; padding: 7px 10px; border-radius: 8px;">🌐 Gold/BTC</a>
@@ -532,7 +532,7 @@
 
     <div class="hero-mini">
       <div>
-        <div class="pill-badge">● PCB SOVEREIGN ENGINE • LAUNCH: 29 JULY 2026 • 100% MECHANICAL</div>
+        <div class="pill-badge">● SOVEREIGN ENGINE • LAUNCH: 29 JULY 2026 • 100% MECHANICAL</div>
         <h1 style="margin: 8px 0 4px 0; font-size: 1.75rem; font-weight: 900;">Live Market Opening &amp; Intraday Time-Window Tool</h1>
         <div style="font-size: 0.88rem; color: #cbd5e1;">Calibrated on 56 Years of Historical Data (1970–2026) • Nifty 50, Bank Nifty, MCX Silver &amp; Crude Oil</div>
       </div>
@@ -580,13 +580,13 @@
       <div class="inside-tool-guide">
         <div><span class="step-badge">1</span><b>Select Market Tab</b> below (Nifty / BankNifty / Silver / Crude)</div>
         <div><span class="step-badge">2</span><b>Pick Date</b> or click <b>⏭ NEXT SESSION</b></div>
-        <div><span class="step-badge">3</span>Click <b>⚡ GENERATE PCB</b> to view Opening &amp; Hourly Slots</div>
+        <div><span class="step-badge">3</span>Click <b>⚡ GENERATE TIMING</b> to view Opening &amp; Hourly Slots</div>
       </div>
 
       <div class="terminal-header">
         <div>
           <div style="font-family: 'JetBrains Mono', monospace; color: #00f2fe; font-size: 0.78rem; font-weight: 800; letter-spacing: 2px;">LIVE &amp; HISTORICAL TIMING GENERATOR (1970–2030)</div>
-          <h2 id="terminal-main-title" class="terminal-title">NIFTY 50 (NSE) PCB TIME-WINDOW GENERATOR</h2>
+          <h2 id="terminal-main-title" class="terminal-title">NIFTY 50 (NSE) TIME-WINDOW GENERATOR</h2>
           <div id="session-notice-box" class="session-notice" style="display: none;"></div>
         </div>
 
@@ -595,7 +595,7 @@
           <div class="command-dock">
             <button type="button" onclick="loadNextTradingSession()" class="quick-btn">⏭ NEXT SESSION</button>
             <input type="date" id="audit-date-picker" min="1970-01-01" max="2030-12-31" class="date-input" />
-            <button id="gen-btn" onclick="fetchAstroWindows()" class="gen-btn">⚡ GENERATE PCB</button>
+            <button id="gen-btn" onclick="fetchAstroWindows()" class="gen-btn">⚡ GENERATE TIMING</button>
           </div>
         </div>
       </div>
@@ -608,10 +608,10 @@
       </div>
 
       <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-top: 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: #cbd5e1;">
-        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #facc15; border-radius: 2px;"></span> PRIMARY PCB VECTOR (ACTIVE EXPANSION)</span>
-        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #f43f5e; border-radius: 2px;"></span> DUAL-VECTOR PCB LOCK (PEAK VELOCITY)</span>
-        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #00f2fe; border-radius: 2px;"></span> PCB KILL-ZONE (INSTITUTIONAL FLOW)</span>
-        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #64748b; border-radius: 2px;"></span> STANDARD PCB CYCLE</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #facc15; border-radius: 2px;"></span> PRIMARY WINDOW (STRONG EXPANSION)</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #f43f5e; border-radius: 2px;"></span> DOUBLE WINDOW LOCK (HIGH SWING)</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #00f2fe; border-radius: 2px;"></span> KILL-ZONE WINDOW (MARKET FLOW)</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #64748b; border-radius: 2px;"></span> STANDARD SESSION CYCLE</span>
       </div>
 
       <div style="overflow-x: auto; margin-top: 12px; border-radius: 14px; border: 1px solid rgba(0, 242, 254, 0.25);">
@@ -620,12 +620,12 @@
             <tr style="background: rgba(29, 78, 216, 0.5); color: #00f2fe; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;">
               <th style="padding: 14px 16px; white-space: nowrap;">TIME WINDOW (IST)</th>
               <th style="padding: 14px 16px;">SESSION PHASE</th>
-              <th style="padding: 14px 16px;">PCB KINETIC SIGNATURE</th>
-              <th style="padding: 14px 16px;">PCB STATUS</th>
+              <th style="padding: 14px 16px;">SESSION FLOW &amp; MOVEMENT</th>
+              <th style="padding: 14px 16px;">WINDOW STATUS</th>
             </tr>
           </thead>
           <tbody id="h2h-table-body" style="font-size: 0.92rem;">
-            <tr><td colspan="4" style="padding: 16px; text-align: center; color: #94a3b8;">Loading PCB Sovereign Engine Windows...</td></tr>
+            <tr><td colspan="4" style="padding: 16px; text-align: center; color: #94a3b8;">Loading Sovereign Engine Windows...</td></tr>
           </tbody>
         </table>
       </div>
@@ -685,7 +685,7 @@
 
       <div style="text-align: right; font-size: 0.8rem; color: #94a3b8; font-family: 'JetBrains Mono', monospace;">
         <div>36+ YEARS MECHANICAL MARKET ARCHITECTURE</div>
-        <div style="color: #64748b; font-size: 0.74rem; margin-top: 3px;">© 2026 Astro MAPs AI • PCB Sovereign Engine</div>
+        <div style="color: #64748b; font-size: 0.74rem; margin-top: 3px;">© 2026 Astro MAPs AI • Sovereign Engine</div>
       </div>
     </footer>
   </div>
@@ -702,10 +702,10 @@
 
     let CURRENT_ASSET = "NIFTY";
     const ASSET_HEADERS = {
-      NIFTY: { title: "NIFTY 50 (NSE) PCB TIME-WINDOW GENERATOR" },
-      BANKNIFTY: { title: "BANK NIFTY (NSE) PCB TIME-WINDOW GENERATOR" },
-      SILVER: { title: "MCX SILVER PCB TIME-WINDOW GENERATOR" },
-      CRUDE: { title: "MCX CRUDE OIL PCB TIME-WINDOW GENERATOR" }
+      NIFTY: { title: "NIFTY 50 (NSE) TIME-WINDOW GENERATOR" },
+      BANKNIFTY: { title: "BANK NIFTY (NSE) TIME-WINDOW GENERATOR" },
+      SILVER: { title: "MCX SILVER TIME-WINDOW GENERATOR" },
+      CRUDE: { title: "MCX CRUDE OIL TIME-WINDOW GENERATOR" }
     };
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -714,15 +714,36 @@
     }
     const IS_FOUNDER = localStorage.getItem("astromaps_founder_mode") === "true";
 
+    function simplifyStandardLabels(text) {
+      if (!text || typeof text !== "string") return "";
+      return text
+        .replace(/PCB\s*KINETIC\s*SIGNATURE/gi, "SESSION FLOW & MOVEMENT")
+        .replace(/ACTIVE\s*VECTOR\s*LOCK/gi, "ACTIVE ZONE LOCK")
+        .replace(/PRIMARY\s*VECTOR/gi, "PRIMARY WINDOW")
+        .replace(/DUAL-VECTOR\s*PCB\s*LOCK/gi, "DOUBLE WINDOW LOCK")
+        .replace(/DUAL-VECTOR\s*LOCK/gi, "DOUBLE WINDOW LOCK")
+        .replace(/PCB\s*KILL-ZONE/gi, "KILL-ZONE WINDOW")
+        .replace(/Active\s*Vector\s*Impulse/gi, "Active Session Shift")
+        .replace(/ACTIVE\s*EXPANSION\s*IMPULSE/gi, "STRONG EXPANSION FLOW")
+        .replace(/PEAK\s*VOLATILITY\s*FLOW/gi, "HIGH SWING / VOLATILITY")
+        .replace(/Directional\s*Shift/gi, "Move Shift")
+        .replace(/STANDARD\s*PCB\s*CYCLE/gi, "STANDARD SESSION CYCLE")
+        .replace(/\s{2,}/g, " ")
+        .trim();
+    }
+
     function resolveSlotTier(slot, cleanTag, cleanAction) {
       let tier = (slot.tier || "std").toLowerCase();
       const combined = ((cleanTag || "") + " " + (cleanAction || "")).toUpperCase();
       if (tier === "std" || !["dual", "ruler", "kill"].includes(tier)) {
-        if (combined.includes("DUAL")) return "dual";
+        if (combined.includes("DOUBLE WINDOW") || combined.includes("DUAL")) return "dual";
         if (combined.includes("KILL-ZONE") || combined.includes("KILL ZONE")) return "kill";
         if (
+          combined.includes("ACTIVE ZONE LOCK") ||
           combined.includes("ACTIVE VECTOR LOCK") ||
+          combined.includes("PRIMARY WINDOW") ||
           combined.includes("RULER") ||
+          combined.includes("STRONG EXPANSION FLOW") ||
           combined.includes("EXPANSION IMPULSE")
         ) {
           return "ruler";
@@ -901,12 +922,12 @@
 
     function sanitizePublicText(text) {
       if (!text || typeof text !== "string") return "";
-      if (IS_FOUNDER) return text;
-      return text
-        .replace(/v\d+\.\d+/gi, "")
-        .replace(/\b(moon\s*chain|msl|ujjain|clash|flush)\b/gi, "")
-        .replace(/\s{2,}/g, " ")
-        .trim();
+      const base = IS_FOUNDER
+        ? text
+        : text
+            .replace(/v\d+\.\d+/gi, "")
+            .replace(/\b(moon\s*chain|msl|ujjain|clash|flush)\b/gi, "");
+      return simplifyStandardLabels(base);
     }
 
     async function fetchAstroWindows(retries = 4) {
@@ -926,7 +947,7 @@
         notice.innerText = "📅 WEEKEND SKIPPED • AUTO-ADJUSTED TO NEXT TRADING DAY (" + selectedDate + ")";
       }
       const btn = document.getElementById("gen-btn");
-      btn.innerText = "⏳ SCANNING PCB...";
+      btn.innerText = "⏳ SCANNING...";
 
       for (let attempt = 0; attempt < retries; attempt++) {
         try {
@@ -966,15 +987,15 @@
           if (IS_FOUNDER && data.social_premarket_post) {
             document.getElementById("social-post-textarea").value = data.social_premarket_post;
           }
-          btn.innerText = "⚡ GENERATE PCB";
+          btn.innerText = "⚡ GENERATE TIMING";
           return;
         } catch (err) {
           if (attempt < retries - 1) {
             btn.innerText = "⏳ WAKING SERVER (" + (attempt + 1) + "/" + retries + ")...";
             await new Promise(function(r) { setTimeout(r, 4000); });
           } else {
-            document.getElementById("h2h-table-body").innerHTML = '<tr><td colspan="4" style="padding: 16px; text-align: center; color: #00f2fe;">Server waking up — click <b>⚡ GENERATE PCB</b> again in 10 seconds.</td></tr>';
-            btn.innerText = "⚡ GENERATE PCB";
+            document.getElementById("h2h-table-body").innerHTML = '<tr><td colspan="4" style="padding: 16px; text-align: center; color: #00f2fe;">Server waking up — click <b>⚡ GENERATE TIMING</b> again in 10 seconds.</td></tr>';
+            btn.innerText = "⚡ GENERATE TIMING";
           }
         }
       }

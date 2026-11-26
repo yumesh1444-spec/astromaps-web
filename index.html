@@ -138,7 +138,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
     .pill-badge {
       display: inline-flex;
@@ -169,6 +169,75 @@
     .li { background: #1d4ed8; }
     .wa { background: #16a34a; }
     .tg { background: #0284c7; }
+
+    /* 2 Compact Home Windows: Time-In/Time-Out + Yesterday Hit/Miss */
+    .compact-windows-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .compact-win-card {
+      background: linear-gradient(145deg, rgba(13, 37, 69, 0.88), rgba(4, 15, 32, 0.96));
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      border-radius: 14px;
+      padding: 13px 16px;
+    }
+    .compact-win-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #00f2fe;
+      margin-bottom: 8px;
+    }
+    .compact-win-date {
+      color: #fde047;
+      background: rgba(250, 204, 21, 0.12);
+      border: 1px solid rgba(250, 204, 21, 0.35);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.68rem;
+    }
+    .compact-win-main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .compact-win-kv {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.84rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+    .compact-win-kv span {
+      color: #94a3b8;
+      font-size: 0.72rem;
+      margin-right: 4px;
+    }
+    .compact-win-sub {
+      margin-top: 6px;
+      font-size: 0.76rem;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .compact-win-sub a {
+      color: #00f2fe;
+      text-decoration: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+    .res-hit { color: #10b981; font-weight: 900; }
+    .res-miss { color: #f43f5e; font-weight: 900; }
 
     .terminal-box {
       padding: 24px;
@@ -429,6 +498,9 @@
       .terminal-header { flex-direction: column; align-items: flex-start; }
       .command-wrapper { align-items: flex-start; width: 100%; }
     }
+    @media (max-width: 720px) {
+      .compact-windows-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body data-page="home">
@@ -468,7 +540,39 @@
         <a href="https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s" target="_blank" class="social-btn wa">📢 WhatsApp Channel</a>
         <a href="https://t.me/AstroMapsai2026" target="_blank" class="social-btn tg">✈️ Telegram Channel</a>
         <a href="https://youtube.com/@AstroMAPSAI" target="_blank" class="social-btn yt">▶ YouTube</a>
-        <a href="https://www.linkedin.com/in/umesh-y-710274a2" target="_blank" class="social-btn li">in LinkedIn</a>
+        <a href="https://www.linkedin.com/in/umesh-y-710274a2" target="_blank" style="text-decoration: none; color: #ffffff; font-size: 0.78rem; font-weight: 700; padding: 8px 13px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; background: #1d4ed8;">in LinkedIn</a>
+      </div>
+    </div>
+
+    <!-- 2 CHHOTI WINDOWS: TIME-IN/TIME-OUT & LATEST HIT/MISS -->
+    <div class="compact-windows-grid">
+      <div class="compact-win-card">
+        <div class="compact-win-top">
+          <span>⏱️ SESSION TIME-IN / TIME-OUT</span>
+          <span class="compact-win-date" id="win-session-date">--</span>
+        </div>
+        <div class="compact-win-main">
+          <div class="compact-win-kv"><span>TIME-IN:</span><strong id="win-time-in" style="color: #facc15;">--:--</strong></div>
+          <div class="compact-win-kv"><span>TIME-OUT:</span><strong id="win-time-out" style="color: #00f2fe;">--:--</strong></div>
+        </div>
+        <div class="compact-win-sub">
+          <span id="win-time-phase">Syncing active window...</span>
+        </div>
+      </div>
+
+      <div class="compact-win-card">
+        <div class="compact-win-top">
+          <span>🎯 LATEST SESSION HIT / MISS</span>
+          <span class="compact-win-date" id="win-prev-date">--</span>
+        </div>
+        <div class="compact-win-main">
+          <div class="compact-win-kv"><span>SIGNAL:</span><strong id="win-prev-signal">--</strong></div>
+          <div class="compact-win-kv"><span>RESULT:</span><strong id="win-prev-result">--</strong></div>
+        </div>
+        <div class="compact-win-sub">
+          <span id="win-prev-pts">Checking verified audit...</span>
+          <a href="proof.html">Full Proof &rarr;</a>
+        </div>
       </div>
     </div>
 
@@ -588,6 +692,7 @@
 
   <script>
     const API_URL = "https://astromaps-engine.onrender.com/api/predict";
+    const AUDIT_URL = "https://astromaps-engine.onrender.com/api/single-aspect-moon-audit";
     const PING_URL = "https://astromaps-engine.onrender.com/api/health";
     const COUNTER_BASE = 165;
     const COUNTER_GET_URL = "https://api.counterapi.dev/v1/astromapsai/visits";
@@ -648,6 +753,76 @@
         btn.innerText = "✅ Copied!";
         setTimeout(function() { btn.innerText = "📋 Copy Pre-Market Post"; }, 2500);
       });
+    }
+
+    function updateTimeInOutWindow(selectedDate, slots) {
+      document.getElementById("win-session-date").innerText = selectedDate;
+      const active = slots.filter(function(s) {
+        return s.tier === "ruler" || s.tier === "kill" || s.tier === "dual";
+      });
+      const list = active.length > 0 ? active : slots;
+      if (!list || list.length === 0) {
+        document.getElementById("win-time-in").innerText = "--:--";
+        document.getElementById("win-time-out").innerText = "--:--";
+        document.getElementById("win-time-phase").innerText = "No active window";
+        return;
+      }
+      const firstWin = list[0].time_window || "";
+      const lastWin = list[list.length - 1].time_window || firstWin;
+      const partsFirst = firstWin.split(/–|-/);
+      const partsLast = lastWin.split(/–|-/);
+      const timeIn = (partsFirst[0] || firstWin).trim();
+      const timeOut = (partsLast[1] || partsLast[0] || lastWin).trim();
+
+      document.getElementById("win-time-in").innerText = timeIn || "--:--";
+      document.getElementById("win-time-out").innerText = timeOut || "--:--";
+      document.getElementById("win-time-phase").innerText = CURRENT_ASSET + " • " + sanitizePublicText(list[0].phase || "Active Window");
+    }
+
+    async function fetchLatestHitMissWindow(selectedDate) {
+      const dateBadge = document.getElementById("win-prev-date");
+      const sigEl = document.getElementById("win-prev-signal");
+      const resEl = document.getElementById("win-prev-result");
+      const ptsEl = document.getElementById("win-prev-pts");
+
+      try {
+        const res = await fetch(AUDIT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            asset: CURRENT_ASSET,
+            start_date: "2026-01-01",
+            end_date: selectedDate || "2026-11-26",
+            future_end_date: "2027-03-31",
+            orb_limit: 6.0,
+            is_admin: false
+          })
+        });
+        if (!res.ok) throw new Error("Audit unavailable");
+        const data = await res.json();
+        const dates = data.audited_dates || [];
+        if (dates.length === 0) {
+          dateBadge.innerText = "--";
+          sigEl.innerText = "--";
+          resEl.innerText = "NO DATA";
+          ptsEl.innerText = CURRENT_ASSET;
+          return;
+        }
+        const latest = dates[dates.length - 1];
+        const isHit = latest.result === "HIT";
+        const sign = Number(latest.net_points) >= 0 ? "+" : "";
+
+        dateBadge.innerText = latest.date;
+        sigEl.innerText = latest.signal || "CALL";
+        resEl.innerText = latest.result || "--";
+        resEl.className = isHit ? "res-hit" : "res-miss";
+        ptsEl.innerText = CURRENT_ASSET + " • " + sign + latest.net_points + " pts";
+      } catch (e) {
+        dateBadge.innerText = "--";
+        sigEl.innerText = "--";
+        resEl.innerText = "SYNCING";
+        ptsEl.innerText = "Check Live Audits tab";
+      }
     }
 
     window.addEventListener("DOMContentLoaded", function() {
@@ -752,6 +927,9 @@
           const tbody = document.getElementById("h2h-table-body");
           tbody.innerHTML = "";
           const slots = data.h2h_slots || data.session_windows || [];
+
+          updateTimeInOutWindow(selectedDate, slots);
+          fetchLatestHitMissWindow(selectedDate);
 
           slots.forEach(function(slot) {
             const cleanTag = sanitizePublicText(slot.priority_tag || "");

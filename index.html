@@ -132,13 +132,17 @@
       background: linear-gradient(180deg, rgba(16, 44, 82, 0.72) 0%, rgba(10, 28, 54, 0.85) 100%);
       border: 1px solid rgba(0, 242, 254, 0.35);
       border-radius: 18px;
-      padding: 22px 24px;
+      padding: 20px 24px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 18px;
       margin-bottom: 18px;
+    }
+    .hero-copy {
+      flex: 1 1 560px;
+      min-width: 0;
     }
     .pill-badge {
       display: inline-flex;
@@ -153,7 +157,12 @@
       font-weight: 800;
       color: #00f2fe;
     }
-    .social-links { display: flex; gap: 8px; flex-wrap: wrap; }
+    .social-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
     .social-btn {
       text-decoration: none;
       color: #ffffff;
@@ -164,6 +173,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      white-space: nowrap;
     }
     .yt { background: #dc2626; }
     .li { background: #1d4ed8; }
@@ -468,6 +478,23 @@
       color: #020c1b;
       font-size: 1.1rem;
     }
+    .contact-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-top: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .contact-strip a {
+      color: #e2e8f0;
+      text-decoration: none;
+    }
+    .contact-strip a:hover {
+      color: #00f2fe;
+    }
     .stats-cluster { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
     .visitor-box {
       background: rgba(2, 12, 27, 0.75);
@@ -533,7 +560,7 @@
     </div>
 
     <div class="hero-mini">
-      <div>
+      <div class="hero-copy">
         <div class="pill-badge">● SOVEREIGN ENGINE • LAUNCH: 29 JULY 2026 • 100% MECHANICAL</div>
         <h1 style="margin: 8px 0 4px 0; font-size: 1.75rem; font-weight: 900;">Live Market Opening &amp; Intraday Time-Window Tool</h1>
         <div style="font-size: 0.88rem; color: #cbd5e1;">Calibrated on 56 Years of Historical Data (1970–2026) • Nifty 50, Bank Nifty, MCX Silver &amp; Crude Oil</div>
@@ -655,7 +682,12 @@
         <div>
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: #00f2fe; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;">Principal Architect</div>
           <div style="font-size: 1.15rem; font-weight: 900; color: #ffffff; margin-top: 2px;">Umesh Kumar Yadav <span style="font-size: 0.82rem; font-weight: 600; color: #94a3b8;">• Astro MAPs AI</span></div>
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: 800; margin-top: 5px; display: flex; flex-wrap: wrap; gap: 12px;">
+          <div class="contact-strip">
+            <a href="mailto:yumesh1444@gmail.com">✉️ yumesh1444@gmail.com</a>
+            <span style="color: #475569;">•</span>
+            <a href="tel:+917727054744">📞 +91 7727054744</a>
+          </div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: 800; margin-top: 6px; display: flex; flex-wrap: wrap; gap: 12px;">
             <a href="https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s" target="_blank" style="color: #00f2fe; text-decoration: none;">📢 WhatsApp Channel</a>
             <span style="color: #475569;">•</span>
             <a href="https://t.me/AstroMapsai2026" target="_blank" style="color: #38bdf8; text-decoration: none;">✈️ Telegram Channel</a>
@@ -732,17 +764,26 @@
         .trim();
     }
 
+    function sanitizePublicText(text) {
+      if (!text || typeof text !== "string") return "";
+      var base = IS_FOUNDER
+        ? text
+        : text
+            .replace(/v\d+\.\d+/gi, "")
+            .replace(/ (moon\s*chain|msl|mhl|mshl|mh|ujjain|clash|flush|deva|asur|nakshatra|hora|oppsign) /gi, "");
+      return simplifyStandardLabels(base);
+    }
+
     function resolveSlotTier(slot, cleanTag, cleanAction) {
-      let tier = (slot.tier || "std").toLowerCase();
-      // Highlight 100% rule match only for NIFTY & BANKNIFTY
-      if (!["NIFTY", "BANKNIFTY"].includes(CURRENT_ASSET) && tier === "ruler") {
+      var tier = (slot.tier || "std").toLowerCase();
+      if (CURRENT_ASSET !== "NIFTY" && CURRENT_ASSET !== "BANKNIFTY" && tier === "ruler") {
         return "std";
       }
-      const combined = ((cleanTag || "") + " " + (cleanAction || "")).toUpperCase();
-      if (tier === "std" || !["dual", "ruler", "kill"].includes(tier)) {
-        if (combined.includes("DOUBLE WINDOW") || combined.includes("DUAL")) return "dual";
-        if (combined.includes("KILL-ZONE") || combined.includes("KILL ZONE")) return "kill";
-        if (["NIFTY", "BANKNIFTY"].includes(CURRENT_ASSET) && combined.includes("100% RULE MATCH")) {
+      var combined = ((cleanTag || "") + " " + (cleanAction || "")).toUpperCase();
+      if (tier === "std" || (tier !== "dual" && tier !== "ruler" && tier !== "kill")) {
+        if (combined.indexOf("DOUBLE WINDOW") !== -1 || combined.indexOf("DUAL") !== -1) return "dual";
+        if (combined.indexOf("KILL-ZONE") !== -1 || combined.indexOf("KILL ZONE") !== -1) return "kill";
+        if ((CURRENT_ASSET === "NIFTY" || CURRENT_ASSET === "BANKNIFTY") && combined.indexOf("100% RULE MATCH") !== -1) {
           return "ruler";
         }
       }
@@ -758,59 +799,72 @@
       fetch(INSTALL_UP_URL, { keepalive: true }).catch(function() {});
     }
     function getNextTradingDate(baseDateObj) {
-      const d = new Date(baseDateObj.getTime());
-      let skippedWeekend = false;
-      while (d.getDay() === 0 || d.getDay() === 6) { d.setDate(d.getDate() + 1); skippedWeekend = true; }
-      return { dateStr: d.toISOString().split("T")[0], skippedWeekend: skippedWeekend };
+      var d = new Date(baseDateObj.getTime());
+      var skippedWeekend = false;
+      while (d.getDay() === 0 || d.getDay() === 6) {
+        d.setDate(d.getDate() + 1);
+        skippedWeekend = true;
+      }
+      var yyyy = d.getFullYear();
+      var mm = String(d.getMonth() + 1).padStart(2, "0");
+      var dd = String(d.getDate()).padStart(2, "0");
+      return { dateStr: yyyy + "-" + mm + "-" + dd, skippedWeekend: skippedWeekend };
     }
     function loadNextTradingSession() {
-      const currentVal = document.getElementById("audit-date-picker").value;
-      const base = currentVal ? new Date(currentVal + "T09:15:00") : new Date();
+      var currentVal = document.getElementById("audit-date-picker").value;
+      var base = currentVal ? new Date(currentVal + "T09:15:00") : new Date();
       base.setDate(base.getDate() + 1);
-      const next = getNextTradingDate(base);
+      var next = getNextTradingDate(base);
       document.getElementById("audit-date-picker").value = next.dateStr;
-      const notice = document.getElementById("session-notice-box");
+      var notice = document.getElementById("session-notice-box");
       notice.style.display = "inline-block";
       notice.innerText = "⏭ SHOWING NEXT TRADING SESSION: " + next.dateStr;
       fetchAstroWindows();
     }
 
     function copySocialPremarketPost() {
-      const textarea = document.getElementById("social-post-textarea");
-      const btn = document.getElementById("copy-social-btn");
+      var textarea = document.getElementById("social-post-textarea");
+      var btn = document.getElementById("copy-social-btn");
       if (!textarea || !textarea.value) return;
-      navigator.clipboard.writeText(textarea.value).then(function() {
-        btn.innerText = "✅ Copied for All Channels!";
-        setTimeout(function() { btn.innerText = "📋 Copy Pre-Market Post"; }, 2500);
-      }).catch(function() {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(textarea.value).then(function() {
+          btn.innerText = "✅ Copied for All Channels!";
+          setTimeout(function() { btn.innerText = "📋 Copy Pre-Market Post"; }, 2500);
+        }).catch(function() {
+          textarea.select();
+          document.execCommand("copy");
+          btn.innerText = "✅ Copied!";
+          setTimeout(function() { btn.innerText = "📋 Copy Pre-Market Post"; }, 2500);
+        });
+      } else {
         textarea.select();
         document.execCommand("copy");
         btn.innerText = "✅ Copied!";
         setTimeout(function() { btn.innerText = "📋 Copy Pre-Market Post"; }, 2500);
-      });
+      }
     }
 
     function updateTimeInOutWindow(selectedDate, slots) {
       document.getElementById("win-session-date").innerText = selectedDate;
-      const active = slots.filter(function(s) {
-        const cTag = sanitizePublicText(s.priority_tag || "");
-        const cAct = sanitizePublicText(s.action_bias || "");
-        const t = resolveSlotTier(s, cTag, cAct);
+      var active = slots.filter(function(s) {
+        var cTag = sanitizePublicText(s.priority_tag || "");
+        var cAct = sanitizePublicText(s.action_bias || "");
+        var t = resolveSlotTier(s, cTag, cAct);
         return t === "ruler" || t === "kill" || t === "dual";
       });
-      const list = active.length > 0 ? active : slots;
+      var list = active.length > 0 ? active : slots;
       if (!list || list.length === 0) {
         document.getElementById("win-time-in").innerText = "--:--";
         document.getElementById("win-time-out").innerText = "--:--";
         document.getElementById("win-time-phase").innerText = "No active window";
         return;
       }
-      const firstWin = list[0].time_window || "";
-      const lastWin = list[list.length - 1].time_window || firstWin;
-      const partsFirst = firstWin.split(/–|-/);
-      const partsLast = lastWin.split(/–|-/);
-      const timeIn = (partsFirst[0] || firstWin).trim();
-      const timeOut = (partsLast[1] || partsLast[0] || lastWin).trim();
+      var firstWin = list[0].time_window || "";
+      var lastWin = list[list.length - 1].time_window || firstWin;
+      var partsFirst = firstWin.split(/–|-/);
+      var partsLast = lastWin.split(/–|-/);
+      var timeIn = (partsFirst[0] || firstWin).trim();
+      var timeOut = (partsLast[1] || partsLast[0] || lastWin).trim();
 
       document.getElementById("win-time-in").innerText = timeIn || "--:--";
       document.getElementById("win-time-out").innerText = timeOut || "--:--";
@@ -818,22 +872,22 @@
     }
 
     function updateMarketBehaviourWindow(selectedDate, data, slots) {
-      const dateBadge = document.getElementById("win-behav-date");
-      const titleEl = document.getElementById("win-behav-title");
-      const headEl = document.getElementById("win-behav-headline");
-      const noteEl = document.getElementById("win-behav-note");
+      var dateBadge = document.getElementById("win-behav-date");
+      var titleEl = document.getElementById("win-behav-title");
+      var headEl = document.getElementById("win-behav-headline");
+      var noteEl = document.getElementById("win-behav-note");
 
       dateBadge.innerText = selectedDate;
-      const summaryObj = data.market_behaviour_summary || null;
+      var summaryObj = data.market_behaviour_summary || null;
 
       if (summaryObj && summaryObj.headline) {
         titleEl.innerText = "📊 " + sanitizePublicText(summaryObj.title || "TODAY'S MARKET BEHAVIOUR SUMMARY");
-        const cleanHeadline = sanitizePublicText(summaryObj.headline);
-        const cleanNote = sanitizePublicText(summaryObj.sub_note || "");
+        var cleanHeadline = sanitizePublicText(summaryObj.headline);
+        var cleanNote = sanitizePublicText(summaryObj.sub_note || "");
         headEl.innerText = cleanHeadline;
-        if (cleanHeadline.includes("EXPANSION")) {
+        if (cleanHeadline.indexOf("EXPANSION") !== -1) {
           headEl.className = "behav-pos";
-        } else if (cleanHeadline.includes("SWING") || cleanHeadline.includes("VOLATILITY")) {
+        } else if (cleanHeadline.indexOf("SWING") !== -1 || cleanHeadline.indexOf("VOLATILITY") !== -1) {
           headEl.className = "behav-swing";
         } else {
           headEl.className = "behav-range";
@@ -842,14 +896,13 @@
         return;
       }
 
-      // Public-safe fallback derived purely from clean slot flow labels
-      const hasExpansion = slots.some(function(s) {
-        return (s.action_bias || "").toUpperCase().includes("STRONG EXPANSION");
+      var hasExpansion = slots.some(function(s) {
+        return (s.action_bias || "").toUpperCase().indexOf("STRONG EXPANSION") !== -1;
       });
-      const activeCount = slots.filter(function(s) {
-        const cTag = sanitizePublicText(s.priority_tag || "");
-        const cAct = sanitizePublicText(s.action_bias || "");
-        const t = resolveSlotTier(s, cTag, cAct);
+      var activeCount = slots.filter(function(s) {
+        var cTag = sanitizePublicText(s.priority_tag || "");
+        var cAct = sanitizePublicText(s.action_bias || "");
+        var t = resolveSlotTier(s, cTag, cAct);
         return t === "ruler" || t === "kill" || t === "dual";
       }).length;
 
@@ -872,20 +925,20 @@
       if (IS_FOUNDER) {
         document.getElementById("admin-social-box").style.display = "block";
       }
-      const queryDate = urlParams.get("date");
+      var queryDate = urlParams.get("date");
       if (queryDate && /^\d{4}-\d{2}-\d{2}$/.test(queryDate)) {
         document.getElementById("audit-date-picker").value = queryDate;
-        const notice = document.getElementById("session-notice-box");
+        var notice = document.getElementById("session-notice-box");
         notice.style.display = "inline-block";
         notice.innerText = "✨ SELECTED SESSION: " + queryDate;
       } else {
-        const today = new Date();
-        const next = getNextTradingDate(today);
+        var today = new Date();
+        var next = getNextTradingDate(today);
         document.getElementById("audit-date-picker").value = next.dateStr;
         if (next.skippedWeekend) {
-          const notice = document.getElementById("session-notice-box");
-          notice.style.display = "inline-block";
-          notice.innerText = "📅 WEEKEND MARKET CLOSED • AUTO-SHOWING NEXT TRADING SESSION (" + next.dateStr + ")";
+          var notice2 = document.getElementById("session-notice-box");
+          notice2.style.display = "inline-block";
+          notice2.innerText = "📅 WEEKEND MARKET CLOSED • AUTO-SHOWING NEXT TRADING SESSION (" + next.dateStr + ")";
         }
       }
       if (isStandaloneApp()) recordAppInstallOnce();
@@ -906,13 +959,13 @@
     }
 
     async function updateVisitorCounter() {
-      const countEl = document.getElementById("visitor-count");
-      const alreadyCounted = sessionStorage.getItem("astromaps_session_counted") === "true";
-      const endpoint = (IS_FOUNDER || alreadyCounted) ? COUNTER_GET_URL : COUNTER_UP_URL;
+      var countEl = document.getElementById("visitor-count");
+      var alreadyCounted = sessionStorage.getItem("astromaps_session_counted") === "true";
+      var endpoint = (IS_FOUNDER || alreadyCounted) ? COUNTER_GET_URL : COUNTER_UP_URL;
       try {
-        const res = await fetch(endpoint);
+        var res = await fetch(endpoint);
         if (!res.ok) throw new Error("Counter error");
-        const data = await res.json();
+        var data = await res.json();
         countEl.innerText = (COUNTER_BASE + (data.count || 0)).toLocaleString("en-IN");
         sessionStorage.setItem("astromaps_session_counted", "true");
       } catch (e) { countEl.innerText = "166+"; }
@@ -921,77 +974,97 @@
     async function loadAppInstallStats() {
       if (!IS_FOUNDER) return;
       document.getElementById("app-install-box").style.display = "inline-flex";
-      const countEl = document.getElementById("app-install-count");
+      var countEl = document.getElementById("app-install-count");
       try {
-        const res = await fetch(INSTALL_GET_URL);
+        var res = await fetch(INSTALL_GET_URL);
         if (!res.ok) throw new Error("Install error");
-        const data = await res.json();
+        var data = await res.json();
         countEl.innerText = (data.count || 0).toLocaleString("en-IN");
       } catch (e) { countEl.innerText = "0"; }
     }
 
-    function sanitizePublicText(text) {
-      if (!text || typeof text !== "string") return "";
-      const base = IS_FOUNDER
-        ? text
-        : text
-            .replace(/v\d+\.\d+/gi, "")
-            .replace(/ (moon\s*chain|msl|mhl|mshl|mh|ujjain|clash|flush|deva|asur|nakshatra|hora|oppsign) /gi, "");
-      return simplifyStandardLabels(base);
-    }
-
-    async function fetchAstroWindows(retries = 4) {
-      const picker = document.getElementById("audit-date-picker");
-      let selectedDate = picker.value;
+    async function fetchAstroWindows(retries) {
+      if (typeof retries !== "number") retries = 4;
+      var picker = document.getElementById("audit-date-picker");
+      var selectedDate = picker.value;
       if (!selectedDate) {
-        const next = getNextTradingDate(new Date());
+        var next = getNextTradingDate(new Date());
         selectedDate = next.dateStr;
         picker.value = selectedDate;
       }
-      const adjusted = getNextTradingDate(new Date(selectedDate + "T09:15:00"));
+      var adjusted = getNextTradingDate(new Date(selectedDate + "T09:15:00"));
       if (adjusted.skippedWeekend && !urlParams.get("date")) {
         selectedDate = adjusted.dateStr;
         picker.value = selectedDate;
-        const notice = document.getElementById("session-notice-box");
+        var notice = document.getElementById("session-notice-box");
         notice.style.display = "inline-block";
         notice.innerText = "📅 WEEKEND SKIPPED • AUTO-ADJUSTED TO NEXT TRADING DAY (" + selectedDate + ")";
       }
-      const btn = document.getElementById("gen-btn");
+      var btn = document.getElementById("gen-btn");
       btn.innerText = "⏳ SCANNING...";
 
-      for (let attempt = 0; attempt < retries; attempt++) {
+      for (var attempt = 0; attempt < retries; attempt++) {
         try {
-          const res = await fetch(API_URL, {
+          var res = await fetch(API_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ date: selectedDate, asset: CURRENT_ASSET, is_admin: IS_FOUNDER })
           });
           if (!res.ok) throw new Error("Server busy");
-          const data = await res.json();
+          var data = await res.json();
 
-          const notice = document.getElementById("session-notice-box");
+          var noticeBox = document.getElementById("session-notice-box");
           if (data.trade_status && data.trade_status !== "TRADE_DAY") {
-            notice.style.display = "inline-block";
-            notice.innerText = "🛑 " + data.trade_status + (data.holiday_name ? " — " + data.holiday_name : "");
+            noticeBox.style.display = "inline-block";
+            noticeBox.innerText = "🛑 " + data.trade_status + (data.holiday_name ? " — " + data.holiday_name : "");
           }
 
-          const tbody = document.getElementById("h2h-table-body");
+          var tbody = document.getElementById("h2h-table-body");
           tbody.innerHTML = "";
-          const slots = data.h2h_slots || data.session_windows || [];
+          var slots = data.h2h_slots || data.session_windows || [];
 
           updateTimeInOutWindow(selectedDate, slots);
           updateMarketBehaviourWindow(selectedDate, data, slots);
 
           slots.forEach(function(slot) {
-            const cleanTag = sanitizePublicText(slot.priority_tag || "");
-            const cleanPhase = sanitizePublicText(slot.phase || "");
-            const cleanAction = sanitizePublicText(slot.action_bias || "");
-            const tier = resolveSlotTier(slot, cleanTag, cleanAction);
-            let rowClass = "row-standard", badgeClass = "badge-standard", timeColor = "#94a3b8";
+            var cleanTag = sanitizePublicText(slot.priority_tag || "");
+            var cleanPhase = sanitizePublicText(slot.phase || "");
+            var cleanAction = sanitizePublicText(slot.action_bias || "");
+            var tier = resolveSlotTier(slot, cleanTag, cleanAction);
+            var rowClass = "row-standard";
+            var badgeClass = "badge-standard";
+            var timeColor = "#94a3b8";
             if (tier === "dual") { rowClass = "row-dual-lock"; badgeClass = "badge-dual"; timeColor = "#fda4af"; }
             else if (tier === "ruler") { rowClass = "row-ruler-lock"; badgeClass = "badge-ruler"; timeColor = "#facc15"; }
             else if (tier === "kill") { rowClass = "row-killzone"; badgeClass = "badge-killzone"; timeColor = "#00f2fe"; }
-            tbody.innerHTML += '<tr class="' + rowClass + '"><td style="padding: 14px 16px; white-space: nowrap; font-family: 'JetBrains Mono', monospace; font-weight: 800; color: ' + timeColor + ';">' + (slot.time_window || "-") + '</td><td style="padding: 14px 16px; color: #f1f5f9; font-weight: 600;">' + cleanPhase + '</td><td style="padding: 14px 16px; color: #ffffff; font-weight: 700;">' + cleanAction + '</td><td style="padding: 14px 16px;"><span class="' + badgeClass + '">' + cleanTag + '</span></td></tr>';
+
+            var tr = document.createElement("tr");
+            tr.className = rowClass;
+
+            var tdTime = document.createElement("td");
+            tdTime.style.cssText = "padding: 14px 16px; white-space: nowrap; font-family: 'JetBrains Mono', monospace; font-weight: 800; color: " + timeColor + ";";
+            tdTime.textContent = slot.time_window || "-";
+
+            var tdPhase = document.createElement("td");
+            tdPhase.style.cssText = "padding: 14px 16px; color: #f1f5f9; font-weight: 600;";
+            tdPhase.textContent = cleanPhase;
+
+            var tdAction = document.createElement("td");
+            tdAction.style.cssText = "padding: 14px 16px; color: #ffffff; font-weight: 700;";
+            tdAction.textContent = cleanAction;
+
+            var tdStatus = document.createElement("td");
+            tdStatus.style.cssText = "padding: 14px 16px;";
+            var spanBadge = document.createElement("span");
+            spanBadge.className = badgeClass;
+            spanBadge.textContent = cleanTag;
+            tdStatus.appendChild(spanBadge);
+
+            tr.appendChild(tdTime);
+            tr.appendChild(tdPhase);
+            tr.appendChild(tdAction);
+            tr.appendChild(tdStatus);
+            tbody.appendChild(tr);
           });
 
           if (IS_FOUNDER && data.social_premarket_post) {

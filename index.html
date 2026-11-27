@@ -170,7 +170,7 @@
     .wa { background: #16a34a; }
     .tg { background: #0284c7; }
 
-    /* 2 Compact Home Windows: Time-In/Time-Out + Latest Hit/Miss */
+    /* 2 Compact Home Windows: Time-In/Time-Out + Today's Market Behaviour Summary */
     .compact-windows-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -235,9 +235,11 @@
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.72rem;
       font-weight: 800;
+      white-space: nowrap;
     }
-    .res-hit { color: #10b981; font-weight: 900; }
-    .res-miss { color: #f43f5e; font-weight: 900; }
+    .behav-pos { color: #10b981; font-weight: 900; }
+    .behav-swing { color: #facc15; font-weight: 900; }
+    .behav-range { color: #38bdf8; font-weight: 900; }
 
     .terminal-box {
       padding: 24px;
@@ -363,7 +365,7 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
-    /* Highlighted Table Tiers */
+    /* Highlighted Table Tiers (100% Rule Match Only for NIFTY & BANKNIFTY) */
     .row-ruler-lock { background: linear-gradient(90deg, rgba(250, 204, 21, 0.18) 0%, rgba(0, 242, 254, 0.06) 100%); border-left: 4px solid #facc15; border-bottom: 1px solid rgba(250, 204, 21, 0.35); }
     .row-dual-lock { background: linear-gradient(90deg, rgba(244, 63, 94, 0.22) 0%, rgba(250, 204, 21, 0.12) 100%); border-left: 4px solid #f43f5e; border-bottom: 1px solid rgba(244, 63, 94, 0.38); }
     .row-killzone { background: linear-gradient(90deg, rgba(0, 242, 254, 0.16) 0%, rgba(0, 242, 254, 0.04) 100%); border-left: 4px solid #00f2fe; border-bottom: 1px solid rgba(0, 242, 254, 0.3); }
@@ -404,7 +406,7 @@
     }
     .social-preview-textarea {
       width: 100%;
-      min-height: 185px;
+      min-height: 210px;
       background: rgba(13, 37, 69, 0.55);
       border: 1px solid rgba(0, 242, 254, 0.3);
       border-radius: 10px;
@@ -544,7 +546,7 @@
       </div>
     </div>
 
-    <!-- 2 COMPACT HOME WINDOWS: TIME-IN/TIME-OUT & LATEST HIT/MISS -->
+    <!-- 2 COMPACT HOME WINDOWS: TIME-IN/TIME-OUT & TODAY'S MARKET BEHAVIOUR SUMMARY -->
     <div class="compact-windows-grid">
       <div class="compact-win-card">
         <div class="compact-win-top">
@@ -562,16 +564,15 @@
 
       <div class="compact-win-card">
         <div class="compact-win-top">
-          <span>🎯 LATEST SESSION HIT / MISS</span>
-          <span class="compact-win-date" id="win-prev-date">--</span>
+          <span id="win-behav-title">📊 TODAY'S MARKET BEHAVIOUR SUMMARY</span>
+          <span class="compact-win-date" id="win-behav-date">--</span>
         </div>
         <div class="compact-win-main">
-          <div class="compact-win-kv"><span>SIGNAL:</span><strong id="win-prev-signal">--</strong></div>
-          <div class="compact-win-kv"><span>RESULT:</span><strong id="win-prev-result">--</strong></div>
+          <div class="compact-win-kv"><span>OUTLOOK:</span><strong id="win-behav-headline" class="behav-range">SYNCING...</strong></div>
         </div>
         <div class="compact-win-sub">
-          <span id="win-prev-pts">Checking verified audit...</span>
-          <a href="proof.html">Full Proof &rarr;</a>
+          <span id="win-behav-note">Analyzing session flow &amp; key windows...</span>
+          <a href="proof.html">Live Audits &rarr;</a>
         </div>
       </div>
     </div>
@@ -608,7 +609,7 @@
       </div>
 
       <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-top: 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: #cbd5e1;">
-        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #facc15; border-radius: 2px;"></span> PRIMARY WINDOW (STRONG EXPANSION)</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #facc15; border-radius: 2px;"></span> PRIMARY WINDOW (100% RULE MATCH)</span>
         <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #f43f5e; border-radius: 2px;"></span> DOUBLE WINDOW LOCK (HIGH SWING)</span>
         <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #00f2fe; border-radius: 2px;"></span> KILL-ZONE WINDOW (MARKET FLOW)</span>
         <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; background: #64748b; border-radius: 2px;"></span> STANDARD SESSION CYCLE</span>
@@ -692,7 +693,6 @@
 
   <script>
     const API_URL = "https://astromaps-engine.onrender.com/api/predict";
-    const AUDIT_URL = "https://astromaps-engine.onrender.com/api/single-aspect-moon-audit";
     const PING_URL = "https://astromaps-engine.onrender.com/api/health";
     const COUNTER_BASE = 165;
     const COUNTER_GET_URL = "https://api.counterapi.dev/v1/astromapsai/visits";
@@ -734,18 +734,15 @@
 
     function resolveSlotTier(slot, cleanTag, cleanAction) {
       let tier = (slot.tier || "std").toLowerCase();
+      // Highlight 100% rule match only for NIFTY & BANKNIFTY
+      if (!["NIFTY", "BANKNIFTY"].includes(CURRENT_ASSET) && tier === "ruler") {
+        return "std";
+      }
       const combined = ((cleanTag || "") + " " + (cleanAction || "")).toUpperCase();
       if (tier === "std" || !["dual", "ruler", "kill"].includes(tier)) {
         if (combined.includes("DOUBLE WINDOW") || combined.includes("DUAL")) return "dual";
         if (combined.includes("KILL-ZONE") || combined.includes("KILL ZONE")) return "kill";
-        if (
-          combined.includes("ACTIVE ZONE LOCK") ||
-          combined.includes("ACTIVE VECTOR LOCK") ||
-          combined.includes("PRIMARY WINDOW") ||
-          combined.includes("RULER") ||
-          combined.includes("STRONG EXPANSION FLOW") ||
-          combined.includes("EXPANSION IMPULSE")
-        ) {
+        if (["NIFTY", "BANKNIFTY"].includes(CURRENT_ASSET) && combined.includes("100% RULE MATCH")) {
           return "ruler";
         }
       }
@@ -820,49 +817,54 @@
       document.getElementById("win-time-phase").innerText = CURRENT_ASSET + " • " + sanitizePublicText(list[0].phase || "Active Window");
     }
 
-    async function fetchLatestHitMissWindow(selectedDate) {
-      const dateBadge = document.getElementById("win-prev-date");
-      const sigEl = document.getElementById("win-prev-signal");
-      const resEl = document.getElementById("win-prev-result");
-      const ptsEl = document.getElementById("win-prev-pts");
+    function updateMarketBehaviourWindow(selectedDate, data, slots) {
+      const dateBadge = document.getElementById("win-behav-date");
+      const titleEl = document.getElementById("win-behav-title");
+      const headEl = document.getElementById("win-behav-headline");
+      const noteEl = document.getElementById("win-behav-note");
 
-      try {
-        const res = await fetch(AUDIT_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            asset: CURRENT_ASSET,
-            start_date: "2026-01-01",
-            end_date: selectedDate || "2026-11-26",
-            future_end_date: "2027-03-31",
-            orb_limit: 6.0,
-            is_admin: false
-          })
-        });
-        if (!res.ok) throw new Error("Audit unavailable");
-        const data = await res.json();
-        const dates = data.audited_dates || [];
-        if (dates.length === 0) {
-          dateBadge.innerText = "--";
-          sigEl.innerText = "--";
-          resEl.innerText = "NO DATA";
-          ptsEl.innerText = CURRENT_ASSET;
-          return;
+      dateBadge.innerText = selectedDate;
+      const summaryObj = data.market_behaviour_summary || null;
+
+      if (summaryObj && summaryObj.headline) {
+        titleEl.innerText = "📊 " + sanitizePublicText(summaryObj.title || "TODAY'S MARKET BEHAVIOUR SUMMARY");
+        const cleanHeadline = sanitizePublicText(summaryObj.headline);
+        const cleanNote = sanitizePublicText(summaryObj.sub_note || "");
+        headEl.innerText = cleanHeadline;
+        if (cleanHeadline.includes("EXPANSION")) {
+          headEl.className = "behav-pos";
+        } else if (cleanHeadline.includes("SWING") || cleanHeadline.includes("VOLATILITY")) {
+          headEl.className = "behav-swing";
+        } else {
+          headEl.className = "behav-range";
         }
-        const latest = dates[dates.length - 1];
-        const isHit = latest.result === "HIT";
-        const sign = Number(latest.net_points) >= 0 ? "+" : "";
+        noteEl.innerText = cleanNote || (CURRENT_ASSET + " • Focus on key intraday windows & pivots");
+        return;
+      }
 
-        dateBadge.innerText = latest.date;
-        sigEl.innerText = latest.signal || "CALL";
-        resEl.innerText = latest.result || "--";
-        resEl.className = isHit ? "res-hit" : "res-miss";
-        ptsEl.innerText = CURRENT_ASSET + " • " + sign + latest.net_points + " pts";
-      } catch (e) {
-        dateBadge.innerText = "--";
-        sigEl.innerText = "--";
-        resEl.innerText = "SYNCING";
-        ptsEl.innerText = "Check Live Audits tab";
+      // Public-safe fallback derived purely from clean slot flow labels
+      const hasExpansion = slots.some(function(s) {
+        return (s.action_bias || "").toUpperCase().includes("STRONG EXPANSION");
+      });
+      const activeCount = slots.filter(function(s) {
+        const cTag = sanitizePublicText(s.priority_tag || "");
+        const cAct = sanitizePublicText(s.action_bias || "");
+        const t = resolveSlotTier(s, cTag, cAct);
+        return t === "ruler" || t === "kill" || t === "dual";
+      }).length;
+
+      if (hasExpansion && activeCount > 0) {
+        headEl.innerText = "CONSTRUCTIVE EXPANSION & TREND FLOW";
+        headEl.className = "behav-pos";
+        noteEl.innerText = CURRENT_ASSET + " • Positive session alignment; watch active windows for continuation.";
+      } else if (activeCount > 0) {
+        headEl.innerText = "HIGH SWING / TWO-WAY VOLATILITY";
+        headEl.className = "behav-swing";
+        noteEl.innerText = CURRENT_ASSET + " • Sharp intraday swings expected; wait for active window confirmation.";
+      } else {
+        headEl.innerText = "SELECTIVE RANGE & PIVOT-DRIVEN SESSION";
+        headEl.className = "behav-range";
+        noteEl.innerText = CURRENT_ASSET + " • Baseline cycle day; prioritize key intraday pivot levels.";
       }
     }
 
@@ -875,7 +877,7 @@
         document.getElementById("audit-date-picker").value = queryDate;
         const notice = document.getElementById("session-notice-box");
         notice.style.display = "inline-block";
-        notice.innerText = "✨ MAGIC DATE SELECTED: " + queryDate;
+        notice.innerText = "✨ SELECTED SESSION: " + queryDate;
       } else {
         const today = new Date();
         const next = getNextTradingDate(today);
@@ -934,7 +936,7 @@
         ? text
         : text
             .replace(/v\d+\.\d+/gi, "")
-            .replace(/\b(moon\s*chain|msl|ujjain|clash|flush)\b/gi, "");
+            .replace(/ (moon\s*chain|msl|mhl|mshl|mh|ujjain|clash|flush|deva|asur|nakshatra|hora|oppsign) /gi, "");
       return simplifyStandardLabels(base);
     }
 
@@ -978,7 +980,7 @@
           const slots = data.h2h_slots || data.session_windows || [];
 
           updateTimeInOutWindow(selectedDate, slots);
-          fetchLatestHitMissWindow(selectedDate);
+          updateMarketBehaviourWindow(selectedDate, data, slots);
 
           slots.forEach(function(slot) {
             const cleanTag = sanitizePublicText(slot.priority_tag || "");
@@ -989,7 +991,7 @@
             if (tier === "dual") { rowClass = "row-dual-lock"; badgeClass = "badge-dual"; timeColor = "#fda4af"; }
             else if (tier === "ruler") { rowClass = "row-ruler-lock"; badgeClass = "badge-ruler"; timeColor = "#facc15"; }
             else if (tier === "kill") { rowClass = "row-killzone"; badgeClass = "badge-killzone"; timeColor = "#00f2fe"; }
-            tbody.innerHTML += '<tr class="' + rowClass + '"><td style="padding: 14px 16px; white-space: nowrap; font-family: \'JetBrains Mono\', monospace; font-weight: 800; color: ' + timeColor + ';">' + (slot.time_window || "-") + '</td><td style="padding: 14px 16px; color: #f1f5f9; font-weight: 600;">' + cleanPhase + '</td><td style="padding: 14px 16px; color: #ffffff; font-weight: 700;">' + cleanAction + '</td><td style="padding: 14px 16px;"><span class="' + badgeClass + '">' + cleanTag + '</span></td></tr>';
+            tbody.innerHTML += '<tr class="' + rowClass + '"><td style="padding: 14px 16px; white-space: nowrap; font-family: 'JetBrains Mono', monospace; font-weight: 800; color: ' + timeColor + ';">' + (slot.time_window || "-") + '</td><td style="padding: 14px 16px; color: #f1f5f9; font-weight: 600;">' + cleanPhase + '</td><td style="padding: 14px 16px; color: #ffffff; font-weight: 700;">' + cleanAction + '</td><td style="padding: 14px 16px;"><span class="' + badgeClass + '">' + cleanTag + '</span></td></tr>';
           });
 
           if (IS_FOUNDER && data.social_premarket_post) {

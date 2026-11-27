@@ -164,29 +164,35 @@
       align-items: center;
     }
     .social-icon-btn {
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       padding: 0;
-      border-radius: 9px;
+      border-radius: 12px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       text-decoration: none;
       color: #ffffff;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
-      font-weight: 800;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 4px 12px rgba(2, 12, 27, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.22);
       white-space: nowrap;
-      transition: transform 0.18s ease, filter 0.18s ease;
+      transition: transform 0.18s ease, filter 0.18s ease, box-shadow 0.18s ease;
     }
     .social-icon-btn:hover {
-      transform: translateY(-1px);
-      filter: brightness(1.1);
+      transform: translateY(-2px) scale(1.04);
+      filter: brightness(1.08);
+      box-shadow: 0 8px 18px rgba(0, 242, 254, 0.25);
     }
-    .yt { background: #dc2626; }
-    .li { background: #1d4ed8; }
-    .wa { background: #16a34a; }
-    .tg { background: #0284c7; }
+    .social-icon-btn svg {
+      width: 20px;
+      height: 20px;
+      display: block;
+      fill: currentColor;
+    }
+    .yt { background: linear-gradient(145deg, #ef4444, #b91c1c); }
+    .li { background: linear-gradient(145deg, #2563eb, #1e40af); }
+    .wa { background: linear-gradient(145deg, #22c55e, #15803d); }
+    .tg { background: linear-gradient(145deg, #38bdf8, #0369a1); }
 
     /* 2 Compact Home Windows: Time-In/Time-Out + Today's Market Behaviour Summary */
     .compact-windows-grid {
@@ -560,10 +566,14 @@
         <div style="font-size: 1.15rem; font-weight: 900; color: #ffffff;">Astro <span style="color: #00f2fe;">MAPs</span> AI</div>
         <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #10b981; font-weight: 800;">● LIVE TIMING APP</div>
       </div>
-      <div style="display: flex; gap: 6px;">
+      <div style="display: flex; gap: 6px; align-items: center;">
         <a href="global.html" style="background: #f59e0b; color: #020c1b; text-decoration: none; font-size: 0.72rem; font-weight: 800; padding: 7px 10px; border-radius: 8px;">🌐 Gold/BTC</a>
-        <a href="https://t.me/AstroMapsai2026" target="_blank" rel="noopener noreferrer" title="Telegram Channel" aria-label="Telegram Channel" style="background: #0284c7; color: #ffffff; text-decoration: none; font-size: 0.78rem; font-weight: 800; padding: 7px 10px; border-radius: 8px;">✈️</a>
-        <a href="https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s" target="_blank" rel="noopener noreferrer" title="WhatsApp Channel" aria-label="WhatsApp Channel" style="background: #16a34a; color: #ffffff; text-decoration: none; font-size: 0.78rem; font-weight: 800; padding: 7px 10px; border-radius: 8px;">📢</a>
+        <a href="https://t.me/AstroMapsai2026" target="_blank" rel="noopener noreferrer" title="Telegram Channel" aria-label="Telegram Channel" class="social-icon-btn tg" style="width: 32px; height: 32px; border-radius: 9px;">
+          <svg viewBox="0 0 24 24" style="width: 16px; height: 16px;"><path d="M21.5 3.6c-.3-.2-.7-.3-1.1-.1L2.6 10.4c-.5.2-.8.6-.8 1.1 0 .5.3.9.8 1.1l4.4 1.6 1.7 5.3c.2.5.6.8 1.1.8.3 0 .6-.1.9-.3l2.6-2.2 4.5 3.3c.2.2.5.3.8.3.5 0 1-.4 1.1-.9L22.2 4.8c.1-.5-.2-1-.7-1.2zM9.6 14.3l8.8-7.4-7.1 8.8-.3 3.1-1.4-4.5z"/></svg>
+        </a>
+        <a href="https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s" target="_blank" rel="noopener noreferrer" title="WhatsApp Channel" aria-label="WhatsApp Channel" class="social-icon-btn wa" style="width: 32px; height: 32px; border-radius: 9px;">
+          <svg viewBox="0 0 24 24" style="width: 16px; height: 16px;"><path d="M12 2a9.9 9.9 0 0 0-8.6 14.8L2 22l5.4-1.4A9.9 9.9 0 1 0 12 2zm5.7 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.8-.7-3.1-1.3-5.1-4.5-5.3-4.7-.2-.2-1.3-1.7-1.3-3.2 0-1.5.8-2.3 1.1-2.6.3-.3.6-.4.8-.4h.6c.2 0 .5-.1.7.5.3.7.9 2.2 1 2.4.1.2.1.4 0 .6-.1.2-.2.4-.3.5-.2.2-.3.4-.5.6-.2.2-.3.4-.1.7.2.3.9 1.5 1.9 2.4 1.3 1.2 2.4 1.5 2.7 1.7.3.1.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.4-.2.7-.1.3.1 1.9.9 2.2 1.1.3.2.5.3.6.4.1.2.1.9-.1 1.5z"/></svg>
+        </a>
       </div>
     </div>
 
@@ -574,10 +584,18 @@
         <div style="font-size: 0.88rem; color: #cbd5e1;">Calibrated on 56 Years of Historical Data (1970–2026) • Nifty 50, Bank Nifty, MCX Silver &amp; Crude Oil</div>
       </div>
       <div class="social-links" aria-label="Official Channels">
-        <a href="https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s" target="_blank" rel="noopener noreferrer" title="WhatsApp Channel" aria-label="WhatsApp Channel" class="social-icon-btn wa">📢</a>
-        <a href="https://t.me/AstroMapsai2026" target="_blank" rel="noopener noreferrer" title="Telegram Channel" aria-label="Telegram Channel" class="social-icon-btn tg">✈️</a>
-        <a href="https://youtube.com/@AstroMAPSAI" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube" class="social-icon-btn yt">▶</a>
-        <a href="https://www.linkedin.com/in/umesh-y-710274a2" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn" class="social-icon-btn li">in</a>
+        <a href="https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s" target="_blank" rel="noopener noreferrer" title="WhatsApp Channel" aria-label="WhatsApp Channel" class="social-icon-btn wa">
+          <svg viewBox="0 0 24 24"><path d="M12 2a9.9 9.9 0 0 0-8.6 14.8L2 22l5.4-1.4A9.9 9.9 0 1 0 12 2zm5.7 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.8-.7-3.1-1.3-5.1-4.5-5.3-4.7-.2-.2-1.3-1.7-1.3-3.2 0-1.5.8-2.3 1.1-2.6.3-.3.6-.4.8-.4h.6c.2 0 .5-.1.7.5.3.7.9 2.2 1 2.4.1.2.1.4 0 .6-.1.2-.2.4-.3.5-.2.2-.3.4-.5.6-.2.2-.3.4-.1.7.2.3.9 1.5 1.9 2.4 1.3 1.2 2.4 1.5 2.7 1.7.3.1.5.1.7-.1.2-.2.8-.9 1-1.2.2-.3.4-.2.7-.1.3.1 1.9.9 2.2 1.1.3.2.5.3.6.4.1.2.1.9-.1 1.5z"/></svg>
+        </a>
+        <a href="https://t.me/AstroMapsai2026" target="_blank" rel="noopener noreferrer" title="Telegram Channel" aria-label="Telegram Channel" class="social-icon-btn tg">
+          <svg viewBox="0 0 24 24"><path d="M21.5 3.6c-.3-.2-.7-.3-1.1-.1L2.6 10.4c-.5.2-.8.6-.8 1.1 0 .5.3.9.8 1.1l4.4 1.6 1.7 5.3c.2.5.6.8 1.1.8.3 0 .6-.1.9-.3l2.6-2.2 4.5 3.3c.2.2.5.3.8.3.5 0 1-.4 1.1-.9L22.2 4.8c.1-.5-.2-1-.7-1.2zM9.6 14.3l8.8-7.4-7.1 8.8-.3 3.1-1.4-4.5z"/></svg>
+        </a>
+        <a href="https://youtube.com/@AstroMAPSAI" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube" class="social-icon-btn yt">
+          <svg viewBox="0 0 24 24"><path d="M21.6 7.2a2.9 2.9 0 0 0-2-2.1C17.8 4.6 12 4.6 12 4.6s-5.8 0-7.6.5a2.9 2.9 0 0 0-2 2.1A30.2 30.2 0 0 0 2 12a30.2 30.2 0 0 0 .4 4.8 2.9 2.9 0 0 0 2 2.1c1.8.5 7.6.5 7.6.5s5.8 0 7.6-.5a2.9 2.9 0 0 0 2-2.1A30.2 30.2 0 0 0 22 12a30.2 30.2 0 0 0-.4-4.8zM10 15.2V8.8l5.5 3.2-5.5 3.2z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/umesh-y-710274a2" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn" class="social-icon-btn li">
+          <svg viewBox="0 0 24 24"><path d="M6.9 8.5H3.8V19h3.1V8.5zM5.3 4a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zM20.2 12.9c0-2.7-1.4-4.2-3.7-4.2-1.7 0-2.5.9-2.9 1.6V8.5h-3V19h3v-5.5c0-1.5.3-2.9 2.1-2.9s1.8 1.6 1.8 3V19h3v-6.1z"/></svg>
+        </a>
       </div>
     </div>
 
@@ -694,12 +712,6 @@
             <a href="mailto:yumesh1444@gmail.com">✉️ yumesh1444@gmail.com</a>
             <span style="color: #475569;">•</span>
             <a href="tel:+917727054744">📞 +91 7727054744</a>
-          </div>
-          <div class="social-links" style="margin-top: 8px;" aria-label="Official Channels">
-            <a href="https://whatsapp.com/channel/0029VbB6PpEIt5rzRiYchs3s" target="_blank" rel="noopener noreferrer" title="WhatsApp Channel" aria-label="WhatsApp Channel" class="social-icon-btn wa">📢</a>
-            <a href="https://t.me/AstroMapsai2026" target="_blank" rel="noopener noreferrer" title="Telegram Channel" aria-label="Telegram Channel" class="social-icon-btn tg">✈️</a>
-            <a href="https://youtube.com/@AstroMAPSAI" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube" class="social-icon-btn yt">▶</a>
-            <a href="https://www.linkedin.com/in/umesh-y-710274a2" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn" class="social-icon-btn li">in</a>
           </div>
         </div>
       </div>

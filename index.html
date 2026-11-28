@@ -11,7 +11,7 @@
   <meta name="theme-color" content="#00f2fe" />
   <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3310/3310624.png" />
   <style>
-    * { box-sizing: border-box; }
+* { box-sizing: border-box; }
     body {
       margin: 0;
       padding: 0 16px 60px 16px;
@@ -555,7 +555,9 @@
         <a href="global.html" class="nav-link">Global Gold &amp; BTC</a>
         <a href="about.html" class="nav-link">Methodology</a>
         <a href="proof.html" class="nav-link">Live Audits</a>
+        <a href="vision.html" class="nav-link">Vision</a>
         <a href="guide.html" class="nav-link">App Guide</a>
+        <a href="tel:+917727054744" class="nav-link" title="Call +91 7727054744" aria-label="Call +91 7727054744">&#9742;</a>
       </div>
     </div>
   </nav>
@@ -1007,7 +1009,7 @@
       if (!selectedDate) {
         var next = getNextTradingDate(new Date());
         selectedDate = next.dateStr;
-        picker.value = selectedDate;
+        picker.value = next.dateStr;
       }
       var adjusted = getNextTradingDate(new Date(selectedDate + "T09:15:00"));
       if (adjusted.skippedWeekend && !urlParams.get("date")) {
